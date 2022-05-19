@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from main.models import Location
+
 
 class CustomUser(AbstractUser):
     gender = [
@@ -14,6 +16,7 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=30, verbose_name="Номер телефона", blank=True, null=True)
     is_activated = models.BooleanField(default=True, db_index=True, verbose_name='Прошел активацию?')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения', null=True)
+    # location = models.ForeignKey(Location, blank=True, on_delete=models.PROTECT, verbose_name="Расположение")
 
     class Meta:
         verbose_name = 'Пользователь'

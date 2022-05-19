@@ -1,0 +1,11 @@
+{% extends 'main/layout/base.html' %}
+
+{% block title %} Новый мастер {% endblock %}
+{% block content %}
+    <h2> Создание нового матсера</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}

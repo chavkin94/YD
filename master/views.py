@@ -5,18 +5,19 @@ from django.views.generic import CreateView, DetailView, UpdateView, TemplateVie
 from .forms import *
 from .models import *
 
-class OrganizationAdd(LoginRequiredMixin, CreateView):
-    form_class = OrganizationAddForm
-    template_name = 'organization/organization_add.html'
+
+class MasterAdd(LoginRequiredMixin, CreateView):
+    form_class = MasterAddForm
+    template_name = 'master/master_add.html'
     success_url = reverse_lazy('account:account')
     login_url = reverse_lazy('account:login')
 
 
-class OrganizationOneShow(DetailView):
-    model = Organization
-    template_name = 'organization/organization_one_show.html'
+class MasterOneShow(DetailView):
+    model = Master
+    template_name = 'master/master_one_show.html'
     slug_url_kwarg = 'slug'
-    context_object_name = 'organization'
+    context_object_name = 'master'
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,26 +25,26 @@ class OrganizationOneShow(DetailView):
         return context
 
 
-class OrganizationUpdate(LoginRequiredMixin, UpdateView):
-    form_class = OrganizationUpdateForm
-    model = Organization
-    template_name = 'organization/organization_update.html'
+class MasterUpdate(LoginRequiredMixin, UpdateView):
+    form_class = MasterUpdateForm
+    model = Master
+    template_name = 'master/master_update.html'
     slug_url_kwarg = 'slug'
-    context_object_name = 'organization'
-    success_url = reverse_lazy('organization:organization_one_show')
-
+    context_object_name = 'master'
+    success_url = reverse_lazy('master:master_one_show')
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
 
 
-class OrganizationAllShow(ListView):
-    template_name = 'organization/organization_all_show.html'
-    context_object_name = 'organizations'
+class MasterAllShow(ListView):
+    model = Master
+    template_name = 'master/master_all_show.html'
+    context_object_name = 'masters'
 
     def get_queryset(self):
-        return Organization.objects.all()
+        return Master.objects.all()
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
