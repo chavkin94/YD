@@ -30,7 +30,7 @@
                 <div class="ms-3 mt-4 col-8 col-lg-4 col-md-8 col-sm-8 col-xl-3 col-xxl-3 text-center">
                     {% if user.is_authenticated %}
                             <p>Выйдите, чтобы зарегистрировать нового пользователя</p>
-                            <a class="border btn btn-primary m-2 ms-lg-3 w-50" href="{% url 'main:logout' %}">Выйти</a>
+                            <a class="border btn btn-primary m-2 ms-lg-3 w-50" href="{% url 'account:logout' %}">Выйти</a>
                     {% else %}
                         <div class="form-control d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-column flex-xxl-column">
                             <form method="post">
