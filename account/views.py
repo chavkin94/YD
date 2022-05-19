@@ -19,7 +19,7 @@ class CULoginView(LoginView):
 
 #Страница пользователя
 @login_required
-def account(request):
+def account_show(request):
         return render(request, 'account/account.html')
 
 #Подкласс выполняющий выход пользователя, миксин LoginRequiredMixin делает доступной только зарегистрированным пользователям

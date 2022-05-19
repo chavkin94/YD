@@ -5,7 +5,7 @@ app_name = 'account'
 
 urlpatterns = [
     #Страница пользователя
-    path('', account, name='account'),
+    path('', account_show, name='account'),
 
     #изменение данных пользователя
     path('change/', CUChangeUserInfoView.as_view(), name='account_change'),
