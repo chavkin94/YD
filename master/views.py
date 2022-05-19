@@ -31,7 +31,7 @@ class MasterUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'master/master_update.html'
     slug_url_kwarg = 'slug'
     context_object_name = 'master'
-    success_url = reverse_lazy('master:master_one_show')
+    # success_url = reverse_lazy('master:master_one_show')
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
