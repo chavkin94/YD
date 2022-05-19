@@ -16,7 +16,7 @@ class ChangeUserInfoForm(forms.ModelForm):
     birthday = forms.DateField(label='Дата рождения', widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})) # Работает только если убрать 'type': 'date'
     gender = forms.ChoiceField(label='Пол', widget=forms.Select(attrs={'class': 'form-control'}), choices=(('', ""), ('m', "мужской"), ('w', "женский")))
     email = forms.EmailField(label='Email', required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    phone_number = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone_number = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control', 'id':'phone'}))
 
     class Meta:
         model = CustomUser
@@ -34,7 +34,7 @@ class RegisterUserForm(forms.ModelForm):
         attrs={'class': 'form-control', 'type': 'date'}))  # Работает только если убрать 'type': 'date'
     gender = forms.ChoiceField(label='Пол', widget=forms.Select(attrs={'class': 'form-control'}),
                                choices=(('', ""), ('m', "мужской"), ('w', "женский")))
-    phone_number = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone_number = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control', 'id':'phone'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}), help_text=password_validation.password_validators_help_text_html())
     password2 = forms.CharField(label='Пароль (повторно)', widget=forms.PasswordInput(attrs={'class': 'form-control'}), help_text='Введите тот же самый пароль еще раз для проверки')
 
