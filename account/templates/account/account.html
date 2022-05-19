@@ -19,11 +19,17 @@
                 <button type="button" class="btn btn-primary m-2">Подписчики</button>
                 <button type="button" class="btn btn-primary m-2">Подписки</button>
             </div>
-            <div class="d-flex flex-column text-lg-start m-3">
+            <div class="d-flex flex-column text-start m-3">
                 {% if user.is_authenticated %}
-                    <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'account:account_change' %}">Изменить личные данные</a>
-                    <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'account:password_change' %}">Изменить пароль</a>
-                    <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'account:logout' %}">Выйти</a>
+                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'account:account_change' %}">Изменить личные данные</a>
+                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'account:password_change' %}">Изменить пароль</a>
+                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'account:logout' %}">Выйти</a>
+
+                    <p></p>
+                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'organization:organization_add' %}">Добавить организацию</a>
+                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'organization:organization_all_show' %}">Все организации</a>
+                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'master:master_add' %}">Добавить мастера</a>
+                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'master:master_all_show' %}">Все мастера</a>
                 {% endif %}
 
 {#                {% if user.is_authenticated %}#}
@@ -35,11 +41,8 @@
 {#                    <li><a href="{% url 'main:register' %}">Регистрация</a></li>#}
 {#                    <li><a href="{% url 'main:login' %}">Войти</a></li>#}
 {#                {% endif %}#}
+
             </div>
-            <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'organization:organization_add' %}">Добавить организацию</a>
-            <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'organization:organization_all_show' %}">Все организации</a>
-            <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'master:master_add' %}">Добавить мастера</a>
-            <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'master:master_all_show' %}">Все мастера</a>
         </div>
         <div class="container pb-5 pt-3">
 
