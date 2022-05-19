@@ -16,7 +16,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main.apps.MainConfig'
+    'main.apps.MainConfig',
+    'account.apps.AccountConfig',
+    'organization.apps.OrganizationConfig'
 ]
 
 MIDDLEWARE = [
@@ -86,10 +88,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'main.CustomUser'
+AUTH_USER_MODEL = 'account.CustomUser'
 
 # LOGIN_URL = 'main/registration/login.html'
-LOGIN_REDIRECT_URL = 'main:account'   #Маршрут по которому переходит после успешногот входа
+LOGIN_REDIRECT_URL = 'account:account'   #Маршрут по которому переходит после успешногот входа
 # LOGOUT_REDIRECT_URL = 'main:index'   #Маршрут по которому переходит после выхода
 # PASSWORD_RESET_TIMEOUT_DAYS = 3
 # AUTHENTICATION_BACKENDS

@@ -1,0 +1,16 @@
+{% extends 'main/layout/base.html' %}
+
+{% block title %} Создание новой организации {% endblock %}
+{% block content %}
+    <h2> Редактирование данных об организации "{{ organization.name }}"</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% for organization1 in OrganizationCategory %}
+            {{ organization1.name }}
+        {% endfor %}
+        <button type="submit">Редактировать</button>
+    </form>
+
+
+{% endblock %}

@@ -3,7 +3,7 @@ from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
 # from main.apps import user_registered
-from main.models import CustomUser
+from account.models import CustomUser
 
 
 #Форма редактирования пользовательских данных
@@ -41,8 +41,8 @@ class RegisterUserForm(forms.ModelForm):
     def clean_password1(self):
         password1 = self.cleaned_data['password1']
         if password1:
-            password_validation.validate_password((password1))
-        return  password1
+            password_validation.validate_password(password1)
+        return password1
 
     def clean(self):
         super().clean()
