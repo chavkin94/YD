@@ -1,0 +1,10 @@
+{% extends 'main/layout/base.html' %}
+
+{% block title %} Мастера {% endblock %}
+{% block content %}
+    <h2> Мастера</h2>
+    {% for master in masters %}
+        <a href="{{ master.get_absolute_url }}">{{ master.name }}</a>
+    {% endfor %}
+
+{% endblock %}
