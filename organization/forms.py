@@ -11,7 +11,7 @@ class OrganizationAddForm(forms.ModelForm):
         widgets = {
            'name': forms.TextInput(attrs={'class': 'form-control mt-2'}),
            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
-           'location': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+           'location': forms.Select(attrs={'class': 'form-control mt-2'}),
            'phone_number': forms.TextInput(attrs={'class': 'form-control mt-2', 'id':'phone', 'type':'text'}),
            'email': forms.EmailInput(attrs={'class': 'form-control mt-2'}),
            'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
@@ -26,7 +26,7 @@ class OrganizationUpdateForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
-            'location': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'location': forms.Select(attrs={'class': 'form-control mt-2'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control mt-2', 'id': 'phone', 'type': 'text'}),
             'email': forms.EmailInput(attrs={'class': 'form-control mt-2'}),
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),

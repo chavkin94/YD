@@ -4,7 +4,7 @@
 {% block content %}
     <h2> Организации</h2>
     {% for organization in organizations %}
-        <a href="{{ organization.get_absolute_url }}">{{ master.name }}</a>
+        <a href="{{ organization.get_absolute_url }}">{{ organization.name }}</a>
     {% endfor %}
 
 {% endblock %}

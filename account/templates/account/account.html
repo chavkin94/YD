@@ -9,7 +9,7 @@
             <div class="container d-flex">
                 <img src="https://pinegrow.com/placeholders/img14.jpg" width="100" height="100" class="rounded-circle"/>
                 {% if user.first_name and user.last_name %}
-                    <h5 class="fs-5 d-flex text-dark">{{ user.first_name }} {{ user.last_name }}</h5>
+                    <h5 class="fs-5 d-flex">{{ user.first_name }} {{ user.last_name }}</h5>
                 {% endif %}
             </div>
             <div class="container">
@@ -37,6 +37,9 @@
 {#                {% endif %}#}
             </div>
             <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'organization:organization_add' %}">Добавить организацию</a>
+            <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'organization:organization_all_show' %}">Все организации</a>
+            <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'master:master_add' %}">Добавить мастера</a>
+            <a class="fs-6 d-flex text-decoration-none link-primary w-25" href="{% url 'master:master_all_show' %}">Все мастера</a>
         </div>
         <div class="container pb-5 pt-3">
 
