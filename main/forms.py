@@ -20,7 +20,7 @@ class ChangeUserInfoForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'surname', 'is_activated', 'last_name', 'birthday', 'gender', 'email', 'phone_number')
+        fields = ('username', 'first_name', 'surname', 'last_name', 'birthday', 'gender', 'email', 'phone_number')
 
 
 #Форма регистрации пользователя
@@ -35,8 +35,8 @@ class RegisterUserForm(forms.ModelForm):
     gender = forms.ChoiceField(label='Пол', widget=forms.Select(attrs={'class': 'form-control'}),
                                choices=(('', ""), ('m', "мужской"), ('w', "женский")))
     phone_number = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput, help_text=password_validation.password_validators_help_text_html())
-    password2 = forms.CharField(label='Пароль (повторно)', widget=forms.PasswordInput, help_text='Введите тот же самый пароль еще раз для проверки')
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}), help_text=password_validation.password_validators_help_text_html())
+    password2 = forms.CharField(label='Пароль (повторно)', widget=forms.PasswordInput(attrs={'class': 'form-control'}), help_text='Введите тот же самый пароль еще раз для проверки')
 
     def clean_password1(self):
         password1 = self.cleaned_data['password1']
@@ -63,4 +63,4 @@ class RegisterUserForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = 'username', 'password1', 'password2', 'first_name', 'surname', 'is_activated', 'last_name', 'birthday', 'gender', 'email', 'phone_number'
+        fields = 'username', 'password1', 'password2', 'first_name', 'surname', 'last_name', 'birthday', 'gender', 'email', 'phone_number'
