@@ -5,4 +5,6 @@ app_name = 'main'
 
 urlpatterns = [
     path('', index, name='index'),
+    path('feed', feed, name='feed'),
+    path('search', search, name='search'),
 ]

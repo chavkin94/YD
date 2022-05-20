@@ -21,8 +21,8 @@
                         <span class="navbar-toggler-icon" style="border-style: none;"></span>
                     </button>
                     <div class="collapse d-xxl-flex justify-content-end navbar-collapse" id="navbarNavDropdown-3">
-                        <a class="btn btn-primary m-2 ms-lg-3" href="#">Лента</a>
-                        <a class="btn btn-primary m-2 ms-lg-3" href="#">Поиск мастера</a>
+                        <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:feed' %}">Лента</a>
+                        <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:search' %}">Поиск мастера</a>
                         {% if user.is_authenticated %}
                             <a class="btn btn-primary m-2 ms-lg-3" href="#">Сообщения</a>
                             <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'account:account' %}">Профиль</a>

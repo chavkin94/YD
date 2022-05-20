@@ -1,0 +1,132 @@
+{% extends 'main/layout/base.html' %}
+
+{% block content %}
+
+    <div class="align-items-lg-center container d-lg-flex flex-lg-column">
+            <div class="col-md-12">
+                <div class="d-md-flex d-xxl-flex">
+                    <input class="form-control m-1" placeholder="Поиск..."/>
+                    <select class="form-select m-1" aria-label="Default select example">
+
+                        <option value="all_category" selected >Все категории</option>
+{#                        {% for sc in service_category %}#}
+{#                            <option value="{{ sc.slug }}">{{ sc.name }}</option>#}
+{#                        {% endfor %}#}
+                    </select>
+                    <select class="form-select m-1" aria-label="Default select example">
+                        <option selected>Все города</option>
+                        <option value="chita">Чита</option>
+                        <option value="moscow">Москва</option>
+                        <option value="ircutsc">Иркутск</option>
+                    </select>
+                    <button class="btn btn-primary m-1">Поиск</button>
+                </div>
+            </div>
+        </div>
+        <section class="pb-5 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-sm-12 col-xl-12 pb-3 pt-3">
+                        <h4>Объявления</h4>
+                        <div class="flex-lg-wrap row">
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl-4 col-xxl-3">
+                                <div class="mb-2 mt-2 pt-3">
+                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="245" class="d-inline-block" height="200"/>
+                                    <div class="container">
+                                        <a href="" class="h5 link-primary m-2 text-dark text-decoration-none">Услуга
+                                        (ссылка)</a>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">100 Р</p>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">Расположение</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl-4 col-xxl-3">
+                                <div class="mb-2 mt-2 pt-3">
+                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="245" class="d-inline-block" height="200"/>
+                                    <div class="container">
+                                        <a href="" class="h5 link-primary m-2 text-dark text-decoration-none">Услуга
+                                        (ссылка)</a>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">100 Р</p>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">Расположение</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl-4 col-xxl-3">
+                                <div class="mb-2 mt-2 pt-3">
+                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="245" class="d-inline-block" height="200"/>
+                                    <div class="container">
+                                        <a href="" class="h5 link-primary m-2 text-dark text-decoration-none">Услуга
+                                        (ссылка)</a>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">100 Р</p>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">Расположение</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl-4 col-xxl-3">
+                                <div class="mb-2 mt-2 pt-3">
+                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="245" class="d-inline-block" height="200"/>
+                                    <div class="container">
+                                        <a href="" class="h5 link-primary m-2 text-dark text-decoration-none">Услуга
+                                        (ссылка)</a>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">100 Р</p>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">Расположение</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl-4 col-xxl-3">
+                                <div class="mb-2 mt-2 pt-3">
+                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="245" class="d-inline-block" height="200"/>
+                                    <div class="container">
+                                        <a href="" class="h5 link-primary m-2 text-dark text-decoration-none">Услуга
+                                        (ссылка)</a>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">100 Р</p>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">Расположение</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl-4 col-xxl-3">
+                                <div class="mb-2 mt-2 pt-3">
+                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="245" class="d-inline-block" height="200"/>
+                                    <div class="container">
+                                        <a href="" class="h5 link-primary m-2 text-dark text-decoration-none">Услуга
+                                        (ссылка)</a>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">100 Р</p>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">Расположение</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl-4 col-xxl-3">
+                                <div class="mb-2 mt-2 pt-3">
+                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="245" class="d-inline-block" height="200"/>
+                                    <div class="container">
+                                        <a href="" class="h5 link-primary m-2 text-dark text-decoration-none">Услуга
+                                        (ссылка)</a>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">100 Р</p>
+                                        <p class="d-flex d-inline-block mb-1 text-xxl-start">Расположение</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{#                    <div class="mt-5 col-sm-2 col-xl-2 d-lg-block d-md-block d-none d-sm-none d-xl-block d-xxl-block pb-3 pe-0 ps-0">#}
+{#                        <div class="border container mt-3 p-2">#}
+{#                            <h3 class="fw-normal h5 text-dark">Реклама 1</h3>#}
+{#                            <p>Описание</p>#}
+{#                        </div>#}
+{#                        <div class="border container mt-3 p-2">#}
+{#                            <h3 class="fw-normal h5 text-dark">Реклама 1</h3>#}
+{#                            <p>Описание</p>#}
+{#                        </div>#}
+{#                        <div class="border container mt-3 p-2">#}
+{#                            <h3 class="fw-normal h5 text-dark">Реклама 1</h3>#}
+{#                            <p>Описание</p>#}
+{#                        </div>#}
+{#                        <div class="border container mt-3 p-2">#}
+{#                            <h3 class="fw-normal h5 text-dark">Реклама 1</h3>#}
+{#                            <p>Описание</p>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </section>
+{% endblock %}

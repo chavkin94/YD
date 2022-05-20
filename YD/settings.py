@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'organization.apps.OrganizationConfig',
     'master.apps.MasterConfig',
     'service.apps.ServiceConfig',
+    # 'django_cleanup.apps.CleanupConfig',
+    'easy_thumbnails',
 
 ]
 
