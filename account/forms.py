@@ -74,6 +74,7 @@ class AccountPostAddForm(forms.ModelForm):
            'name': forms.Select(attrs={'class': 'form-control mt-2'}),
            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
            'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
-           'image': forms.ImageField(),
+           # 'image': forms.TextInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
            'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
         }

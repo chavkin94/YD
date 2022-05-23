@@ -4,13 +4,9 @@
 {% block content %}
     {% if user.is_authenticated %}
          <div class="form-control p-4 d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-column flex-xxl-column">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.title }}
-                {{ form.content }}
-{#                {{ form.image}}#}
-                {{ form.user }}
-
+                {{ form.as_p }}
                 <input class="border btn btn-primary m-2" type="submit" value="Публиковать"/>
             </form>
          </div>
