@@ -3,7 +3,7 @@ from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
 # from main.apps import user_registered
-from account.models import CustomUser
+from account.models import CustomUser, AccountPost
 
 
 #Форма редактирования пользовательских данных
@@ -64,3 +64,17 @@ class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = 'username', 'password1', 'password2', 'first_name', 'surname', 'last_name', 'birthday', 'gender', 'email', 'phone_number'
+
+#Форма создания поста
+class AccountPostAddForm(forms.ModelForm):
+    class Meta:
+        model = AccountPost
+        fields = ['user', 'slug', 'title', 'image', 'content']
+        widgets = {
+           'name': forms.Select(attrs={'class': 'form-control mt-2'}),
+           'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+           'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+           # 'image': forms.TextInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
+           'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+        }

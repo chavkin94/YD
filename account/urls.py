@@ -7,6 +7,12 @@ urlpatterns = [
     #Страница пользователя
     path('', account_show, name='account'),
 
+#Создание поста
+    path('post_add/', AccountPostAdd.as_view(), name='account_post_add'),
+
+    #Просмотр поста
+    path('post/<slug:slug>/', AccountPostShow.as_view(), name='account_post'),
+
     #изменение данных пользователя
     path('change/', CUChangeUserInfoView.as_view(), name='account_change'),
 

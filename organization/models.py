@@ -42,6 +42,7 @@ class Organization(models.Model):
     description = models.TextField(blank=True, verbose_name="Описание организации")
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, verbose_name="Пользователь")
     image = models.ImageField(blank=True, upload_to=image_url_main, verbose_name="Изображение")
+    category = models.ManyToManyField('OrganizationCategory', verbose_name="Категория")
 
     def delete(self, *args, **kwargs):
         for ai in self.additionalimage_set.all():
@@ -71,15 +72,6 @@ class OrganizationCategory(models.Model):
     class Meta:
         verbose_name = 'Категория организации'
         verbose_name_plural = 'Категории организаций'
-
-
-class COrganizationAndOrganizationCategory(models.Model):
-    FKOrganizationCategory = models.ForeignKey(OrganizationCategory, on_delete=models.PROTECT, verbose_name="Категория Организации")
-    FKOrganization = models.ForeignKey(Organization, on_delete=models.PROTECT, verbose_name="Организация")
-
-    class Meta:
-        verbose_name = 'Связь Организация и Категория организации'
-        verbose_name_plural = 'Связь Организация и Категория организации'
 
 
 class OrganizationPost(models.Model):
