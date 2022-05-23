@@ -1,12 +1,18 @@
 {% extends 'main/layout/base.html' %}
 
+{% load thumbnail %}
+{% load static %}
 {% block title %} Мастер {% endblock %}
 {% block content %}
     <section class="pb-5 text-center">
         <div class="container pt-5">
             <p class="fs-5">Профиль мастера {{ organization.name }}</p>
             <div class="container d-flex">
-                <img src="https://pinegrow.com/placeholders/img14.jpg" width="100" height="100" class="rounded-circle"/>
+                {% if master.image %}
+                    <img src="{% thumbnail master.image 'default' %}" width="100" height="100" class="rounded-circle"/>
+                {% else %}
+                    <img src="{% static 'images/master.png' %}" width="100" height="100" class="rounded-circle"/>
+                {% endif %}
                 <h5 class="d-flex">Мастер {{ master.name }}</h5>
             </div>
             <div class="container text-lg-start text-md-start text-sm-start text-start text-xl-start text-xxl-start">

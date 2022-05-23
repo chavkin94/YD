@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +22,8 @@ INSTALLED_APPS = [
     'organization.apps.OrganizationConfig',
     'master.apps.MasterConfig',
     'service.apps.ServiceConfig',
+    'django_cleanup',
+    'easy_thumbnails',
 
 ]
 
@@ -107,3 +110,17 @@ LOGIN_REDIRECT_URL = 'account:account'   #Маршрут по которому �
 # EMAIL_USE_SSL = True
 # SERVER_EMAIL = EMAIL_HOST_USER
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'default': {
+            'size': (96, 96),
+            'crop': 'scale',
+        },
+    },
+}
+THUMBNAIL_BASEDIR = 'thumbnails'

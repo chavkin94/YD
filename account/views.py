@@ -10,6 +10,8 @@ from account.forms import ChangeUserInfoForm, RegisterUserForm
 from account.models import CustomUser
 
 from django.core.signing import BadSignature
+
+from master.models import Master
 from .utilities import signer
 
 
@@ -20,7 +22,9 @@ class CULoginView(LoginView):
 #Страница пользователя
 @login_required
 def account_show(request):
-        return render(request, 'account/account.html')
+        master = Master.objects.filter(user=request.user)
+        context = {'master': master}
+        return render(request, 'account/account.html', context)
 
 #Подкласс выполняющий выход пользователя, миксин LoginRequiredMixin делает доступной только зарегистрированным пользователям
 class CULogoutView(LoginRequiredMixin, LogoutView):
