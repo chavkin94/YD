@@ -56,7 +56,7 @@ class CustomUser(AbstractUser):
         verbose_name_plural = 'Пользователи'
 
 
-class AccountMainImage(models.Model):
+class AccountPost(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, verbose_name="Пользователь")
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="slug")
     title = models.CharField(max_length=100, verbose_name="Заголовок", blank=True, null=True)

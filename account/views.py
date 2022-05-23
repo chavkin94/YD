@@ -4,10 +4,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.views.generic import UpdateView, CreateView, TemplateView
+from django.views.generic import UpdateView, CreateView, TemplateView, DetailView
 
-from account.forms import ChangeUserInfoForm, RegisterUserForm
-from account.models import CustomUser
+from account.forms import ChangeUserInfoForm, RegisterUserForm, AccountPostAddForm
+from account.models import CustomUser, AccountPost
 
 from django.core.signing import BadSignature
 
@@ -18,6 +18,28 @@ from .utilities import signer
 # Подкласс выполняющий вход
 class CULoginView(LoginView):
         template_name = 'registration/login.html'
+
+
+#Добавление поста
+class AccountPostAdd(LoginRequiredMixin, CreateView):
+    form_class = AccountPostAddForm
+    template_name = 'account/account_post_add.html'
+    success_url = reverse_lazy('account:account')
+    login_url = reverse_lazy('account:login')
+
+
+#Просмотр поста
+class AccountPostShow(DetailView):
+    model = AccountPost
+    template_name = 'account/account_post.html'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['rubrics'] = Rubric.objects.all()
+        return context
+
 
 #Страница пользователя
 @login_required

@@ -3,7 +3,7 @@ from .models import *
 
 
 class OrganizationAddForm(forms.ModelForm):
-    OrganizationCategory = forms.ModelChoiceField(label='Вид организации', queryset=OrganizationCategory.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}),)
+    OrganizationCategory = forms.ModelMultipleChoiceField(label='Вид организации', queryset=OrganizationCategory.objects.all(), widget=forms.CheckboxSelectMultiple(),)
     class Meta:
         model = Organization
         # fields = '__all__'  #какие поля нужно отобразить в форме в данном случае все
@@ -18,17 +18,6 @@ class OrganizationAddForm(forms.ModelForm):
            'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
            'user': forms.Select(attrs={'class': 'form-control mt-2'}),
         }
-
-    def save(self, commit=True):
-        organization = super().save(commit=False)
-        organizationcategory = self.cleaned_data['OrganizationCategory']
-
-        OrganizationCategory.objects.create(FKOrganizationCategory=organization, FKOrganization=organization)
-
-        if commit:
-            organization.save()
-        # user_registered.send(RegisterUserForm, instance=user)
-        return organization
 
 
 class OrganizationUpdateForm(forms.ModelForm):
