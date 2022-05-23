@@ -2,11 +2,6 @@
 
 {% block title %} Профиль пользователя {% endblock %}
 {% block content %}
-    {% for foo in master %}
-        {{ foo.name }}
-    {% endfor %}
-
-
     <section class="pb-5 text-center">
         <div class="container">
             <p class="fs-5">Профиль пользователя {{ user.username }}</p>
