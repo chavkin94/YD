@@ -50,12 +50,3 @@ class MasterPostAddForm(forms.ModelForm):
             'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
             'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
         }
-
-    # def create(self, commit=True):
-    #     master = super().save(commit=False)
-    #     master.slug = self.cleaned_data['master']
-    #     master.is_activated = False
-    #     if commit:
-    #         master.save()
-    #     # user_registered.send(RegisterUserForm, instance=user)
-    #     return master

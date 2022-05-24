@@ -27,6 +27,12 @@ class AccountPostAdd(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('account:account')
     login_url = reverse_lazy('account:login')
 
+    def get_initial(self):
+        # if CustomUser.objects.get(username=self.request.user.username):
+            initial = super(AccountPostAdd, self).get_initial()
+            initial['user'] = self.request.user
+            return initial
+
 
 #Просмотр поста
 class AccountPostShow(DetailView):

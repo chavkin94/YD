@@ -33,3 +33,17 @@ class OrganizationUpdateForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
             'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
         }
+
+
+# Форма создания поста
+class OrganizationPostAddForm(forms.ModelForm):
+    class Meta:
+        model = OrganizationPost
+        fields = ['organization', 'slug', 'title', 'image', 'content']
+        widgets = {
+            'organization': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
+            'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+                }

@@ -49,3 +49,34 @@ class OrganizationAllShow(ListView):
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+# Добавление поста
+class OrganizationPostAdd(LoginRequiredMixin, CreateView):
+    model = OrganizationPost
+    form_class = OrganizationPostAddForm
+    template_name = 'organization/organization_post_add.html'
+    login_url = reverse_lazy('account:login')
+
+    def get_success_url(self):
+        return reverse('organization:organization_one_show', kwargs={'slug': str(self.object.organization.slug)})
+
+    def get_initial(self):
+        if Organization.objects.get(slug=self.kwargs.get('slug')):
+            initial = super(OrganizationPostAdd, self).get_initial()
+            initial['organization'] = Organization.objects.get(slug=self.kwargs.get('slug'))
+            return initial
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+# Просмотр поста
+class OrganizationPostShow(DetailView):
+    model = OrganizationPost
+    template_name = 'organization/organization_post.html'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

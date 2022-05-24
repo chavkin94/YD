@@ -4,13 +4,10 @@ from .views import *
 app_name = 'master'
 
 urlpatterns = [
-    #Создание поста
     path('<slug:slug>/post_add/', MasterPostAdd.as_view(), name='master_post_add'),
-    #Просмотр поста
-    path('post/<slug:slug>/', MasterPostShow.as_view(), name='master_post'),
+    path('<slug:master_slug>/post/<slug:slug>/', MasterPostShow.as_view(), name='master_post'),
     path('add/', MasterAdd.as_view(), name='master_add'),
     path('all/', MasterAllShow.as_view(), name='master_all_show'),
     path('<slug:slug>/', MasterOneShow.as_view(), name='master_one_show'),
     path('<slug:slug>/update/', MasterUpdate.as_view(), name='master_update'),
-
 ]

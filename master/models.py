@@ -73,7 +73,7 @@ class MasterPost(models.Model):
         super().delete(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('master:master_post', kwargs={'slug': self.slug})
+        return reverse('master:master_post', kwargs={'master_slug': self.master.slug, 'slug': self.slug})
 
     class Meta:
         verbose_name = 'Пост мастера'
