@@ -3,7 +3,19 @@
 
 {% block title %} Пост {% endblock %}
 {% block content %}
-     <h1> {{ post.title }} </h1>
-    <img src="{{ post.image.url }}" width="100" height="100" />
-    <p> {{ post.content }} </p>
+    <section class="pb-10 text-center">
+        <div class="container">
+            <p class="fs-4">Публикация {{ post.title }}</p>
+            <div class="container d-flex flex-row justify-content-center justify-content-center justify-content-center justify-content-center justify-content-center justify-content-lg-center">
+                <div class="col-lg-7 col-sm-11 col-xl-7 col-xxl-7 d-lg-block d-md-block d-block d-sm-block d-xl-block d-xxl-block m-2 pb-3 pt-3 text-start">
+                     <div class="form-control p-4 d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-column flex-xxl-column">
+                        <h1> {{ post.title }} </h1>
+                        <img src="{{ post.image.url }}" width="100" height="100" />
+                        <p> {{ post.content }} </p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}

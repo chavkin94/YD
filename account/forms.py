@@ -71,10 +71,9 @@ class AccountPostAddForm(forms.ModelForm):
         model = AccountPost
         fields = ['user', 'slug', 'title', 'image', 'content']
         widgets = {
-           'name': forms.Select(attrs={'class': 'form-control mt-2'}),
-           'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
-           'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
-           # 'image': forms.TextInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
-            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
-           'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'user': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
+            'content': forms.Textarea(attrs={'class': 'form-control mt-2'}),
         }

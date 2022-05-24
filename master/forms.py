@@ -17,7 +17,7 @@ class MasterAddForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
             'start_year': forms.DateInput(attrs={'class': 'form-control mt-2', 'type': 'date'}),
             'user': forms.Select(attrs={'class': 'form-control mt-2'}),
-            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
         }
 
 class MasterUpdateForm(forms.ModelForm):
@@ -32,5 +32,5 @@ class MasterUpdateForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control mt-2'}),
             'start_year': forms.DateInput(attrs={'class': 'form-control mt-2', 'type': 'date'}),
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
-            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
         }
