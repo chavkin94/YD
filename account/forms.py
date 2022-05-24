@@ -67,6 +67,11 @@ class RegisterUserForm(forms.ModelForm):
 
 #Форма создания поста
 class AccountPostAddForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['master'].empty_label = "Категория не выбрана"
+
     class Meta:
         model = AccountPost
         fields = ['user', 'slug', 'title', 'image', 'content']

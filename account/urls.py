@@ -7,7 +7,7 @@ urlpatterns = [
     #Страница пользователя
     path('', account_show, name='account'),
 
-#Создание поста
+    #Создание поста
     path('post_add/', AccountPostAdd.as_view(), name='account_post_add'),
 
     #Просмотр поста
