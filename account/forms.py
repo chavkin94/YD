@@ -67,14 +67,18 @@ class RegisterUserForm(forms.ModelForm):
 
 #Форма создания поста
 class AccountPostAddForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['master'].empty_label = "Категория не выбрана"
+
     class Meta:
         model = AccountPost
         fields = ['user', 'slug', 'title', 'image', 'content']
         widgets = {
-           'name': forms.Select(attrs={'class': 'form-control mt-2'}),
+           'user': forms.Select(attrs={'class': 'form-control mt-2'}),
            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
            'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
-           # 'image': forms.TextInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
             'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
            'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
         }

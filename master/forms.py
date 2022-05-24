@@ -1,6 +1,6 @@
 from django import forms
 
-from master.models import Master
+from master.models import Master, MasterPost
 
 
 class MasterAddForm(forms.ModelForm):
@@ -20,6 +20,7 @@ class MasterAddForm(forms.ModelForm):
             'image': forms.TextInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
         }
 
+
 class MasterUpdateForm(forms.ModelForm):
     class Meta:
         model = Master
@@ -34,3 +35,27 @@ class MasterUpdateForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
             'image': forms.TextInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file'}),
         }
+
+
+# Форма создания поста
+class MasterPostAddForm(forms.ModelForm):
+
+    class Meta:
+        model = MasterPost
+        fields = ['master', 'slug', 'title', 'image', 'content']
+        widgets = {
+            'master': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
+            'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+        }
+
+    # def create(self, commit=True):
+    #     master = super().save(commit=False)
+    #     master.slug = self.cleaned_data['master']
+    #     master.is_activated = False
+    #     if commit:
+    #         master.save()
+    #     # user_registered.send(RegisterUserForm, instance=user)
+    #     return master

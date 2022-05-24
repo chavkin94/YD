@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from master.models import Master
+from master.models import Master, MasterPost
 
 
 class MasterAdmin(admin.ModelAdmin):
@@ -13,3 +13,4 @@ class MasterAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Master, MasterAdmin)
+admin.site.register(MasterPost)

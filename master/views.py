@@ -49,3 +49,38 @@ class MasterAllShow(ListView):
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+#Добавление поста
+class MasterPostAdd(LoginRequiredMixin, CreateView):
+    model = MasterPost
+    form_class = MasterPostAddForm
+    template_name = 'master/master_post_add.html'
+    login_url = reverse_lazy('account:login')
+    # initial = {'master':}
+
+    def get_success_url(self):
+        return reverse('master:master_one_show', kwargs={'slug': str(self.object.master.slug)})
+
+    def get_initial(self):
+        if Master.objects.get(slug=self.kwargs.get('slug')):
+            initial = super(MasterPostAdd, self).get_initial()
+            initial['master'] = Master.objects.get(slug=self.kwargs.get('slug'))
+            return initial
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+
+#Просмотр поста
+class MasterPostShow(DetailView):
+    model = MasterPost
+    template_name = 'master/master_post.html'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
