@@ -31,11 +31,7 @@
             </div>
             <div class="m-3">
                 {% if user.is_authenticated %}
-<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'organization:organization_add' %}">Добавить организацию</a>-->
-<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'organization:organization_all_show' %}">Все организации</a>-->
-<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'master:master_add' %}">Добавить мастера</a>-->
                     <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'master:master_all_show' %}">Все мастера</a>
-<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'account:account_post_add' %}">Создать публикацию</a>-->
                 {% endif %}
             </div>
 
@@ -49,9 +45,6 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="false">Я мастер</button>
                 </li>
-<!--                <li class="nav-item" role="presentation">-->
-<!--                    <button class="nav-link" id="organization-tab" data-bs-toggle="tab" data-bs-target="#organizations" type="button" role="tab" aria-controls="organizations" aria-selected="false">Организации</button>-->
-<!--                </li>-->
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -74,13 +67,13 @@
                                             <img src="https://pinegrow.com/placeholders/img11.jpg"/>
                                         </a>
                                     </div>
+                                    {% include "main/modal/modal.html"%}
                                     <div>
                                         <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
                                             <div class="container">
                                                 <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
                                                 <span>1228</span>
                                             </div>
-                                            <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +94,6 @@
                                                 <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
                                                 <span>1228</span>
                                             </div>
-                                            <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
                                         </div>
                                     </div>
                                 </div>
@@ -139,27 +131,6 @@
                         </div>
                     </div>
                 </div>
-
-<!--                <div class="tab-pane fade" id="organizations" role="tabpanel" aria-labelledby="organization-tab">-->
-<!--                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">-->
-<!--                        <div class="container text-end">-->
-<!--                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'organization:organization_add' %}">Создать организацию</a>-->
-<!--                        </div>-->
-<!--                        <div class="container p-2">-->
-<!--                            {% for organization in organizations %}-->
-<!--                                <div class="border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">-->
-<!--                                    <div class="m-2 align-items-center d-flex">-->
-<!--                                        <img src="https://pinegrow.com/placeholders/img14.jpg" width="70" height="70" class="rounded-circle"/>-->
-<!--                                    </div>-->
-<!--                                    <div class="m-2 align-items-sm-start align-items-start col-8 col-lg-10 col-md-10 col-sm-9 col-xl-11 col-xxl-11 d-flex d-sm-flex flex-column flex-sm-column">-->
-<!--                                        <a class="m-1 fs-6 text-start text-dark" href="{{ organization.get_absolute_url }}">{{ organization.name }}</a>-->
-<!--                                        <p class="m-1 fs-7 text-start">1 267 подписчиков</p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            {% endfor %}-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
 
             </div>
 
