@@ -10,3 +10,6 @@ class LocationAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 admin.site.register(Location, LocationAdmin)
+admin.site.register(LocationDistrict)
+admin.site.register(LocationRegions)
+admin.site.register(LocationСity)

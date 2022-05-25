@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from master.models import Master, MasterPost, ServiceCategory, MasterService
+from master.models import Master, MasterPost, ServiceCategory, Service
 
 
 class MasterAdmin(admin.ModelAdmin):
@@ -27,9 +27,7 @@ class ServiceAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
-
-
 admin.site.register(Master, MasterAdmin)
 admin.site.register(MasterPost)
 admin.site.register(ServiceCategory, ServiceCategoryAdmin)
-admin.site.register(MasterService, ServiceAdmin)
+admin.site.register(Service, ServiceAdmin)

@@ -89,7 +89,7 @@ class PostShow(DetailView):
 
 #Добавление услуги
 class ServiceAdd(LoginRequiredMixin, CreateView):
-    model = MasterService
+    model = Service
     form_class = ServiceAddForm
     template_name = 'master/service_add.html'
     login_url = reverse_lazy('account:login')
@@ -110,7 +110,7 @@ class ServiceAdd(LoginRequiredMixin, CreateView):
 
 #Просмотр услуги
 class ServiceShow(DetailView):
-    model = MasterService
+    model = Service
     template_name = 'master/service.html'
     slug_url_kwarg = 'slug'
     context_object_name = 'service'
@@ -122,7 +122,7 @@ class ServiceShow(DetailView):
 
 class ServiceUpdate(LoginRequiredMixin, UpdateView):
     form_class = ServiceUpdateForm
-    model = MasterService
+    model = Service
     template_name = 'master/service_update.html'
     slug_url_kwarg = 'slug'
     context_object_name = 'service'

@@ -1,6 +1,6 @@
 from django import forms
 
-from master.models import Master, MasterPost, MasterService
+from master.models import Master, MasterPost, Service
 
 
 class MasterAddForm(forms.ModelForm):
@@ -55,7 +55,7 @@ class PostAddForm(forms.ModelForm):
 class ServiceAddForm(forms.ModelForm):
 
     class Meta:
-        model = MasterService
+        model = Service
         fields = ['name', 'slug', 'description', 'custom_category', 'serviceCategory', 'master',
                   'image']
         widgets = {
@@ -72,7 +72,7 @@ class ServiceAddForm(forms.ModelForm):
 class ServiceUpdateForm(forms.ModelForm):
 
     class Meta:
-        model = MasterService
+        model = Service
         fields = ['name', 'slug', 'description', 'custom_category', 'serviceCategory', 'master',
                   'image']
         widgets = {

@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('account/', include('account.urls')),
-    path('organization/', include('organization.urls')),
+    # path('organization/', include('organization.urls')),
     path('master/', include('master.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
