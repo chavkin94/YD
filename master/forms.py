@@ -1,6 +1,6 @@
 from django import forms
 
-from master.models import Master, MasterPost
+from master.models import Master, MasterPost, MasterService
 
 
 class MasterAddForm(forms.ModelForm):
@@ -38,7 +38,7 @@ class MasterUpdateForm(forms.ModelForm):
 
 
 # Форма создания поста
-class MasterPostAddForm(forms.ModelForm):
+class PostAddForm(forms.ModelForm):
 
     class Meta:
         model = MasterPost
@@ -49,4 +49,38 @@ class MasterPostAddForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
             'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+        }
+
+
+class ServiceAddForm(forms.ModelForm):
+
+    class Meta:
+        model = MasterService
+        fields = ['name', 'slug', 'description', 'custom_category', 'serviceCategory', 'master',
+                  'image']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
+            'custom_category': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'serviceCategory': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'master': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
+        }
+
+
+class ServiceUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = MasterService
+        fields = ['name', 'slug', 'description', 'custom_category', 'serviceCategory', 'master',
+                  'image']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
+            'custom_category': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'serviceCategory': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'master': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
         }

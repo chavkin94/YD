@@ -14,6 +14,7 @@
                 <h6 class="d-flex">{{ organization.description }}</h6>
                 <a class="btn btn-primary" href="{% url 'organization:organization_update' organization.slug %}">Редактировать организацию</a>
                 <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'organization:organization_post_add' organization.slug %}">Создать публикацию (организация)</a>
+                <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'service:service_add' %}">Создать объявление</a>
             </div>
         </div>
         <div class="container pb-5 pt-3 text-lg-start">

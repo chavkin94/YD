@@ -1,4 +1,4 @@
-from django.urls import path, reverse_lazy
+from django.urls import path, reverse_lazy, include
 from .views import *
 
 app_name = 'organization'
@@ -10,5 +10,4 @@ urlpatterns = [
     path('all/', OrganizationAllShow.as_view(), name='organization_all_show'),
     path('<slug:slug>/', OrganizationOneShow.as_view(), name='organization_one_show'),
     path('<slug:slug>/update/', OrganizationUpdate.as_view(), name='organization_update'),
-
 ]

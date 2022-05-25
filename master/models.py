@@ -27,7 +27,18 @@ def image_url(instance, filename):
     day = datetime.now().day
     name1 = datetime.now().timestamp()
     name2 = splitext(filename)[1]
-    return '%s/master/%s/images/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
+    return '%s/master/%s/images/%s/%s/%s/%s%s' % (slug_master, slug, year, month, day, name1, name2)
+
+
+def image_url_service(instance, filename):
+    slug_master = slugify(instance.master.slug)
+    slug = slugify(instance.master.user)
+    year = datetime.now().year
+    month = datetime.now().month
+    day = datetime.now().day
+    name1 = datetime.now().timestamp()
+    name2 = splitext(filename)[1]
+    return '%s/master/%s/service/images/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
 
 
 class Master(models.Model):
@@ -78,3 +89,40 @@ class MasterPost(models.Model):
     class Meta:
         verbose_name = 'Пост мастера'
         verbose_name_plural = 'Посты мастера'
+
+
+class ServiceCategory(models.Model):
+    name = models.CharField(max_length=255, blank=True, verbose_name="Наименование категории услуг")
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    description = models.TextField(blank=True, verbose_name="Описание категории услуг")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Категория услуг'
+        verbose_name_plural = 'Категории услуг'
+
+class MasterService(models.Model):
+    name = models.CharField(max_length=255, blank=True, verbose_name="Наименование услуги")
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    description = models.TextField(blank=True, verbose_name="Описание услуги")
+    custom_category = models.CharField(max_length=255, blank=True, verbose_name="Пользовательская категория")
+    serviceCategory = models.ForeignKey(ServiceCategory, on_delete=models.PROTECT, verbose_name="Категория услуг")
+    master = models.ForeignKey(Master, blank=True, on_delete=models.PROTECT, verbose_name="Мастер")
+    image = models.ImageField(blank=True, upload_to=image_url_service, verbose_name="Изображение")
+
+    def delete(self, *args, **kwargs):
+        for ai in self.additionalimage_set.all():
+            ai.delete()
+        super().delete(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('master:master_service_one_show', kwargs={'master_slug': self.master.slug, 'slug': self.slug})
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Услуга'
+        verbose_name_plural = 'Услуги'

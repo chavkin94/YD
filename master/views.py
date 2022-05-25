@@ -52,10 +52,10 @@ class MasterAllShow(ListView):
 
 
 #Добавление поста
-class MasterPostAdd(LoginRequiredMixin, CreateView):
+class PostAdd(LoginRequiredMixin, CreateView):
     model = MasterPost
-    form_class = MasterPostAddForm
-    template_name = 'master/master_post_add.html'
+    form_class = PostAddForm
+    template_name = 'master/post_add.html'
     login_url = reverse_lazy('account:login')
     # initial = {'master':}
 
@@ -64,7 +64,7 @@ class MasterPostAdd(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         if Master.objects.get(slug=self.kwargs.get('slug')):
-            initial = super(MasterPostAdd, self).get_initial()
+            initial = super(PostAdd, self).get_initial()
             initial['master'] = Master.objects.get(slug=self.kwargs.get('slug'))
             return initial
 
@@ -75,11 +75,58 @@ class MasterPostAdd(LoginRequiredMixin, CreateView):
 
 
 #Просмотр поста
-class MasterPostShow(DetailView):
+class PostShow(DetailView):
     model = MasterPost
-    template_name = 'master/master_post.html'
+    template_name = 'master/post.html'
     slug_url_kwarg = 'slug'
     context_object_name = 'post'
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+
+#Добавление услуги
+class ServiceAdd(LoginRequiredMixin, CreateView):
+    model = MasterService
+    form_class = ServiceAddForm
+    template_name = 'master/service_add.html'
+    login_url = reverse_lazy('account:login')
+
+    def get_success_url(self):
+        return reverse('master:master_one_show', kwargs={'slug': str(self.object.master.slug)})
+
+    def get_initial(self):
+        if Master.objects.get(slug=self.kwargs.get('slug')):
+            initial = super(ServiceAdd, self).get_initial()
+            initial['master'] = Master.objects.get(slug=self.kwargs.get('slug'))
+            return initial
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+#Просмотр услуги
+class ServiceShow(DetailView):
+    model = MasterService
+    template_name = 'master/service.html'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'service'
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class ServiceUpdate(LoginRequiredMixin, UpdateView):
+    form_class = ServiceUpdateForm
+    model = MasterService
+    template_name = 'master/service_update.html'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'service'
+    # success_url = reverse_lazy('master:master_one_show')
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

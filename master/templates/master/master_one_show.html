@@ -39,7 +39,8 @@
             <div class="container text-lg-start text-md-start text-sm-start text-start text-xl-start text-xxl-start">
                 <h6 class="d-flex">{{ master.description }}</h6>
                 <a class="btn btn-primary" href="{% url 'master:master_update' master.slug %}">Редактировать мастера</a>
-                <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'master:master_post_add' master.slug %}">Создать публикацию (мастер)</a>
+                <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'master:post_add' master.slug %}">Создать публикацию (мастер)</a>
+                <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'master:service_add' master.slug %}">Создать Услугу (мастер)</a>
             </div>
         </div>
         <div class="container pb-5 pt-3 text-lg-start">
