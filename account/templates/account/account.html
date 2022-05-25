@@ -1,5 +1,7 @@
 {% extends 'main/layout/base.html' %}
 
+{% load thumbnail %}
+{% load static %}
 {% block title %} Профиль пользователя {% endblock %}
 {% block content %}
     <section class="pb-5 text-center">
@@ -27,17 +29,13 @@
                     </div>
                 </div>
             </div>
-            <div class="m-4" data-pg-collapsed>
-                <h6 class="d-flex">Описание профиля</h6>
-            </div>
-
-            <div class="d-flex flex-column text-start m-3">
+            <div class="m-3">
                 {% if user.is_authenticated %}
-                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'organization:organization_add' %}">Добавить организацию</a>
-                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'organization:organization_all_show' %}">Все организации</a>
-                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'master:master_add' %}">Добавить мастера</a>
-                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'master:master_all_show' %}">Все мастера</a>
-                    <a class="fs-6 d-flex text-decoration-none m-1 link-primary w-25" href="{% url 'account:account_post_add' %}">Создать публикацию</a>
+<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'organization:organization_add' %}">Добавить организацию</a>-->
+<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'organization:organization_all_show' %}">Все организации</a>-->
+<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'master:master_add' %}">Добавить мастера</a>-->
+                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'master:master_all_show' %}">Все мастера</a>
+<!--                    <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'account:account_post_add' %}">Создать публикацию</a>-->
                 {% endif %}
             </div>
         </div>
@@ -45,86 +43,123 @@
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="organization-tab" data-bs-toggle="tab" data-bs-target="#organizations" type="button" role="tab" aria-controls="organizations" aria-selected="true">Организации</button>
+                    <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Мои публикации</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="false">Мастера</button>
+                    <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="false">Я мастер</button>
                 </li>
+<!--                <li class="nav-item" role="presentation">-->
+<!--                    <button class="nav-link" id="organization-tab" data-bs-toggle="tab" data-bs-target="#organizations" type="button" role="tab" aria-controls="organizations" aria-selected="false">Организации</button>-->
+<!--                </li>-->
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="organizations" role="tabpanel" aria-labelledby="organization-tab">
-                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
-                        <div class="container p-2">
 
-                            <div class="container p-3">
-                                <div class="border m-2 p-4">
-                                    <h3 class="fw-normal h5 text-dark">Организация 1</h3>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <p>Описание</p>
-                                    <span class="border-bottom btn btn-primary d-inline-block">
-                                        <a class="link-dark text-decoration-none" href="">Переход</a>
-                                    </span>
+                <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
+                        <div class="container text-end">
+                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'account:account_post_add' %}">Создать публикацию</a>
+                        </div>
+                        <div class="container align-items-center d-flex flex-column p-2">
+
+                            <div class="col-xxl-8 col-xl-8 col-lg-12 col-sm-12 col-12 m-2 pb-3 pt-3 text-start">
+                                <div class="border container mb-4 p-0">
+                                    <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
+                                        <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" width="40" height="40"/>
+                                        <h3 class="fw-normal h6 text-dark">Модель 1&nbsp;</h3>
+                                    </div>
+                                    <div class="p-0 box-user">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalImageAccount">
+                                            <img src="https://pinegrow.com/placeholders/img11.jpg"/>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
+                                            <div class="container">
+                                                <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
+                                                <span>1228</span>
+                                            </div>
+                                            <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-
-                            <div class="container p-3">
-                                <div class="border m-2 p-4">
-                                    <h3 class="fw-normal h5 text-dark">Организация 1</h3>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img16.jpg" width="200" height="200" class="m-2"/>
-                                    <p>Описание</p>
-                                    <span class="border-bottom btn btn-primary d-inline-block">
-                                        <a class="link-dark text-decoration-none" href="">Переход</a>
-                                    </span>
+                            <div class="col-xxl-8 col-xl-8 col-lg-12 col-sm-12 col-12 m-2 pb-3 pt-3 text-start">
+                                <div class="border container mb-4 p-0">
+                                    <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
+                                        <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" width="40" height="40"/>
+                                        <h3 class="fw-normal h6 text-dark">Модель 1&nbsp;</h3>
+                                    </div>
+                                    <div class="p-0 box-user">
+                                        <img src="https://pinegrow.com/placeholders/img1.jpg"/>
+                                    </div>
+                                    <div>
+                                        <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
+                                            <div class="container">
+                                                <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
+                                                <span>1228</span>
+                                            </div>
+                                            <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
+
+
                     </div>
                 </div>
 
                 <div class="tab-pane fade" id="masters" role="tabpanel" aria-labelledby="master-tab">
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
+                        <div class="container text-end">
+                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'master:master_add' %}">Создать мастера</a>
+                        </div>
                         <div class="container p-2">
 
-                            <div class="container p-3">
-                                <div class="border m-2 p-4">
-                                    <h3 class="fw-normal h5 text-dark">Мастер 1</h3>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <p>Описание</p>
-                                    <span class="border-bottom btn btn-primary d-inline-block">
-                                        <a class="link-dark text-decoration-none" href="">Переход</a>
-                                    </span>
+                            {% for master in masters %}
+                                <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                                    <div class="m-2 align-items-center d-flex">
+                                        {% if master.image %}
+                                            <img src="{% thumbnail master.image 'default' %}" width="70" height="70" class="rounded-circle"/>
+                                        {% else %}
+                                            <img src="{% static 'images/master.png' %}" width="70" height="70" class="rounded-circle"/>
+                                        {% endif %}
+                                    </div>
+                                    <div class="m-2 align-items-sm-start align-items-start col-8 col-lg-10 col-md-10 col-sm-9 col-xl-11 col-xxl-11 d-flex d-sm-flex flex-column flex-sm-column">
+                                        <a class="m-1 fs-6 text-start text-dark" href="{{ master.get_absolute_url }}">{{ master.name }}</a>
+                                        <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="container p-3">
-                                <div class="border m-2 p-4">
-                                    <h3 class="fw-normal h5 text-dark">Мастер 2</h3>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <img src="https://pinegrow.com/placeholders/img13.jpg" width="200" height="200" class="m-2"/>
-                                    <p>Описание</p>
-                                    <span class="border-bottom btn btn-primary d-inline-block">
-                                        <a class="link-dark text-decoration-none" href="">Переход</a>
-                                    </span>
-                                </div>
-                            </div>
+                            {% endfor %}
 
                         </div>
                     </div>
                 </div>
+
+<!--                <div class="tab-pane fade" id="organizations" role="tabpanel" aria-labelledby="organization-tab">-->
+<!--                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">-->
+<!--                        <div class="container text-end">-->
+<!--                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'organization:organization_add' %}">Создать организацию</a>-->
+<!--                        </div>-->
+<!--                        <div class="container p-2">-->
+<!--                            {% for organization in organizations %}-->
+<!--                                <div class="border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">-->
+<!--                                    <div class="m-2 align-items-center d-flex">-->
+<!--                                        <img src="https://pinegrow.com/placeholders/img14.jpg" width="70" height="70" class="rounded-circle"/>-->
+<!--                                    </div>-->
+<!--                                    <div class="m-2 align-items-sm-start align-items-start col-8 col-lg-10 col-md-10 col-sm-9 col-xl-11 col-xxl-11 d-flex d-sm-flex flex-column flex-sm-column">-->
+<!--                                        <a class="m-1 fs-6 text-start text-dark" href="{{ organization.get_absolute_url }}">{{ organization.name }}</a>-->
+<!--                                        <p class="m-1 fs-7 text-start">1 267 подписчиков</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            {% endfor %}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
             </div>
 
         </div>

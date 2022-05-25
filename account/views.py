@@ -12,6 +12,7 @@ from account.models import CustomUser, AccountPost
 from django.core.signing import BadSignature
 
 from master.models import Master
+from organization.models import Organization
 from .utilities import signer
 
 
@@ -43,8 +44,15 @@ class AccountPostShow(DetailView):
 #Страница пользователя
 @login_required
 def account_show(request):
-        master = Master.objects.filter(user=request.user)
-        context = {'master': master}
+        masters = Master.objects.filter(user=request.user)
+        organizations = Organization.objects.filter(user=request.user)
+        posts = AccountPost.objects.filter(user=request.user)
+        context = {
+            'masters': masters,
+            'organizations': organizations,
+            'posts':posts
+        }
+
         return render(request, 'account/account.html', context)
 
 #Подкласс выполняющий выход пользователя, миксин LoginRequiredMixin делает доступной только зарегистрированным пользователям
