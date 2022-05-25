@@ -21,3 +21,4 @@ class OrganizationCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(OrganizationCategory, OrganizationCategoryAdmin)
 admin.site.register(Organization, OrganizationAdmin)
+admin.site.register(OrganizationPost)

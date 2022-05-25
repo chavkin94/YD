@@ -1,0 +1,10 @@
+{% extends 'main/layout/base.html' %}
+
+
+{% block title %} Eckeuf {% endblock %}
+{% block content %}
+     <h1> {{ service.name }} </h1>
+    <img src="{{ service.image.url }}" width="100" height="100" />
+    <p> {{ service.description }} </p>
+    <a class="btn btn-primary" href="{% url 'master:service_update' service.master.slug service.slug %}">Редактировать мастера</a>
+{% endblock %}

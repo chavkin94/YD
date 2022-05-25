@@ -21,10 +21,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'organization.apps.OrganizationConfig',
     'master.apps.MasterConfig',
-    'service.apps.ServiceConfig',
     'django_cleanup',
     'easy_thumbnails',
-
 ]
 
 MIDDLEWARE = [

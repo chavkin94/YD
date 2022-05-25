@@ -20,7 +20,7 @@ def image_url_main(instance, filename):
 
 
 def image_url(instance, filename):
-    slug = slugify(instance.org.slug)
+    slug = slugify(instance.organization.slug)
     slug_organization = slugify(instance.organization.user)
     year = datetime.now().year
     month = datetime.now().month
@@ -85,6 +85,9 @@ class OrganizationPost(models.Model):
         for ai in self.additionalimage_set.all():
             ai.delete()
         super().delete(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('organization:organization_post', kwargs={'organization_slug': self.organization.slug, 'slug': self.slug})
 
     class Meta:
         verbose_name = 'Пост организации'
