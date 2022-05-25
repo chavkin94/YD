@@ -27,7 +27,7 @@ def image_url(instance, filename):
     day = datetime.now().day
     name1 = datetime.now().timestamp()
     name2 = splitext(filename)[1]
-    return '%s/master/%s/images/%s/%s/%s/%s%s' % (slug_master, slug, year, month, day, name1, name2)
+    return '%s/master/%s/images/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
 
 
 def image_url_service(instance, filename):
@@ -103,7 +103,7 @@ class ServiceCategory(models.Model):
         verbose_name = 'Категория услуг'
         verbose_name_plural = 'Категории услуг'
 
-class MasterService(models.Model):
+class Service(models.Model):
     name = models.CharField(max_length=255, blank=True, verbose_name="Наименование услуги")
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     description = models.TextField(blank=True, verbose_name="Описание услуги")
@@ -118,7 +118,7 @@ class MasterService(models.Model):
         super().delete(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('master:master_service_one_show', kwargs={'master_slug': self.master.slug, 'slug': self.slug})
+        return reverse('master:service_one_show', kwargs={'master_slug': self.master.slug, 'slug': self.slug})
 
     def __str__(self):
         return self.name

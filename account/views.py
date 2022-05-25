@@ -24,7 +24,7 @@ class CULoginView(LoginView):
 #Добавление поста
 class AccountPostAdd(LoginRequiredMixin, CreateView):
     form_class = AccountPostAddForm
-    template_name = 'account/account_post_add.html'
+    template_name = 'account/post_add.html'
     success_url = reverse_lazy('account:account')
     login_url = reverse_lazy('account:login')
 
@@ -38,7 +38,7 @@ class AccountPostAdd(LoginRequiredMixin, CreateView):
 #Просмотр поста
 class AccountPostShow(DetailView):
     model = AccountPost
-    template_name = 'account/account_post.html'
+    template_name = 'account/post.html'
     slug_url_kwarg = 'slug'
     context_object_name = 'post'
 
@@ -60,6 +60,20 @@ def account_show(request):
         }
 
         return render(request, 'account/account.html', context)
+
+
+#Просмотр другого пользователя
+class AccountAnotherShow(DetailView):
+    model = CustomUser
+    template_name = 'account/account_another.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'account'
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
 
 #Подкласс выполняющий выход пользователя, миксин LoginRequiredMixin делает доступной только зарегистрированным пользователям
 class CULogoutView(LoginRequiredMixin, LogoutView):
@@ -119,4 +133,4 @@ def user_activate(request, sign):
                 templale = 'registration/activation_done.html'
                 user.is_activated = True
                 user.save()
-        return render(request,template)
+        return render(request, template)

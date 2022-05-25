@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'account.apps.AccountConfig',
     'organization.apps.OrganizationConfig',
+    'subscription.apps.SubscriptionConfig',
     'master.apps.MasterConfig',
     'django_cleanup',
     'easy_thumbnails',
