@@ -8,7 +8,7 @@ urlpatterns = [
     path('', account_show, name='account'),
 
     #Страница другого пользователя
-    path('user/<slug:slug>/', AccountAnotherShow.as_view(), name='account_another'),
+    path('profile/<slug:slug>/', AccountAnotherShow.as_view(), name='account_another'),
 
     #Создание поста
     path('post_add/', AccountPostAdd.as_view(), name='post_add'),

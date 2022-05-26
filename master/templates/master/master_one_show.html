@@ -94,7 +94,11 @@
                         </div>
                         <div class="container p-2">
 
-                            {{ services }}
+{#                            {{ services }}#}
+                        {% for service in services %}
+                            {{ service.name }}
+                        {% endfor %}
+
 <!--                            {% for master in masters %}-->
 <!--                                <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">-->
 <!--                                    <div class="m-2 align-items-center d-flex">-->

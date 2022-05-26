@@ -20,10 +20,11 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'account.apps.AccountConfig',
     'organization.apps.OrganizationConfig',
-    'subscription.apps.SubscriptionConfig',
     'master.apps.MasterConfig',
+    'subscription.apps.SubscriptionConfig',
     'django_cleanup',
     'easy_thumbnails',
+
 ]
 
 MIDDLEWARE = [
