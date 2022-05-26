@@ -10,14 +10,17 @@
                 <h2> Организации </h2>
 
                 {% for organization in organizations %}
-                    <div class="container p-3">
-                        <div class="border m-2 p-4">
-                            <h3 class="fw-normal h5 text-dark">{{ organization.name }}</h3>
-                            <img src="https://pinegrow.com/placeholders/img16.jpg" width="300" height="200" class="m-2"/>
-                            <p>{{ organization.description }}</p>
-                            <span class="border-bottom btn btn-primary d-inline-block">
-                                <a class="link-dark text-decoration-none" href="{{ organization.get_absolute_url }}">Профиль</a>
-                            </span>
+                    <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                        <div class="m-2 align-items-center d-flex">
+                            {% if master.image %}
+                                <img src="{% thumbnail master.image 'default' %}" width="70" height="70" class="rounded-circle"/>
+                            {% else %}
+                                <img src="{% static 'images/master.png' %}" width="70" height="70" class="rounded-circle"/>
+                            {% endif %}
+                        </div>
+                        <div class="m-2 align-items-sm-start align-items-start col-8 col-lg-10 col-md-10 col-sm-9 col-xl-11 col-xxl-11 d-flex d-sm-flex flex-column flex-sm-column">
+                            <a class="m-1 fs-6 text-start text-dark" href="{{ organization.get_absolute_url }}">{{ organization.name }}</a>
+                            <p class="m-1 fs-7 text-start">{{ organization.description }}</p>
                         </div>
                     </div>
                 {% endfor %}

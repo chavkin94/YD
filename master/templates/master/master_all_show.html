@@ -10,23 +10,23 @@
             <div class="container p-2">
             <h2> Мастера </h2>
 
-                {% for master in masters %}
-                    <div class="container p-3">
-                        <div class="border m-2 p-4">
-                            <h3 class="fw-normal h5 text-dark">{{ master.name }}</h3>
-                            {% if master.image %}
-                                <img src="{% thumbnail master.image 'default' %}" width="100" height="100" class="rounded-circle"/>
-                            {% else %}
-                                <img src="{% static 'images/master.png' %}" width="100" height="100" class="rounded-circle"/>
-                            {% endif %}
-                            <p>{{ master.description }}</p>
-                            <span class="border-bottom btn btn-primary d-inline-block">
-                                <a class="link-dark text-decoration-none" href="{{ master.get_absolute_url }}">Профиль</a>
-                            </span>
+                <div class="container p-3">
+                    {% for master in masters %}
+                        <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                            <div class="m-2 align-items-center d-flex">
+                                {% if master.image %}
+                                    <img src="{% thumbnail master.image 'default' %}" width="70" height="70" class="rounded-circle"/>
+                                {% else %}
+                                    <img src="{% static 'images/master.png' %}" width="70" height="70" class="rounded-circle"/>
+                                {% endif %}
+                            </div>
+                            <div class="m-2 align-items-sm-start align-items-start col-8 col-lg-10 col-md-10 col-sm-9 col-xl-11 col-xxl-11 d-flex d-sm-flex flex-column flex-sm-column">
+                                <a class="m-1 fs-6 text-start text-dark" href="{{ master.get_absolute_url }}">{{ master.name }}</a>
+                                <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </section>

@@ -21,7 +21,7 @@ class MasterOneShow(DetailView):
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['rubrics'] = Rubric.objects.all()
+        # context['services'] = Service.objects.filter(pk = self.slug_url_kwarg)
         return context
 
 
