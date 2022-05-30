@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -13,7 +14,12 @@ from django.core.signing import BadSignature
 
 from master.models import Master
 from organization.models import Organization
+from subscription.models import Subscription
 from .utilities import signer
+
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from django.core import serializers
 
 
 # Подкласс выполняющий вход
@@ -52,7 +58,12 @@ class AccountPostShow(DetailView):
 def account_show(request):
         masters = Master.objects.filter(user=request.user)
         organizations = Organization.objects.filter(user=request.user)
+
         posts = AccountPost.objects.filter(user=request.user)
+        # paginator = Paginator(posts, 2)
+        # page = request.GET.get('page')
+        # post = paginator.get_page(page)
+
         context = {
             'masters': masters,
             'organizations': organizations,
@@ -134,3 +145,25 @@ def user_activate(request, sign):
                 user.is_activated = True
                 user.save()
         return render(request, template)
+
+
+# #Подписаться
+# @login_required
+# def user_subscription(request):
+#         masters = Master.objects.filter(user=request.user)
+#         organizations = Organization.objects.filter(user=request.user)
+#         posts = AccountPost.objects.filter(user=request.user)
+#         context = {
+#             'masters': masters,
+#             'organizations': organizations,
+#             'posts':posts
+#         }
+#
+#         return render(request, 'account/account.html', context)
+
+
+def fun_sub(request):
+
+    return HttpResponse("Hello Python")
+    # Subscription.objects.create(subscriber = username, user = username)
+

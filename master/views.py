@@ -5,6 +5,8 @@ from django.views.generic import CreateView, DetailView, UpdateView, TemplateVie
 from .forms import *
 from .models import *
 
+from django.core import serializers
+
 
 class MasterAdd(LoginRequiredMixin, CreateView):
     form_class = MasterAddForm
@@ -21,7 +23,8 @@ class MasterOneShow(DetailView):
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['services'] = Service.objects.filter(pk = self.slug_url_kwarg)
+        context['services'] = Service.objects.filter(master__slug=self.kwargs['slug'])
+        context['posts'] = MasterPost.objects.filter(master__slug=self.kwargs['slug'])
         return context
 
 
@@ -117,6 +120,7 @@ class ServiceShow(DetailView):
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['master'] = Master.objects.get(slug=self.kwargs['master_slug'])
         return context
 
 

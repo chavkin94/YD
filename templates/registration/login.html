@@ -33,7 +33,9 @@
                          <div class="form-control d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-column flex-xxl-column">
                             <form method="post">
                                 {% csrf_token %}
-                                {{ form.as_p }}
+                                <div class="login-user">
+                                    {{ form.as_p }}
+                                </div>
                                 <input class="form-control m-1" type="hidden" name="next" value="{{ next }}"/>
                                 <input class="border btn btn-primary m-2 ms-lg-3 w-50" type="submit" value="Войти"/>
                             </form>
