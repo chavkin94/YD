@@ -1,5 +1,3 @@
-import time
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -19,6 +17,7 @@ from organization.models import Organization
 from subscription.models import Subscription
 from .utilities import signer
 from django.core.exceptions import ObjectDoesNotExist
+
 
 
 # Подкласс выполняющий вход

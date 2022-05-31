@@ -15,7 +15,7 @@ def image_url_main(instance, filename):
     day = datetime.now().day
     name1 = datetime.now().timestamp()
     name2 = splitext(filename)[1]
-    return '%s/account/images_main/%s/%s/%s/%s%s' % (slug, year, month, day, name1, name2)
+    return '/account/images_main/%s/%s/%s/%s%s' % (year, month, day, name1, name2)
 
 
 def image_url(instance, filename):
@@ -25,7 +25,7 @@ def image_url(instance, filename):
     day = datetime.now().day
     name1 = datetime.now().timestamp()
     name2 = splitext(filename)[1]
-    return '%s/account/images/%s/%s/%s/%s%s' % (slug, year, month, day, name1, name2)
+    return '/account/images/%s/%s/%s/%s%s' % (year, month, day, name1, name2)
 
 
 class CustomUser(AbstractUser):
