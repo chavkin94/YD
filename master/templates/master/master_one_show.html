@@ -31,32 +31,30 @@
                     </div>
                 </div>
             </div>
+            <div class="container d-flex mt-3">
+                <form action="{% url 'master:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-primary btn-buy"
+                            data-user_current_slug = "{{ user.username }}"
+                            data-master_slug = "{{ master.slug }}"
+                            data-url_type = "{{ url_type }}"
+                        >
+                        {% if subscripe %}
+                            <p class="m-0 text-muted" id="submit_p">Отписаться</p>
+                        {% else %}
+                            <p class="m-0 text-primary" id="submit_p">Подписаться</p>
+                        {% endif %}
+                        </button>
+                    </div>
+
+                </form>
+            </div>
             <div class="m-4">
                 <h6 class="d-flex text-start">{{ master.description }}</h6>
             </div>
         </div>
-{#        Разместить где нужно кнопку подписка#}
-{#        код вырезать от сюда#}
-        <div>
-            <form action="{% url 'master:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
-                {% csrf_token %}
-                <div class="form-group">
-                    <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-success btn-buy"
-                        data-user_current_slug = "{{ user.username }}"
-                        data-master_slug = "{{ master.slug }}"
-                        data-url_type = "{{ url_type }}"
-                    >
-                    {% if subscripe %}
-                        <p id="submit_p">Отписаться</p>
-                    {% else %}
-                        <p id="submit_p">Подписаться</p>
-                    {% endif %}
-                    </button>
-                </div>
 
-            </form>
-        </div>
-{#        до сюда#}
         <div class="container pb-5 pt-3">
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -72,10 +70,7 @@
 
                 <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
-                        <div class="d-flex justify-content-between">
-                            <div>
-
-                            </div>
+                        <div class="container text-end">
                             <div class="text-end">
                                 <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'master:post_add' master.slug %}">Создать публикацию</a>
                             </div>

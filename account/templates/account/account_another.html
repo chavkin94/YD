@@ -31,29 +31,25 @@
                 </div>
             </div>
 
-{#        Разместить где нужно кнопку подписка#}
-{#        код вырезать от сюда#}
-        <div>
-            <form action="{% url 'account:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
-                {% csrf_token %}
-                <div class="form-group">
-                    <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-success btn-buy"
-                        data-user_current_slug = "{{ user.username }}"
-                        data-user_slug = "{{ account.username }}"
-                        data-url_type = "{{ url_type }}"
-                    >
-                    {% if subscripe %}
-                        <p id="submit_p">Отписаться</p>
-                    {% else %}
-                        <p id="submit_p">Подписаться</p>
+            <div class="container d-flex mt-3">
+                <form action="{% url 'account:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-primary btn-buy"
+                            data-user_current_slug = "{{ user.username }}"
+                            data-user_slug = "{{ account.username }}"
+                            data-url_type = "{{ url_type }}"
+                        >
+                        {% if subscripe %}
+                            <p class="m-0 text-muted" id="submit_p">Отписаться</p>
+                        {% else %}
+                            <p class="m-0 text-primary" id="submit_p">Подписаться</p>
+                        {% endif %}
+                        </button>
+                    </div>
 
-                    {% endif %}
-                    </button>
-                </div>
-
-            </form>
-        </div>
-{#        до сюда#}
+                </form>
+            </div>
 
 
             <div class="m-3">
@@ -65,10 +61,10 @@
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Мои публикации</button>
+                    <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Публикации</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="false">Я мастер</button>
+                    <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="false">Мастера</button>
                 </li>
 <!--                <li class="nav-item" role="presentation">-->
 <!--                    <button class="nav-link" id="organization-tab" data-bs-toggle="tab" data-bs-target="#organizations" type="button" role="tab" aria-controls="organizations" aria-selected="false">Организации</button>-->
@@ -79,9 +75,7 @@
 
                 <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
-                        <div class="container text-end">
-                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'account:post_add' %}">Создать публикацию</a>
-                        </div>
+
                         <div class="container align-items-center d-flex flex-column p-2">
 
                             <div class="col-xxl-8 col-xl-8 col-lg-12 col-sm-12 col-12 m-2 pb-3 pt-3 text-start">
@@ -136,9 +130,7 @@
 
                 <div class="tab-pane fade" id="masters" role="tabpanel" aria-labelledby="master-tab">
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
-                        <div class="container text-end">
-                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'master:master_add' %}">Создать мастера</a>
-                        </div>
+
                         <div class="container p-2">
 
                             {% for master in masters %}
