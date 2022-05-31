@@ -347,7 +347,8 @@
 }
 
 .modal-box-user img{
-    width: 75%;
+    height: 40vw;
+    width: 100%;
 }
 
 @media (min-width: 1000px) {

@@ -16,7 +16,7 @@ def image_url_main(instance, filename):
     day = datetime.now().day
     name1 = datetime.now().timestamp()
     name2 = splitext(filename)[1]
-    return '%s/master/%s/images_main/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
+    return '/account/%s/master/%s/images_main/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
 
 
 def image_url(instance, filename):
@@ -27,7 +27,7 @@ def image_url(instance, filename):
     day = datetime.now().day
     name1 = datetime.now().timestamp()
     name2 = splitext(filename)[1]
-    return '%s/master/%s/images/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
+    return '/account/%s/master/%s/images/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
 
 
 def image_url_service(instance, filename):
@@ -38,7 +38,7 @@ def image_url_service(instance, filename):
     day = datetime.now().day
     name1 = datetime.now().timestamp()
     name2 = splitext(filename)[1]
-    return '%s/master/%s/service/images/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
+    return '/account/%s/master/%s/service/images/%s/%s/%s/%s%s' % (slug, slug_master, year, month, day, name1, name2)
 
 
 class Master(models.Model):
