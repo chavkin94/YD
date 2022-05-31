@@ -49,3 +49,14 @@ class Location(models.Model):
     class Meta:
         verbose_name = 'Расположение'
         verbose_name_plural = 'Расположение'
+
+
+class test(models.Model):
+    name = models.CharField(max_length=255, blank=True, verbose_name="Расположение")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'test'
+        verbose_name_plural = 'test'

@@ -7,6 +7,9 @@ from account.models import CustomUser, AccountPost
 
 
 #Форма редактирования пользовательских данных
+from subscription.models import Subscription
+
+
 class ChangeUserInfoForm(forms.ModelForm):
     # email = forms.EmailField(required=True, label='Адрес электронной почты')
     username = forms.CharField(label='Логин на сайте', widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -81,4 +84,15 @@ class AccountPostAddForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
             'content': forms.Textarea(attrs={'class': 'form-control mt-2'}),
+        }
+
+class AccountSubscriptionForm(forms.ModelForm):
+
+    class Meta:
+        model = Subscription
+        fields = ['subscriper', 'user', 'master']
+        widgets = {
+            'subscriper': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'user': forms.Select(attrs={'class': 'form-control mt-2'}),
+            'master': forms.Select(attrs={'class': 'form-control mt-2'}),
         }

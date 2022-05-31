@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, TemplateView, ListView
 
+from subscription.models import Subscription
 from .forms import *
 from .models import *
 
@@ -25,7 +27,19 @@ class MasterOneShow(DetailView):
         context = super().get_context_data(**kwargs)
         context['services'] = Service.objects.filter(master__slug=self.kwargs['slug'])
         context['posts'] = MasterPost.objects.filter(master__slug=self.kwargs['slug'])
+        context['services'] = Service.objects.filter(master__slug=self.kwargs['slug'])
+        context['user'] = self.request.user
+        context['url_type'] = 'master'
+        context['subscripe'] = None
+        master = Master.objects.get(slug=self.kwargs['slug'])
+        try:
+            subscriper = CustomUser.objects.get(username=self.request.user)
+            context['subscripe'] = Subscription.objects.get(subscriper=subscriper, master=master)
+        except ObjectDoesNotExist:
+            context['subscripe'] = None
         return context
+
+
 
 
 class MasterUpdate(LoginRequiredMixin, UpdateView):

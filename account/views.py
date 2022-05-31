@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.views.generic import UpdateView, CreateView, TemplateView, DetailView
 
-from account.forms import ChangeUserInfoForm, RegisterUserForm, AccountPostAddForm
+from account.forms import ChangeUserInfoForm, RegisterUserForm, AccountPostAddForm, AccountSubscriptionForm
 from account.models import CustomUser, AccountPost
 
 from django.core.signing import BadSignature
@@ -16,6 +16,7 @@ from master.models import Master
 from organization.models import Organization
 from subscription.models import Subscription
 from .utilities import signer
+from django.core.exceptions import ObjectDoesNotExist
 
 
 
@@ -55,33 +56,14 @@ class AccountPostShow(DetailView):
 def account_show(request):
         masters = Master.objects.filter(user=request.user)
         organizations = Organization.objects.filter(user=request.user)
-
         posts = AccountPost.objects.filter(user=request.user)
-        # paginator = Paginator(posts, 2)
-        # page = request.GET.get('page')
-        # post = paginator.get_page(page)
-
         context = {
             'masters': masters,
             'organizations': organizations,
-            'posts':posts
+            'posts': posts
         }
 
         return render(request, 'account/account.html', context)
-
-
-#Просмотр другого пользователя
-class AccountAnotherShow(DetailView):
-    model = CustomUser
-    template_name = 'account/account_another.html'
-    slug_field = 'username'
-    slug_url_kwarg = 'slug'
-    context_object_name = 'account'
-
-    def get_context_data(self, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
 
 #Подкласс выполняющий выход пользователя, миксин LoginRequiredMixin делает доступной только зарегистрированным пользователям
 class CULogoutView(LoginRequiredMixin, LogoutView):
@@ -144,23 +126,25 @@ def user_activate(request, sign):
         return render(request, template)
 
 
-# #Подписаться
-# @login_required
-# def user_subscription(request):
-#         masters = Master.objects.filter(user=request.user)
-#         organizations = Organization.objects.filter(user=request.user)
-#         posts = AccountPost.objects.filter(user=request.user)
-#         context = {
-#             'masters': masters,
-#             'organizations': organizations,
-#             'posts':posts
-#         }
-#
-#         return render(request, 'account/account.html', context)
+#Просмотр другого пользователя
+class AccountAnotherShow(DetailView):
+    form_class = AccountSubscriptionForm
+    model = CustomUser
+    template_name = 'account/account_another.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'account'
 
-
-def fun_sub(request):
-
-    return HttpResponse("Hello Python")
-    # Subscription.objects.create(subscriber = username, user = username)
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        context['url_type'] = 'account'
+        context['subscripe'] = None
+        user = CustomUser.objects.get(username=self.kwargs['slug'])
+        try:
+            subscriper = CustomUser.objects.get(username=self.request.user)
+            context['subscripe'] = Subscription.objects.get(subscriper=subscriper, user=user)
+        except ObjectDoesNotExist:
+            context['subscripe'] = None
+        return context
 

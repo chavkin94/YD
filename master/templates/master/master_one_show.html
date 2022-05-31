@@ -35,7 +35,28 @@
                 <h6 class="d-flex text-start">{{ master.description }}</h6>
             </div>
         </div>
+{#        Разместить где нужно кнопку подписка#}
+{#        код вырезать от сюда#}
+        <div>
+            <form action="{% url 'master:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
+                {% csrf_token %}
+                <div class="form-group">
+                    <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-success btn-buy"
+                        data-user_current_slug = "{{ user.username }}"
+                        data-master_slug = "{{ master.slug }}"
+                        data-url_type = "{{ url_type }}"
+                    >
+                    {% if subscripe %}
+                        <p id="submit_p">Отписаться</p>
+                    {% else %}
+                        <p id="submit_p">Подписаться</p>
+                    {% endif %}
+                    </button>
+                </div>
 
+            </form>
+        </div>
+{#        до сюда#}
         <div class="container pb-5 pt-3">
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -167,5 +188,5 @@
 
         </div>
     </section>
-
+ <script src={% static 'subscription/js/subscription.js' %}></script>
 {% endblock %}

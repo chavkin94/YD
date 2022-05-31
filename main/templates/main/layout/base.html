@@ -6,11 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="author" content=""/>
-        <title>{{title}}</title>
+{#        <title>{{title}}</title>#}
         <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap_theme.css' %}"  type="text/css"/>
         <link rel="stylesheet" href="{% static 'css/blocks.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
         <title>{% block title %}Главная{% endblock %}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body class="fw-light text-secondary bg-body" style="background-image: repeating-radial-gradient(circle at left, rgba(255, 255, 255, 0.21) 0%, rgb(247, 247, 247) 58%)">
         <header>
@@ -62,7 +63,6 @@
                 </div>
             </div>
         </footer>
-
 
         <script src="{% static 'js/popper.js' %}"></script>
         <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>

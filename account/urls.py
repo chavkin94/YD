@@ -1,14 +1,16 @@
-from django.urls import path, reverse_lazy
+from django.urls import path, reverse_lazy, include
 from .views import *
 
 app_name = 'account'
 
 urlpatterns = [
+
     #Страница пользователя
     path('', account_show, name='account'),
 
     #Страница другого пользователя
     path('profile/<slug:slug>/', AccountAnotherShow.as_view(), name='account_another'),
+    path('', include('subscription.urls')),
 
     #Создание поста
     path('post_add/', AccountPostAdd.as_view(), name='post_add'),
@@ -53,4 +55,5 @@ urlpatterns = [
     #          template_name='registration/password_confirmed.html',
     #      ),
     #      name='password_complete'),
+
 ]
