@@ -48,7 +48,7 @@ class PostAddForm(forms.ModelForm):
             'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'title': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50'}),
-            'content': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'content': forms.Textarea(attrs={'class': 'form-control mt-2'}),
         }
 
 

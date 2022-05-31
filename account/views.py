@@ -17,9 +17,6 @@ from organization.models import Organization
 from subscription.models import Subscription
 from .utilities import signer
 
-from django.core.paginator import Paginator
-from django.shortcuts import render
-from django.core import serializers
 
 
 # Подкласс выполняющий вход
