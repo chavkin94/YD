@@ -15,14 +15,8 @@
                     {% if account.first_name and account.last_name %}
                         <h5 class="fs-5 d-flex ms-3">{{ account.first_name }} {{ account.last_name }}</h5>
                     {% endif %}
+
                     <div class="d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row">
-{#                        <button type="button" class="btn btn-primary m-2" onclick="{% url 'fun_sub' account %}">Подписаться</button>#}
-{#                     <form action="{% url 'fun_sub' account %}" method="post">#}
-{#                                      {% csrf_token %}#}
-{#                                       <button type="submit">Daten importieren</button>#}
-{#                                  </form>#}
-{#                        {{ user.username }}#}
-{#                        <a href="{% url 'acc:add' model.pk %}">Добавить в корзину</a>#}
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modalSettings">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="bi bi-gear m-2 mt-3" viewBox="0 0 16 16">
                                 <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
@@ -33,6 +27,32 @@
                     </div>
                 </div>
             </div>
+
+{#        Разместить где нужно кнопку подписка#}
+{#        код вырезать от сюда#}
+        <div>
+            <form action="{% url 'account:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
+                {% csrf_token %}
+                <div class="form-group">
+                    <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-success btn-buy"
+                        data-user_current_slug = "{{ user.username }}"
+                        data-user_slug = "{{ account.username }}"
+                        data-url_type = "{{ url_type }}"
+                    >
+                    {% if subscripe %}
+                        <p id="submit_p">Отписаться</p>
+                    {% else %}
+                        <p id="submit_p">Подписаться</p>
+
+                    {% endif %}
+                    </button>
+                </div>
+
+            </form>
+        </div>
+{#        до сюда#}
+
+
             <div class="m-3">
                 <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'master:master_all_show' %}">Все мастера</a>
             </div>
@@ -162,5 +182,8 @@
 
         </div>
     </section>
+
+    <script src={% static 'subscription/js/subscription.js' %}></script>
+
 
 {% endblock %}

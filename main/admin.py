@@ -13,3 +13,5 @@ admin.site.register(Location, LocationAdmin)
 admin.site.register(LocationDistrict)
 admin.site.register(LocationRegions)
 admin.site.register(LocationСity)
+
+admin.site.register(test)

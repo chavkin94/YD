@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <form action="{% url 'main:basket_adding' %}" id="form_buying_product" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" name="number" id="number">
+        </div>
+        <div class="form-group">
+            <button id="submit_btn" type="submit" class="btn btn-success btn-buy"
+                data-user_id = "{{ user.pk }}"
+                data-user_username = "{{ user.username }}"
+                data-user_email = "{{ user.email }}"
+            >Подписаться</button>
+        </div>
+
+    </form>
+
+</div>
+{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>#}
+<script src={% static 'js/main.js' %}></script>
+</body>
+</html>
