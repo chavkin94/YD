@@ -1,5 +1,4 @@
 $(document).ready(function (){
-    console.log('OKk');
     var form = $('#form_subscripe_unsubscripe');
     form.on('submit', function (e){
         e.preventDefault();
