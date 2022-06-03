@@ -137,7 +137,16 @@
                                 </div>
                             {% endfor %}
 
+                        <div class="container text-end">
+                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'account:post_add' %}">Создать публикацию</a>
                         </div>
+
+
+                        <div class="container align-items-center d-flex flex-row flex-wrap p-2" id="posts_account"
+                             data-user_current_slug = "{{ account.username }}"
+                             data-post_bool_status="0">
+                        </div>
+
                     </div>
                 </div>
 
@@ -173,8 +182,10 @@
 
         </div>
     </section>
-
+<script src={% static 'account/js/pagination.js' %}></script>
     <script src={% static 'subscription/js/subscription.js' %}></script>
+
+
 
 
 {% endblock %}
