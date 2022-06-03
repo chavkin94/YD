@@ -138,14 +138,14 @@
                                             <div class="modal-dialog-user modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <a href="#" class="text-decoration-none">
+                                                        <a href="{{ master.get_absolute_url }}" class="text-decoration-none">
                                                             <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
                                                                 {% if user.image %}
                                                                     <img src="{% thumbnail master.image 'default' %}" class="m-2 rounded-circle" width="40" height="40"/>
                                                                 {% else %}
                                                                     <img src="{% static 'images/master.png' %}" wclass="m-2 rounded-circle" width="40" height="40"/>
                                                                 {% endif %}
-                                                                <h3 class="fw-normal h6 text-dark ms-3">{{ user.username }}</h3>
+                                                                <h3 class="fw-normal h6 text-dark">{{ user.username }}</h3>
                                                             </div>
                                                         </a>
                                                         <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
@@ -153,12 +153,14 @@
                                                     <div class="d-flex flex-column text-start m-3">
                                                         <div class="container">
                                                             <div class="row">
-                                                                <div class="col-12 col-md-12 col-sm-12 col-xl-12 pb-3 pt-3">
+                                                                <div class="col-12 pb-3 pt-3">
                                                                     <div class="flex-lg-wrap row">
-                                                                        <div class="align-items-center col-lg-flex d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-row flex-xxl-row text-start p-0 modal-box-user d-flex">
-                                                                            <img class="col-12" src="/media/{{ post.image }}"/>
-                                                                            <div class="container text-start mt-2 h-100 w-75 ">
-                                                                                <h5>{{ post.title }}</h5>
+                                                                        <div class="flex-column align-items-start col-lg-flex d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-row flex-xxl-row justify-content-center p-0 modal-box-user d-flex">
+                                                                            <div class="me-2 div-image-user">
+                                                                                <img class="img-fluid" src="/media/{{ post.image }}"/>
+                                                                            </div>
+                                                                            <div class="col-10 col-xl-3 text-start p-2">
+                                                                                <h5 class="text-dark">{{ post.title }}</h5>
                                                                                 <h6>{{ post.content }}</h6>
                                                                             </div>
                                                                         </div>
@@ -166,19 +168,18 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
-                                                                <div class="container">
-                                                                    <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                                                                    <span>1228</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+<!--                                                        <div>-->
+<!--                                                            <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">-->
+<!--                                                                <div class="container">-->
+<!--                                                                    <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>-->
+<!--                                                                    <span>1228</span>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             {% endfor %}

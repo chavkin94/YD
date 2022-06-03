@@ -342,13 +342,8 @@
 
 }
 
-.modal-box-user{
-    width:100%
-}
-
-.modal-box-user img{
-    height: 40vw;
-    width: 100%;
+.modal-img-user image{
+    width: 50vw !important;
 }
 
 @media (min-width: 1000px) {
