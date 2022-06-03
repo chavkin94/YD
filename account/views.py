@@ -1,5 +1,3 @@
-import json
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -19,7 +17,6 @@ from organization.models import Organization
 from subscription.models import Subscription
 from .utilities import signer
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.paginator import Paginator
 
 
 
@@ -59,42 +56,14 @@ class AccountPostShow(DetailView):
 def account_show(request):
         masters = Master.objects.filter(user=request.user)
         organizations = Organization.objects.filter(user=request.user)
-        # posts = AccountPost.objects.filter(user=request.user)
-        # posts_paginator = Paginator(posts_all, 1)
-        # posts = posts_paginator.page(1)
-        # posts = post_page.object_list
+        posts = AccountPost.objects.filter(user=request.user)
         context = {
             'masters': masters,
             'organizations': organizations,
-            # 'posts': posts,
+            'posts': posts
         }
 
         return render(request, 'account/account.html', context)
-
-def account_post_one_show(request):
-    data = request.GET
-    user_current = CustomUser.objects.get(username=data.get('user_current_slug'))
-    first_post_id = data.get('first_post_id')
-    if first_post_id:
-        posts =AccountPost.objects.all().first()
-        first_post = AccountPost.objects.get(pk=data.get('first_post_id'))
-        posts = AccountPost.objects.filter(user=user_current, date_create__gt=first_post.date_create)[:4]
-    else:
-        posts = AccountPost.objects.filter(user=user_current)[:4]
-    context = {
-        'posts': posts,
-    }
-    # account_post_one_show_json(post_end)
-    return render(request, 'account/post_one.html', context)
-
-
-    # return HttpResponse('<p>Here will be your HTML page</p>')
-# def post_pagination_1(request,page):
-#     masters = Master.objects.filter(user=request.user)
-#     organizations = Organization.objects.filter(user=request.user)
-#     posts_all = AccountPost.objects.filter(user=request.user)
-#     posts_paginator = Paginator(posts_all, 1)
-#     posts = posts_paginator.page(1)
 
 #Подкласс выполняющий выход пользователя, миксин LoginRequiredMixin делает доступной только зарегистрированным пользователям
 class CULogoutView(LoginRequiredMixin, LogoutView):
@@ -168,7 +137,6 @@ class AccountAnotherShow(DetailView):
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['user'] = self.request.user
         context['url_type'] = 'account'
         context['subscripe'] = None
@@ -179,3 +147,4 @@ class AccountAnotherShow(DetailView):
         except ObjectDoesNotExist:
             context['subscripe'] = None
         return context
+
