@@ -44,14 +44,37 @@
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Мои публикации</button>
+                    <button class="nav-link active" id="feed-tab" data-bs-toggle="tab" data-bs-target="#feed" type="button" role="tab" aria-controls="" aria-selected="false">Лента</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Мои публикации</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="false">Я мастер</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="subscription_my-tab" data-bs-toggle="tab" data-bs-target="#subscription_my" type="button" role="tab" aria-controls="" aria-selected="false">Мои подписки</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="subscription_to_me-tab" data-bs-toggle="tab" data-bs-target="#subscription_to_me" type="button" role="tab" aria-controls="" aria-selected="false">Подписчики</button>
+                </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
+
+
+
+{#Просто лента, но нужно чтоб работала только когда выбрана#}
+                <div class="tab-pane fade show active" id="feed" role="tabpanel" aria-labelledby="feed-tab">
+                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
+{#                        {{ feed.count }}#}
+                        {% for post in feed %}
+
+                            {{ post.slug }}
+                            <img class="col-12" src="/media/{{ post.image }}"/>
+                        {% endfor %}
+                    </div>
+                </div>
 
                 <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
@@ -122,9 +145,10 @@
 <!--                            </div>-->
 
 <!--                        </div>-->
-                        <div class="container align-items-center d-flex flex-row flex-wrap p-2" id="posts_account"
-                             data-user_current_slug = "{{ user.username }}"
-                             data-post_bool_status="0">
+                        <div class="container align-items-center d-flex flex-row flex-wrap p-2" id="posts_all_view"
+                             data-user_master_current_slug = "{{ user.username }}"
+                             data-post_bool_status="0"
+                            data-type_posts="account">
 {#                            {% for post in posts %}#}
 {#                                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6 col-12 text-start">#}
 {#                                    <div class="border container p-0">#}
@@ -211,6 +235,30 @@
 
                         </div>
                     </div>
+                </div>
+
+{#                Юра сделал так, мои подписки пользователей и мастеров надо как-то разделить, данные все не выводил, так для примера одно поле и картинку, добавить нужно иф на отсутствие картинки#}
+                <div class="tab-pane fade show active" id="subscription_my" role="tabpanel" aria-labelledby="subscription_my-tab">
+                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
+{#                        {% for subscription_my_user_one in subscription_my_user %}#}
+{#                            {{ subscription_my_user_one.user.username }}#}
+{#                            <img class="col-12" src="/media/{{ subscription_my_user_one.user.image }}"/>#}
+{#                        {% endfor %}#}
+    {#                    Эти разделить#}
+{#                        {% for subscription_my_master_one in subscription_my_master %}#}
+{#                            {{ subscription_my_master_one.master.slug }}#}
+{#                            <img class="col-12" src="/media/{{ subscription_my_master_one.master.image }}"/>#}
+{#                        {% endfor %}#}
+
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="subscription_to_me" role="tabpanel" aria-labelledby="subscription_to_me-tab">
+{#                    {% for subscription_to_me_one in subscription_to_me %}#}
+{##}
+{#                        {{ subscription_to_me_one.subscriper.username }}#}
+{#                        <img class="col-12" src="/media/{{ subscription_to_me_one.subscriper.image }}"/>#}
+{#                    {% endfor %}#}
+                    
                 </div>
 
             </div>

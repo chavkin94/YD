@@ -6,24 +6,25 @@ function posts_view_ajax(posts_all_view){
         let type_posts =  posts_all_view.data('type_posts');
         data.first_post_id = first_post_id;
         data.user_master_current_slug = user_master_current_slug;
+        console.log(user_master_current_slug)
         data.count_elem = count_elem;
         data.type_posts = type_posts;
         // let url = "{% url 'account:account_pos_one_show' %}"
         $.ajax({
-            url: "/account/account_post_one_show/",
+            url: "/master/post_one_show/",
             type:'GET',
             data: data,
             // cache: true,
             success: function (response){
                 $("#posts_all_view").append(response);
-                // console.log('OK')
+                console.log('OK')
                 r_response = response.replace(/\s/g, '')
                 if (r_response.length==0){
                     $('#posts_all_view').data('post_bool_status', '1')
                 }
             },
             error: function (response){
-                // console.log('ERR')
+                console.log('ERR')
             }
         })
     }

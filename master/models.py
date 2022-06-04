@@ -77,6 +77,8 @@ class MasterPost(models.Model):
     title = models.CharField(max_length=100, verbose_name="Заголовок", blank=True, null=True)
     image = models.ImageField(blank=True, upload_to=image_url, verbose_name="Изображение")
     content = models.TextField(blank=True, verbose_name="Содержание")
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
+    date_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения', null=True)
 
     def delete(self, *args, **kwargs):
         for ai in self.additionalimage_set.all():

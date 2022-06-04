@@ -66,6 +66,9 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="service-tab" data-bs-toggle="tab" data-bs-target="#service" type="button" role="tab" aria-controls="service" aria-selected="false">Услуги</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="subscription_my-tab" data-bs-toggle="tab" data-bs-target="#subscription_my" type="button" role="tab" aria-controls="" aria-selected="false">Мои подписки</button>
+                </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -80,64 +83,12 @@
                                 <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'master:post_add' master.slug %}">Создать публикацию</a>
                             </div>
                         </div>
-                        <div class="container align-items-center d-flex flex-row flex-wrap p-2">
 
-                            {% for post in posts %}
-                                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6 col-12 text-start">
-                                    <div class="border container p-0">
-                                        <div class="p-0 box-user">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalImageMaster{{ post.id }}">
-                                                <img src="/media/{{ post.image }}"/>
-                                            </a>
-                                        </div>
 
-                                        <div class="modal fade" id="modalImageMaster{{ post.id }}" tabindex="-1">
-                                            <div class="modal-dialog-user modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <a href="{{ master.get_absolute_url }}" class="text-decoration-none">
-                                                            <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
-                                                                {% if master.image %}
-                                                                    <img src="{% thumbnail master.image 'default' %}" class="m-2 rounded-circle" width="40" height="40"/>
-                                                                {% else %}
-                                                                    <img src="{% static 'images/master.png' %}" wclass="m-2 rounded-circle" width="40" height="40"/>
-                                                                {% endif %}
-                                                                <h3 class="fw-normal h6 text-dark">{{ master.name }}</h3>
-                                                            </div>
-                                                        </a>
-                                                        <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
-                                                    </div>
-                                                    <div class="d-flex flex-column text-start m-3">
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-12 col-sm-12 col-xl-12 pb-3 pt-3">
-                                                                    <div class="flex-lg-wrap row">
-                                                                        <div class="align-items-center col-lg-flex d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-row flex-xxl-row text-start p-0 modal-box-user d-flex">
-                                                                            <img class="col-12" src="/media/{{ post.image }}"/>
-                                                                            <div class="container text-start m-2 h-100 w-75 ">
-                                                                                <h6>{{ post.content }}</h6>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
-                                                                <div class="container">
-                                                                    <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                                                                    <span>1228</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            {% endfor %}
+                        <div class="container align-items-center d-flex flex-row flex-wrap p-2" id="posts_all_view"
+                             data-user_master_current_slug = "{{ master.slug }}"
+                             data-post_bool_status="0"
+                            data-type_posts="master">
 
                         </div>
                     </div>
@@ -184,9 +135,20 @@
                     </div>
                 </div>
 
+{#            Это добавил подписчиков#}
+                <div class="tab-pane fade show active" id="subscription_to_me" role="tabpanel" aria-labelledby="subscription_to_me-tab">
+                    {% for subscription_to_me_one in subscription_to_me %}
+
+                        {{ subscription_to_me_one.subscriper.username }}
+                        <img class="col-12" src="/media/{{ subscription_to_me_one.subscriper.image }}"/>
+                    {% endfor %}
+
+                </div>
+
             </div>
 
         </div>
     </section>
+    <script src={% static 'master/js/pagination.js' %}></script>
  <script src={% static 'subscription/js/subscription.js' %}></script>
 {% endblock %}
