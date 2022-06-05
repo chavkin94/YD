@@ -26,8 +26,13 @@ class ServiceAdmin(admin.ModelAdmin):
     list_filter = ('name', 'slug', 'custom_category', 'serviceCategory', 'master')
     prepopulated_fields = {"slug": ("name",)}
 
+class MasterPostAdmin(admin.ModelAdmin):
+    list_display = ('master', 'slug')
+    list_display_links = ('master', 'slug')
+    search_fields = ('master', 'slug')
+    list_filter = ('master', 'slug')
 
 admin.site.register(Master, MasterAdmin)
-admin.site.register(MasterPost)
+admin.site.register(MasterPost, MasterPostAdmin)
 admin.site.register(ServiceCategory, ServiceCategoryAdmin)
 admin.site.register(Service, ServiceAdmin)

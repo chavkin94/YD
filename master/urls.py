@@ -7,6 +7,7 @@ app_name = 'master'
 urlpatterns = [
     path('<slug:slug>/post_add/', PostAdd.as_view(), name='post_add'),
     path('<slug:master_slug>/post/<slug:slug>/', PostShow.as_view(), name='post'),
+    path('post_one_show/', post_one_show, name='post_one_show'),
     path('', include('subscription.urls')),
     path('add/', MasterAdd.as_view(), name='master_add'),
     path('all/', MasterAllShow.as_view(), name='master_all_show'),

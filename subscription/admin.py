@@ -4,7 +4,7 @@ from subscription.models import Subscription
 
 
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('subscriper', 'user', 'master')
+    list_display = ('pk', 'subscriper', 'user', 'master')
     list_display_links = ('subscriper', 'user', 'master')
     search_fields = ('subscriper', 'user', 'master')
     list_filter = ('subscriper', 'user', 'master')

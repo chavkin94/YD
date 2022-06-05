@@ -69,61 +69,28 @@
 <!--                <li class="nav-item" role="presentation">-->
 <!--                    <button class="nav-link" id="organization-tab" data-bs-toggle="tab" data-bs-target="#organizations" type="button" role="tab" aria-controls="organizations" aria-selected="false">Организации</button>-->
 <!--                </li>-->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="subscription_my-tab" data-bs-toggle="tab" data-bs-target="#subscription_my" type="button" role="tab" aria-controls="" aria-selected="false">Подписки</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="subscription_to_me-tab" data-bs-toggle="tab" data-bs-target="#subscription_to_me" type="button" role="tab" aria-controls="" aria-selected="false">Подписчики</button>
+                </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
 
                 <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
-
-                        <div class="container align-items-center d-flex flex-column p-2">
-
-                            <div class="col-xxl-8 col-xl-8 col-lg-12 col-sm-12 col-12 m-2 pb-3 pt-3 text-start">
-                                <div class="border container mb-4 p-0">
-                                    <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
-                                        <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" width="40" height="40"/>
-                                        <h3 class="fw-normal h6 text-dark">Модель 1&nbsp;</h3>
-                                    </div>
-                                    <div class="p-0 box-user">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalImageAccount">
-                                            <img src="https://pinegrow.com/placeholders/img11.jpg"/>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
-                                            <div class="container">
-                                                <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                                                <span>1228</span>
-                                            </div>
-                                            <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xxl-8 col-xl-8 col-lg-12 col-sm-12 col-12 m-2 pb-3 pt-3 text-start">
-                                <div class="border container mb-4 p-0">
-                                    <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
-                                        <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" width="40" height="40"/>
-                                        <h3 class="fw-normal h6 text-dark">Модель 1&nbsp;</h3>
-                                    </div>
-                                    <div class="p-0 box-user">
-                                        <img src="https://pinegrow.com/placeholders/img1.jpg"/>
-                                    </div>
-                                    <div>
-                                        <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
-                                            <div class="container">
-                                                <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                                                <span>1228</span>
-                                            </div>
-                                            <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div class="container text-end">
+                            <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'account:post_add' %}">Создать публикацию</a>
                         </div>
 
+
+                        <div class="container align-items-center d-flex flex-row flex-wrap p-2" id="posts_all_view"
+                             data-user_master_current_slug = "{{ account.username }}"
+                             data-post_bool_status="0"
+                             data-type_posts="account">
+                        </div>
 
                     </div>
                 </div>
@@ -173,11 +140,33 @@
 <!--                    </div>-->
 <!--                </div>-->
 
+                <div class="tab-pane fade show active" id="subscription_my" role="tabpanel" aria-labelledby="subscription_my-tab">
+                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
+{#                        {% for subscription_my_user_one in subscription_my_user %}#}
+{#                            {{ subscription_my_user_one.user.username }}#}
+{#                            <img class="col-12" src="/media/{{ subscription_my_user_one.user.image }}"/>#}
+{#                        {% endfor %}#}
+{#                        Эти разделить#}
+{#                        {% for subscription_my_master_one in subscription_my_master %}#}
+{#                            {{ subscription_my_master_one.master.slug }}#}
+{#                            <img class="col-12" src="/media/{{ subscription_my_master_one.master.image }}"/>#}
+{#                        {% endfor %}#}
+
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="subscription_to_me" role="tabpanel" aria-labelledby="subscription_to_me-tab">
+{#                    {% for subscription_to_me_one in subscription_to_me %}#}
+{##}
+{#                        {{ subscription_to_me_one.subscriper.username }}#}
+{#                        <img class="col-12" src="/media/{{ subscription_to_me_one.subscriper.image }}"/>#}
+{#                    {% endfor %}#}
+
+                </div>
             </div>
 
         </div>
     </section>
-
+<script src={% static 'account/js/pagination.js' %}></script>
     <script src={% static 'subscription/js/subscription.js' %}></script>
 
 
