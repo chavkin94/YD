@@ -8,7 +8,8 @@ function posts_view_ajax(posts_all_view){
         data.user_master_current_slug = user_master_current_slug;
         data.count_elem = count_elem;
         data.type_posts = type_posts;
-        // let url = "{% url 'account:account_pos_one_show' %}"
+        console.log(type_posts)
+        let url = "{% url 'account:account_pos_one_show' %}"
         $.ajax({
             url: "/account/post_one_show/",
             type:'GET',
