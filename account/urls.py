@@ -11,7 +11,8 @@ urlpatterns = [
     #Страница другого пользователя
     path('profile/<slug:slug>/', AccountAnotherShow.as_view(), name='account_another'),
     path('', include('subscription.urls')),
-
+    path('post_one_show/', post_one_show, name='post_one_show'),
+    # path('profile/<slug:slug>/account_post_one_show/', account_post_one_show, name='account_pos_one_show_another'),
     #Создание поста
     path('post_add/', AccountPostAdd.as_view(), name='post_add'),
 

@@ -20,7 +20,33 @@
                         <h5 class="d-flex ms-3">Мастер {{ master.name }}</h5>
                     {% endif %}
                     <div class="d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row">
-                        <button type="button" class="btn btn-primary m-2">Подписчики</button>
+                        <a href="#" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#modalSubscriptions">Подписчики</a>
+
+                        <div class="modal fade" id="modalSubscriptions" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Подписчики</h5>
+                                        <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="d-flex flex-column text-start m-3">
+                                        <div class="container p-2">
+                                            {% for subscription_to_me_one in subscription_to_me %}
+                                                <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                                                    <div class="m-2 align-items-center d-flex">
+                                                        <img src="/media/{{ subscription_to_me_one.subscriper.image }}" width="70" height="70" class="rounded-circle"/>
+                                                    </div>
+                                                    <div class="m-2 align-items-sm-start align-items-start col-8 col-lg-10 col-md-10 col-sm-9 col-xl-11 col-xxl-11 d-flex d-sm-flex flex-column flex-sm-column">
+                                                        <a class="m-1 fs-6 text-start text-dark" href="{{ master.get_absolute_url }}">{{ subscription_to_me_one.subscriper.username }}</a>
+                                                        <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <a href="{% url 'master:master_update' master.slug %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="bi bi-gear m-2 mt-3" viewBox="0 0 16 16">
@@ -75,67 +101,11 @@
                                 <a class="fs-6 text-decoration-none m-1 link-primary btn btn-primary" href="{% url 'master:post_add' master.slug %}">Создать публикацию</a>
                             </div>
                         </div>
-                        <div class="container align-items-center d-flex flex-row flex-wrap p-2">
 
-                            {% for post in posts %}
-                                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6 col-12 text-start">
-                                    <div class="border container p-0">
-                                        <div class="p-0 box-user">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalImageMaster{{ post.id }}">
-                                                <img src="/media/{{ post.image }}"/>
-                                            </a>
-                                        </div>
-                                        <div class="modal fade" id="modalImageMaster{{ post.id }}" tabindex="-1">
-                                            <div class="modal-dialog-user modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <a href="{{ master.get_absolute_url }}" class="text-decoration-none">
-                                                            <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
-                                                                {% if master.image %}
-                                                                    <img src="{% thumbnail master.image 'default' %}" class="m-2 rounded-circle" width="40" height="40"/>
-                                                                {% else %}
-                                                                    <img src="{% static 'images/master.png' %}" wclass="m-2 rounded-circle" width="40" height="40"/>
-                                                                {% endif %}
-                                                                <h3 class="fw-normal h6 text-dark">{{ master.name }}</h3>
-                                                            </div>
-                                                        </a>
-                                                        <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
-                                                    </div>
-
-                                                    <div class="d-flex flex-column text-start m-3">
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="col-12 pb-3 pt-3">
-                                                                    <div class="flex-lg-wrap row">
-                                                                        <div class="align-items-start col-lg-flex d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-column flex-sm-column flex-xl-row flex-xxl-row justify-content-center p-0">
-                                                                            <div class="d-flex justify-content-center col-12 col-lg-8 col-md-12 col-sm-12 col-xl-8 col-xxl-7 p-2 text-start modal-img-user">
-                                                                                <img src="/media/{{ post.image }}" class="img-fluid"/>
-                                                                            </div>
-                                                                            <div class="col-12 col-lg-4 col-md-12 col-sm-12 col-xl-4 col-xxl-5 p-2 text-start">
-                                                                                <h5 class="text-dark">{{ post.title }}</h5>
-                                                                                <h6>{{ post.content }}</h6>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-<!--                                                        <div>-->
-<!--                                                            <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">-->
-<!--                                                                <div class="container">-->
-<!--                                                                    <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>-->
-<!--                                                                    <span>1228</span>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </div>-->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            {% endfor %}
+                        <div class="container align-items-center d-flex flex-row flex-wrap p-2" id="posts_all_view"
+                             data-user_master_current_slug = "{{ master.slug }}"
+                             data-post_bool_status="0"
+                            data-type_posts="master">
 
                         </div>
                     </div>
@@ -175,12 +145,12 @@
                                                     </a>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 {% endfor %}
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -188,5 +158,6 @@
 
         </div>
     </section>
- <script src={% static 'subscription/js/subscription.js' %}></script>
+    <script src={% static 'master/js/pagination.js' %}></script>
+    <script src={% static 'subscription/js/subscription.js' %}></script>
 {% endblock %}

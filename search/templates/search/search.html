@@ -1,0 +1,114 @@
+{% extends 'main/layout/base.html' %}
+{% load thumbnail %}
+{% load static %}
+{% block title %} Поиск {% endblock %}
+{% block content %}
+        <p>
+            <label for="text_search">Искать:</label>
+            <input type="text" class="form-control" required="" id="text_search">
+        </p>
+        <div id="btn_group" data-btn_group_value="btn_all">
+            <input class="border btn btn-primary m-2" id="btn_all" type="submit" value="Все">
+            <input class="border btn btn-primary m-2" id="btn_account" type="submit" value="Люди">
+            <input class="border btn btn-primary m-2" id="btn_master" type="submit" value="Мастера">
+            <input class="border btn btn-primary m-2" id="btn_post" type="submit" value="Посты">
+            <input class="border btn btn-primary m-2" id="btn_service" type="submit" value="Объявления">
+        </div>
+
+
+
+        <div id="filters">
+            <p>--------filters_account-----------</p>
+            <div id="filters_account">
+                <p>
+                    <label for="filters_account_location">Регион:</label>
+                    <input type="text" class="form-control" required="" id="filters_account_location">
+                </p>
+                <p>
+                    <label for="filters_account_id_gender">Пол:</label>
+                    <select name="filters_account_gender" class="form-control" required="" id="filters_account_id_gender">
+                        <option value="">---------</option>
+                        <option value="m">мужской</option>
+                        <option value="w">женский</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="filters_account_id_age_from">Возраст:</label>
+                    <select name="filters_account_age_from" class="form-control" required="" id="filters_account_id_age_from">
+                        <option value="">От</option>
+                        {% for i in age_list %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+
+                    </select>
+                    <select name="filters_account_age_up_to" class="form-control" required="" id="filters_account_id_age_up_to">
+                        <option value="">До</option>
+                        {% for i in age_list %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </p>
+            </div>
+            <p>--------filters_master-----------</p>
+            <div id="filters_master">
+                <p>
+                    <label for="filters_master_id_location">Регион:</label>
+                    <input type="text" class="form-control" required="" id="filters_master_id_location">
+                </p>
+                <p>
+                    <label for="filters_master_id_work_experience">Опыт работы:</label>
+                    <select name="filters_master_work_experience_from" class="form-control" required="" id="filters_master_id_work_experience">
+                        <option value="">От</option>
+                        {% for i in age_list %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+
+                    </select>
+                    <select name="filters_master_work_experience_up_to" class="form-control" required="" id="filters_master_id_work_experience">
+                        <option value="">До</option>
+                        {% for i in age_list %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </p>
+            </div>
+            <p>--------filters_post-----------</p>
+            <div id="filters_post">
+
+            </div>
+            <p>--------filters_service-----------</p>
+            <div id="filters_service">
+                <p>
+                {{ service_categorys.count }}
+                    <label for="filters_service_id_service_category">Категория объявления:</label>
+                    <select name="filters_service_service_category" class="form-control" required="" id="filters_service_id_service_category">
+                        <option value="">---------</option>
+                        {% for service_category in service_categorys %}
+                            <option value="{{ service_category.slug }}">{{ service_category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </p>
+                <p>
+                    <label for="filters_service_id_service_category_custom">Вид услуг:</label>
+                    <input type="text" class="form-control" required="" id="filters_service_id_service_category_custom">
+                </p>
+            </div>
+        </div>
+
+    <div id="result">
+        <div id="result_account">
+
+        </div>
+        <div id="result_master">
+
+        </div>
+        <div id="result_post">
+
+        </div>
+        <div id="result_service">
+
+        </div>
+    </div>
+    <script src={% static 'search/js/search.js' %}></script>
+{% endblock %}
+

@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, TemplateView, ListView
 
@@ -31,6 +32,7 @@ class MasterOneShow(DetailView):
         context['user'] = self.request.user
         context['url_type'] = 'master'
         context['subscripe'] = None
+        context['subscription_to_me'] = Subscription.objects.filter(master__slug=self.kwargs['slug'])
         master = Master.objects.get(slug=self.kwargs['slug'])
         try:
             subscriper = CustomUser.objects.get(username=self.request.user)
@@ -149,3 +151,20 @@ class ServiceUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+def post_one_show(request):
+    data = request.GET
+    current = Master.objects.get(slug=data.get('user_master_current_slug'))
+    first_post_id = data.get('first_post_id')
+    if first_post_id:
+        # posts =MasterPost.objects.all().first()
+        first_post = MasterPost.objects.get(pk=data.get('first_post_id'))
+        posts = MasterPost.objects.filter(master=current, date_create__gt=first_post.date_create)[:4]
+    else:
+        posts = MasterPost.objects.filter(master=current)[:4]
+    context = {
+        'master': current,
+        'posts': posts,
+    }
+    return render(request, 'master/post_one.html', context)
