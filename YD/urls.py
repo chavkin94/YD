@@ -11,6 +11,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
     # path('organization/', include('organization.urls')),
     path('master/', include('master.urls')),
+    path('', include('search.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
 if settings.DEBUG:

@@ -10,7 +10,7 @@ function posts_view_ajax(posts_all_view){
         data.type_posts = type_posts;
         // let url = "{% url 'account:account_pos_one_show' %}"
         $.ajax({
-            url: "/account/account_post_one_show/",
+            url: "/account/post_one_show/",
             type:'GET',
             data: data,
             // cache: true,

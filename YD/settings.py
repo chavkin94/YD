@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'subscription.apps.SubscriptionConfig',
     'django_cleanup',
     'easy_thumbnails',
-
+    'search.apps.SearchConfig',
 ]
 
 MIDDLEWARE = [
