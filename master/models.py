@@ -108,6 +108,7 @@ class ServiceCategory(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=255, blank=True, verbose_name="Наименование услуги")
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    price = models.CharField(max_length=16, blank=True, verbose_name="Стоимость")
     description = models.TextField(blank=True, verbose_name="Описание услуги")
     custom_category = models.CharField(max_length=255, blank=True, verbose_name="Пользовательская категория")
     serviceCategory = models.ForeignKey(ServiceCategory, on_delete=models.PROTECT, verbose_name="Категория услуг")

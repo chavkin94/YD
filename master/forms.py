@@ -56,11 +56,12 @@ class ServiceAddForm(forms.ModelForm):
 
     class Meta:
         model = Service
-        fields = ['name', 'slug', 'description', 'custom_category', 'serviceCategory', 'master',
+        fields = ['name', 'slug', 'price', 'description', 'custom_category', 'serviceCategory', 'master',
                   'image']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'price': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
             'custom_category': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'serviceCategory': forms.Select(attrs={'class': 'form-control mt-2'}),
@@ -73,11 +74,12 @@ class ServiceUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Service
-        fields = ['name', 'slug', 'description', 'custom_category', 'serviceCategory', 'master',
+        fields = ['name', 'slug', 'price', 'description', 'custom_category', 'serviceCategory', 'master',
                   'image']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'slug': forms.TextInput(attrs={'class': 'form-control mt-2'}),
+            'price': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
             'custom_category': forms.TextInput(attrs={'class': 'form-control mt-2'}),
             'serviceCategory': forms.Select(attrs={'class': 'form-control mt-2'}),

@@ -14,7 +14,11 @@
                                 <img src="https://pinegrow.com/placeholders/img11.jpg" width="100%"/>
                             </div>
                             <div class="container text-start m-2 h-100 text-dark">
-                                <p class="h4 text-dark d-flex d-inline-block mb-1">100 Р</p>
+                                {% if service.price %}
+                                    <p class="h4 text-dark d-flex d-inline-block mb-1">Стоимость: {{ service.price }}</p>
+                                {% else %}
+                                    <p class="h4 text-dark d-flex d-inline-block mb-1">Стоимость не указана</p>
+                                {% endif %}
 
                                 <p class="fs-4">Данные пользователя</p>
                                 <a class="d-inline-block m-2 text-dark" href="{{ master.get_absolute_url }}">Мастер: {{ master.name }}</a>

@@ -9,9 +9,13 @@ $(document).ready(function (){
        var url_type = submit_btn_subscripe_unsubscripe.data("url_type");
         if ($('#submit_p').text() == 'Отписаться'){
             $('#submit_p').text('Подписаться')
+            $('#submit_p').addClass('text-primary');
+            $('#submit_p').removeClass('text-muted');
         }
         else if($('#submit_p').text() == 'Подписаться') {
             $('#submit_p').text('Отписаться')
+            $('#submit_p').addClass('text-muted');
+            $('#submit_p').removeClass('text-primary');
         }
 
         var data = {};

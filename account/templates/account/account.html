@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-12 col-md-9">
                     {% if user.first_name and user.last_name %}
-                        <h5 class="fs-5 d-flex ms-3">{{ user.first_name }} {{ user.last_name }}</h5>
+                        <h5 class="d-flex ms-3">{{ user.first_name }} {{ user.last_name }}</h5>
                     {% endif %}
                     <div class="d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row">
                         <button type="button" class="btn btn-primary m-2">Подписчики</button>
@@ -64,10 +64,10 @@
 
 
 
-{#Просто лента, но нужно чтоб работала только когда выбрана#}
+Просто лента, но нужно чтоб работала только когда выбрана
                 <div class="tab-pane fade show active" id="feed" role="tabpanel" aria-labelledby="feed-tab">
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
-{#                        {{ feed.count }}#}
+                        {{ feed.count }}
                         {% for post in feed %}
 
                             {{ post.slug }}
