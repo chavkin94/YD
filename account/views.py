@@ -60,6 +60,7 @@ def account_show(request):
         masters = Master.objects.filter(user=request.user)
         organizations = Organization.objects.filter(user=request.user)
         subscription_to_me = Subscription.objects.filter(user=request.user)
+        subscription_count = subscription_to_me.count()
         subscription_my_user = Subscription.objects.filter(subscriper=request.user, master=None)
         subscription_my_master = Subscription.objects.filter(subscriper=request.user, user=None)
         feed_account = AccountPost.objects.filter(user__subscriber__user=request.user)
@@ -76,6 +77,7 @@ def account_show(request):
             'subscription_my_master': subscription_my_master,
             'organizations': organizations,
             'feed': feed,
+            'subscription_count': subscription_count
             # 'posts': posts,
         }
 
@@ -183,8 +185,10 @@ class AccountAnotherShow(DetailView):
         context['url_type'] = 'account'
         context['subscripe'] = None
         context['subscription_to_me'] = Subscription.objects.filter(user__username=self.kwargs['slug'])
+        context['subscription_count'] = context['subscription_to_me'].count()
         context['subscription_my_user'] = Subscription.objects.filter(subscriper__username=self.kwargs['slug'], master=None)
         context['subscription_my_master'] = Subscription.objects.filter(subscriper__username=self.kwargs['slug'], user=None)
+
 
 
 

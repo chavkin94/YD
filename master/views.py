@@ -33,6 +33,7 @@ class MasterOneShow(DetailView):
         context['url_type'] = 'master'
         context['subscripe'] = None
         context['subscription_to_me'] = Subscription.objects.filter(master__slug=self.kwargs['slug'])
+        context['subscription_count'] = context['subscription_to_me'].count()
         master = Master.objects.get(slug=self.kwargs['slug'])
         try:
             subscriper = CustomUser.objects.get(username=self.request.user)

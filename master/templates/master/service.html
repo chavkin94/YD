@@ -1,30 +1,29 @@
 {% extends 'main/layout/base.html' %}
 
 
-{% block title %} Eckeuf {% endblock %}
+{% block title %} {{ service.name }} {% endblock %}
 {% block content %}
     <section class="pb-5 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12 col-xl-12 pb-3 pt-3">
                     <div class="flex-lg-wrap row">
-                        <div class="align-items-center col-lg-11 container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-flex flex-xl-row flex-xxl-row text-start">
-                            <div class="p-0">
-                                <h4 class="text-dark text-center">{{ service.name }}</h4>
-                                <img src="https://pinegrow.com/placeholders/img11.jpg" width="100%"/>
+                        <h4 class="text-dark text-center">{{ service.name }}</h4>
+                        <div class="align-items-center col-12 container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-flex flex-xl-row flex-xxl-row text-start">
+                            <div class="box-service-user">
+                                <img src="/media/{{ service.image }}" class="w-100"/>
                             </div>
-                            <div class="container text-start m-2 h-100 text-dark">
+                            <div class="container text-start m-2 text-dark col-12 col-lg-6">
                                 {% if service.price %}
-                                    <p class="h4 text-dark d-flex d-inline-block mb-1">Стоимость: {{ service.price }}</p>
+                                    <p class="h5 d-flex d-inline-block mb-1">Стоимость: {{ service.price }}</p>
                                 {% else %}
-                                    <p class="h4 text-dark d-flex d-inline-block mb-1">Стоимость не указана</p>
+                                    <p class="h5 d-flex d-inline-block mb-1">Стоимость не указана</p>
                                 {% endif %}
-
-                                <p class="fs-4">Данные пользователя</p>
-                                <a class="d-inline-block m-2 text-dark" href="{{ master.get_absolute_url }}">Мастер: {{ master.name }}</a>
-                                <p class="d-flex d-inline-block m-2">Номер телефона: {{ master.phone_number }}</p>
-                                <p class="d-flex d-inline-block m-2">E-mail: {{ master.email }}</p>
-                                <p class="d-flex d-inline-block m-2">Город: {{ master.location }}</p>
+                                <p class="fs-5">Данные пользователя</p>
+                                <a class="fs-5 d-inline-block m-2 text-dark" href="{{ master.get_absolute_url }}">Мастер: {{ master.name }}</a>
+                                <p class="fs-5 d-flex d-inline-block m-2">Номер телефона: {{ master.phone_number }}</p>
+                                <p class="fs-5 d-flex d-inline-block m-2">E-mail: {{ master.email }}</p>
+                                <p class="fs-5 d-flex d-inline-block m-2">Город: {{ master.location }}</p>
                             </div>
                         </div>
                         <div class="container p-2">

@@ -13,7 +13,7 @@
         <title>{% block title %}Главная{% endblock %}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
-    <body class="fw-light text-secondary bg-body" style="background-image: repeating-radial-gradient(circle at left, rgba(255, 255, 255, 0.21) 0%, rgb(247, 247, 247) 58%)">
+    <body class="fw-light text-secondary bg-body">
         <header>
             <nav class="bg-white m-2 m-4 navbar navbar-expand-lg navbar-light py-lg-1">
                 <div class="container">
@@ -22,13 +22,15 @@
                         <span class="navbar-toggler-icon" style="border-style: none;"></span>
                     </button>
                     <div class="collapse d-xxl-flex justify-content-end navbar-collapse" id="navbarNavDropdown-3">
-                        <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:feed' %}">Лента</a>
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:feed' %}">Лента</a>
+                        {% endif %}
                         <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:search' %}">Поиск мастера</a>
                         {% if user.is_authenticated %}
 <!--                            <a class="btn btn-primary m-2 ms-lg-3" href="#">Сообщения</a>-->
                             <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'account:account' %}">Профиль</a>
                         {% else %}
-                            <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:index' %}">Войти</a>
+                            <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'account:login' %}">Войти</a>
                         {% endif %}
                     </div>
                 </div>
