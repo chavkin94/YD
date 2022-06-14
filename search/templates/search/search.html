@@ -41,22 +41,6 @@
                                         <option value="w">женский</option>
                                     </select>
                                 </p>
-                                <p>
-                                    <label for="filters_account_id_age_from">Возраст:</label>
-                                    <select name="filters_account_age_from" class="form-control" required="" id="filters_account_id_age_from">
-                                        <option value="">От</option>
-                                        {% for i in age_list %}
-                                            <option value="{{ i }}">{{ i }}</option>
-                                        {% endfor %}
-
-                                    </select>
-                                    <select name="filters_account_age_up_to" class="form-control" required="" id="filters_account_id_age_up_to">
-                                        <option value="">До</option>
-                                        {% for i in age_list %}
-                                            <option value="{{ i }}">{{ i }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </p>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="masters" role="tabpanel" aria-labelledby="masters-tab">
@@ -127,7 +111,7 @@
 
 <!--        </div>-->
 
-    <div id="result">
+    <div id="result_search">
         <div id="result_account">
 
         </div>
