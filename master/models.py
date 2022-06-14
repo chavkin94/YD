@@ -50,7 +50,7 @@ class Master(models.Model):
     phone_number = models.CharField(max_length=30, verbose_name="Номер телефона", blank=True, null=True)
     is_activated = models.BooleanField(default=True, db_index=True, verbose_name='Активное')
     email = models.EmailField(blank=True, verbose_name="email")
-    start_year = models.DateField(verbose_name="Год начала работы")
+    start_year = models.IntegerField(verbose_name="Год начала работы")
     description = models.TextField(blank=True, verbose_name="Описание мастера")
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, verbose_name="Пользователь")
     image = models.ImageField(blank=True, upload_to=image_url_main, verbose_name="Изображение")
