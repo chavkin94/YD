@@ -7,13 +7,12 @@
         <div class="container">
             <div class="">
                 <div class="d-flex flex-row justify-content-evenly mb-4">
-                    <form class="d-flex flex-row w-100">
+                    <form class="d-flex flex-row w-100" onsubmit="return false;">
                         <input type="text" class="form-control me-2" required="" id="text_search">
-                        <button class="btn btn-primary ms-2" type="submit">Найти</button>
                     </form>
                 </div>
                 <div class="align-items-start d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-column flex-xl-row flex-xxl-row m-3s" data-pg-collapsed>
-                    <div class="d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-lg-column flex-md-column flex-row flex-sm-row flex-xl-column flex-xxl-column me-3 nav nav-pills" role="tablist" aria-orientation="vertical">
+                    <div class="d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-lg-column flex-md-column flex-row flex-sm-row flex-xl-column flex-xxl-column me-3 nav nav-pills" role="tablist" aria-orientation="vertical" id="btn_group" data-btn_group_value="btn_all">
                         <input class="border btn btn-primary m-2 active" id="btn_all" type="submit" value="Все" data-bs-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="true">
                         <input class="border btn btn-primary m-2" id="btn_account" type="submit" value="Люди" data-bs-toggle="pill" href="#people" role="tab" aria-controls="people" aria-selected="false">
                         <input class="border btn btn-primary m-2" id="btn_master" type="submit" value="Мастера" data-bs-toggle="pill" href="#masters" role="tab" aria-controls="masters" aria-selected="false">
@@ -22,9 +21,6 @@
                     </div>
                     <div class="tab-content w-100" id="filters">
                         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                            <p>
-                                1
-                            </p>
                         </div>
                         <div class="tab-pane fade" id="people" role="tabpanel" aria-labelledby="people-tab">
                             <p>--------filters_account-----------</p>
@@ -50,22 +46,6 @@
                                     <label for="filters_master_id_location">Регион:</label>
                                     <input type="text" class="form-control" required="" id="filters_master_id_location">
                                 </p>
-                                <p>
-                                    <label for="filters_master_id_work_experience">Опыт работы:</label>
-                                    <select name="filters_master_work_experience_from" class="form-control" required="" id="filters_master_id_work_experience">
-                                        <option value="">От</option>
-                                        {% for i in age_list %}
-                                            <option value="{{ i }}">{{ i }}</option>
-                                        {% endfor %}
-
-                                    </select>
-                                    <select name="filters_master_work_experience_up_to" class="form-control" required="" id="filters_master_id_work_experience">
-                                        <option value="">До</option>
-                                        {% for i in age_list %}
-                                            <option value="{{ i }}">{{ i }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </p>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="posts-tab">
@@ -78,7 +58,6 @@
                             <p>--------filters_service-----------</p>
                             <div id="filters_service">
                                 <p>
-                                {{ service_categorys.count }}
                                     <label for="filters_service_id_service_category">Категория объявления:</label>
                                     <select name="filters_service_service_category" class="form-control" required="" id="filters_service_id_service_category">
                                         <option value="">---------</option>
@@ -86,10 +65,6 @@
                                             <option value="{{ service_category.slug }}">{{ service_category.name }}</option>
                                         {% endfor %}
                                     </select>
-                                </p>
-                                <p>
-                                    <label for="filters_service_id_service_category_custom">Вид услуг:</label>
-                                    <input type="text" class="form-control" required="" id="filters_service_id_service_category_custom">
                                 </p>
                             </div>
                         </div>
