@@ -12,16 +12,16 @@
                 <div class="modal-dialog-user modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <a href="#" class="text-decoration-none">
+                            <p class="text-decoration-none">
                                 <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
                                     {% if user.image %}
                                         <img src="{% thumbnail master.image 'default' %}" class="m-2 rounded-circle" width="40" height="40"/>
                                     {% else %}
-                                        <img src="{% static 'images/master.png' %}" wclass="m-2 rounded-circle" width="40" height="40"/>
+                                        <img src="{% static 'images/master.png' %}" class="m-2 rounded-circle" width="40" height="40"/>
                                     {% endif %}
                                     <h3 class="fw-normal h6 text-dark ms-3">{{ user.username }}</h3>
                                 </div>
-                            </a>
+                            </p>
                             <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="d-flex flex-column text-start m-3">
