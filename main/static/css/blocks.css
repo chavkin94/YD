@@ -425,3 +425,9 @@ body{
 .one-post-user .post-image-user{
     height:90%
 }
+
+.footer-user{
+    position: absolute;
+    width: 100%;
+}
+

@@ -2,77 +2,77 @@
 
 {% block content %}
 
-    <section class="pb-5 text-center">
-        <div class="container">
-            <div class="container d-flex flex-row mt-4">
-                <div class="col-lg-8 col-sm-12 col-xl-8 m-2 pb-3 pt-3 text-start">
-                    <div class="border container mb-4 p-0">
-                        <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">
-                            <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" width="40" height="40"/>
-                            <h3 class="fw-normal h6 text-dark">Модель 1&nbsp;</h3>
-                        </div>
-                        <div class="p-0">
-                            <img src="https://pinegrow.com/placeholders/img11.jpg" width="100%"/>
-                        </div>
-                        <div>
-                            <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">
-                                <div class="container">
-                                    <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                                    <span>1228</span>
-                                </div>
-                                <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ms-3 mt-4 col-8 col-lg-4 col-md-8 col-sm-8 col-xl-3 col-xxl-3 text-center">
-                    {% if user.is_authenticated %}
-                        <div class="container d-flex flex-row mb-2">
-                            <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" height="60" width="60"/>
-                            <h5 class="m-2 text-dark">{{ user.first_name }} {{ user.last_name }}</h5>
-                        </div>
-                        <div class="border container flex-row mb-3">
-                            <div class="border-bottom container d-lg-flex flex-row justify-content-between mt-1">
-                                <h6 class="text-muted">Подписки</h6>
-                                <a class="text-decoration-none" href="#">
-                                    <h6 class="text-dark">Смотреть все</h6>
-                                </a>
-                            </div>
-                            <div class="container d-lg-flex flex-row mb-2 mt-2">
-                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>
-                                <h3 class="fw-normal h6 text-dark">Модель 3</h3>
-                            </div>
-                            <div class="container d-lg-flex flex-row mb-2 mt-2">
-                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>
-                                <h3 class="fw-normal h6 text-dark">Модель 3</h3>
-                            </div>
-                        </div>
-                        <div class="border container flex-row mb-3">
-                            <div class="border-bottom container d-lg-flex flex-row justify-content-between mt-1">
-                                <h6 class="text-muted">Подписчики</h6>
-                                <a class="text-decoration-none" href="#">
-                                    <h6 class="text-dark">Смотреть все</h6>
-                                </a>
-                            </div>
-                            <div class="container d-lg-flex flex-row mb-2 mt-2">
-                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>
-                                <h3 class="fw-normal h6 text-dark">Модель 1</h3>
-                            </div>
-                            <div class="container d-lg-flex flex-row mb-2 mt-2">
-                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>
-                                <h3 class="fw-normal h6 text-dark">Модель 2</h3>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="form-control d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-column flex-xxl-column">
-                            <a class="border btn btn-primary m-2 ms-lg-3" href="{% url 'account:login' %}">Войти</a>
-                            <a class="border btn btn-primary m-2 ms-lg-3" href="{% url 'account:register' %}">Регистрация</a>
-                        </div>
-                    {% endif %}
+<!--    <section class="pb-5 text-center">-->
+<!--        <div class="container">-->
+<!--            <div class="container d-flex flex-row mt-4">-->
+<!--                <div class="col-lg-8 col-sm-12 col-xl-8 m-2 pb-3 pt-3 text-start">-->
+<!--                    <div class="border container mb-4 p-0">-->
+<!--                        <div class="align-items-center align-items-lg-center align-items-md-center align-items-sm-center align-items-xl-center align-items-xxl-center container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex">-->
+<!--                            <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" width="40" height="40"/>-->
+<!--                            <h3 class="fw-normal h6 text-dark">Модель 1&nbsp;</h3>-->
+<!--                        </div>-->
+<!--                        <div class="p-0">-->
+<!--                            <img src="https://pinegrow.com/placeholders/img11.jpg" width="100%"/>-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            <div class="container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between mt-2">-->
+<!--                                <div class="container">-->
+<!--                                    <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>-->
+<!--                                    <span>1228</span>-->
+<!--                                </div>-->
+<!--                                <img src="https://images.unsplash.com/photo-1516967124798-10656f7dca28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDkyMnwwfDF8c2VhcmNofDR8fGxvdmV8ZW58MHx8fHwxNjUwMzQ4Mzg5&ixlib=rb-1.2.1&q=80&w=1080" height="30" width="30" class="m-2"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="ms-3 mt-4 col-8 col-lg-4 col-md-8 col-sm-8 col-xl-3 col-xxl-3 text-center">-->
+<!--                    {% if user.is_authenticated %}-->
+<!--                        <div class="container d-flex flex-row mb-2">-->
+<!--                            <img src="https://pinegrow.com/placeholders/img16.jpg" class="m-2 rounded-circle" height="60" width="60"/>-->
+<!--                            <h5 class="m-2 text-dark">{{ user.first_name }} {{ user.last_name }}</h5>-->
+<!--                        </div>-->
+<!--                        <div class="border container flex-row mb-3">-->
+<!--                            <div class="border-bottom container d-lg-flex flex-row justify-content-between mt-1">-->
+<!--                                <h6 class="text-muted">Подписки</h6>-->
+<!--                                <a class="text-decoration-none" href="#">-->
+<!--                                    <h6 class="text-dark">Смотреть все</h6>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="container d-lg-flex flex-row mb-2 mt-2">-->
+<!--                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>-->
+<!--                                <h3 class="fw-normal h6 text-dark">Модель 3</h3>-->
+<!--                            </div>-->
+<!--                            <div class="container d-lg-flex flex-row mb-2 mt-2">-->
+<!--                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>-->
+<!--                                <h3 class="fw-normal h6 text-dark">Модель 3</h3>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="border container flex-row mb-3">-->
+<!--                            <div class="border-bottom container d-lg-flex flex-row justify-content-between mt-1">-->
+<!--                                <h6 class="text-muted">Подписчики</h6>-->
+<!--                                <a class="text-decoration-none" href="#">-->
+<!--                                    <h6 class="text-dark">Смотреть все</h6>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="container d-lg-flex flex-row mb-2 mt-2">-->
+<!--                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>-->
+<!--                                <h3 class="fw-normal h6 text-dark">Модель 1</h3>-->
+<!--                            </div>-->
+<!--                            <div class="container d-lg-flex flex-row mb-2 mt-2">-->
+<!--                                <img src="https://pinegrow.com/placeholders/img16.jpg" width="50" height="50" class="rounded-circle"/>-->
+<!--                                <h3 class="fw-normal h6 text-dark">Модель 2</h3>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    {% else %}-->
+<!--                        <div class="form-control d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-column flex-xxl-column">-->
+<!--                            <a class="border btn btn-primary m-2 ms-lg-3" href="{% url 'account:login' %}">Войти</a>-->
+<!--                            <a class="border btn btn-primary m-2 ms-lg-3" href="{% url 'account:register' %}">Регистрация</a>-->
+<!--                        </div>-->
+<!--                    {% endif %}-->
 
-                </div>
-            </div>
-        </div>
-    </section>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 
 {% endblock %}

@@ -34,7 +34,7 @@
                                         <div class="container p-2">
                                             {% for subscription_to_me_one in subscription_to_me %}
 <!--                                            Переход по ссылке на пользователей и мастеров-->
-                                                <a class="w-100 text-dark text-decoration-none" href="/account/profile/{{ subscription_to_me_one.subscriper }}">
+                                                <a class="w-100 text-dark text-decoration-none" href="/accountprofile/{{ subscription_to_me_one.subscriper }}">
                                                     <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
                                                         <div class="m-2 align-items-center d-flex">
                                                             <img src="/media/{{ subscription_to_me_one.subscriper.image }}" width="70" height="70" class="rounded-circle"/>
