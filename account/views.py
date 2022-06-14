@@ -182,6 +182,8 @@ class AccountAnotherShow(DetailView):
         context = super().get_context_data(**kwargs)
 
         context['user'] = self.request.user
+        context['masters'] = Master.objects.filter(user__username=self.kwargs['slug'])
+        # context['masters_subscription_count'] = Subscription.objects.filter(master__user__username=self.kwargs['slug']).count()
         context['url_type'] = 'account'
         context['subscripe'] = None
         context['subscription_to_me'] = Subscription.objects.filter(user__username=self.kwargs['slug'])
