@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.db.models import Value
-from django.db.models import F
+from django.db.models import F,Q
 from django.db.models.functions import Concat
-from account.models import CustomUser
+from account.models import CustomUser, AccountPost
 from main.models import Location
-from master.models import ServiceCategory
+from master.models import ServiceCategory, Master, MasterPost, Service
 from datetime import date
 
 
@@ -29,20 +29,47 @@ def search_view(request):
 def search_accounts(request):
     data = request.GET
     accounts = CustomUser.objects.annotate(full_name=Concat(F('last_name'), Value(' '), F('first_name'), Value(' '), F('surname'))).filter(full_name__icontains=data.get('text_search'))
-    if data.get('filters_account_gender') != '':
-        accounts = accounts.filter(gender=data.get('filters_account_gender'))
-    # accounts = CustomUser.objects.all()
-    # first_post_id = data.get('first_post_id')
-    # if first_post_id:
-    #     posts =AccountPost.objects.all().first()
-    #     first_post = AccountPost.objects.get(pk=data.get('first_post_id'))
-    #     posts = AccountPost.objects.filter(user=current, date_create__gt=first_post.date_create)[:4]
-    # else:
-    #     posts = AccountPost.objects.filter(user=current)[:4]
+    if data.get('btn_group_value') != 'btn_all':
+        if data.get('filters_account_gender') != '':
+            accounts = accounts.filter(gender=data.get('filters_account_gender'))
     context = {
         'accounts': accounts,
-        # 'filters_account_id_age_up_to': filters_account_id_age_up_to,
-        # 'age': age,
     }
-    # account_post_one_show_json(post_end)
     return render(request, 'search/search_account.html', context)
+
+
+def search_masters(request):
+    data = request.GET
+    masters = Master.objects.filter(name__icontains=data.get('text_search'))
+    if data.get('btn_group_value') != 'btn_all':
+        if data.get('filters_master_id_location') != '':
+            location = Location.objects.get(name__icontains=data.get('filters_master_id_location'))
+            masters = masters.filter(location__pk=location.pk)
+    context = {
+        'masters': masters,
+    }
+    return render(request, 'search/search_master.html', context)
+
+
+def search_posts(request):
+    data = request.GET
+    posts_account = AccountPost.objects.filter(Q(title__icontains=data.get('text_search')) | Q(content__icontains=data.get('text_search')))
+    posts_master = MasterPost.objects.filter(Q(title__icontains=data.get('text_search')) | Q(content__icontains=data.get('text_search')))
+    posts = posts_account.union(posts_master).order_by('date_create')
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'search/search_post.html', context)
+
+
+def search_services(request):
+    data = request.GET
+    services = Service.objects.filter(Q(name__icontains=data.get('text_search')) | Q(description__icontains=data.get('text_search')) | Q(custom_category=data.get('text_search')))
+    if data.get('btn_group_value') != 'btn_all':
+        if data.get('filters_service_id_service_category') != '':
+            service_category = ServiceCategory.objects.get(slug=data.get('filters_service_id_service_category'))
+            services = services.filter(serviceCategory__pk=service_category.pk)
+    context = {
+        'services': services,
+    }
+    return render(request, 'search/search_service.html', context)
