@@ -426,6 +426,30 @@ body{
     height:90%
 }
 
+.link-search-user{
+    padding: 1rem;
+    color: #1c1f23;
+    background-color: #F3F2F5 !important;
+    border-color: rgb(193, 193, 193) !important;
+}
+
+.img-modal-user{
+    max-height: 31em !important;
+}
+
+.one-post-user{
+    height:40em !important;
+    width:50em !important;
+}
+
+.one-post-user .post-top-user{
+    height:10%
+}
+
+.one-post-user .post-image-user{
+    height:90%
+}
+
 .footer-user{
     position: absolute;
     width: 100%;

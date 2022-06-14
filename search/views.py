@@ -5,6 +5,7 @@ from django.db.models.functions import Concat
 from account.models import CustomUser
 from main.models import Location
 from master.models import ServiceCategory
+from datetime import date
 
 
 def search_view(request):
@@ -28,7 +29,8 @@ def search_view(request):
 def search_accounts(request):
     data = request.GET
     accounts = CustomUser.objects.annotate(full_name=Concat(F('last_name'), Value(' '), F('first_name'), Value(' '), F('surname'))).filter(full_name__icontains=data.get('text_search'))
-    #
+    if data.get('filters_account_gender') != '':
+        accounts = accounts.filter(gender=data.get('filters_account_gender'))
     # accounts = CustomUser.objects.all()
     # first_post_id = data.get('first_post_id')
     # if first_post_id:
@@ -39,6 +41,8 @@ def search_accounts(request):
     #     posts = AccountPost.objects.filter(user=current)[:4]
     context = {
         'accounts': accounts,
+        # 'filters_account_id_age_up_to': filters_account_id_age_up_to,
+        # 'age': age,
     }
     # account_post_one_show_json(post_end)
     return render(request, 'search/search_account.html', context)
