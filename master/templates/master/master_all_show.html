@@ -10,21 +10,24 @@
             <div class="container p-2">
             <h2> Мастера </h2>
 
-                <div class="container p-3">
+                <div class="container p-2">
                     {% for master in masters %}
-                        <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
-                            <div class="m-2 align-items-center d-flex">
-                                {% if master.image %}
-                                    <img src="{% thumbnail master.image 'default' %}" width="70" height="70" class="rounded-circle"/>
-                                {% else %}
-                                    <img src="{% static 'images/master.png' %}" width="70" height="70" class="rounded-circle"/>
-                                {% endif %}
+                        <a class="text-dark text-decoration-none" href="{{ master.get_absolute_url }}">
+                            <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                                <div class="m-2 align-items-center d-flex">
+                                    {% if master.image %}
+                                        <img src="{% thumbnail master.image 'default' %}" width="70" height="70" class="rounded-circle"/>
+                                    {% else %}
+                                        <img src="{% static 'images/master.png' %}" width="70" height="70" class="rounded-circle"/>
+                                    {% endif %}
+                                </div>
+
+                                <div class="m-2 align-items-start flex-column">
+                                    <p class="m-1 fs-6 text-start text-dark">{{ master.name }}</p>
+                                    <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                </div>
                             </div>
-                            <div class="m-2 align-items-sm-start align-items-start col-8 col-lg-10 col-md-10 col-sm-9 col-xl-11 col-xxl-11 d-flex d-sm-flex flex-column flex-sm-column">
-                                <a class="m-1 fs-6 text-start text-dark" href="{{ master.get_absolute_url }}">{{ master.name }}</a>
-                                <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
-                            </div>
-                        </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
