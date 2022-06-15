@@ -3,7 +3,7 @@
 {% load static %}
 {% block title %} Поиск {% endblock %}
 {% block content %}
-    <section class="text-center">
+    <section class="text-center pb-4">
         <div class="container">
 <!--            <div class="d-flex mb-4">-->
 <!--                <form class="d-flex flex-row" onsubmit="return false;">-->
@@ -11,7 +11,8 @@
 <!--                </form>-->
 <!--            </div>-->
 
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" data-btn_group_value="btn_all">
+
                 <li class="nav-item">
                     <input class="nav-link active" id="btn_all" type="submit" value="Все" data-bs-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="true">
                 </li>
@@ -162,19 +163,19 @@
 
 <!--        </div>-->
 
-    <div id="result_search" data-scroll_bool_status="0" data-number_elem="0">
-        <div id="result_account">
+            <div id="result_search" data-scroll_bool_status="0" data-number_elem="0">
+                <div id="result_account">
 
-<!--                </div>-->
-<!--                <div id="result_master">-->
+                </div>
+                <div id="result_master">
 
-<!--                </div>-->
-<!--                <div id="result_post">-->
+                </div>
+                <div id="result_post">
 
-<!--                </div>-->
-<!--                <div id="result_account">-->
+                </div>
+                <div id="result_service">
 
-<!--                </div>-->
+                </div>
             </div>
         </div>
     </section>

@@ -59,7 +59,7 @@ function view_masters(){
 function view_posts(){
     let data = {};
     let text_search = $('#text_search').val();
-    let count_elem = 1;
+    let count_elem = 4;
     data.count_elem = count_elem;
     data.text_search = text_search.toLowerCase();
     data.number_elem = $('#result_search').data("number_elem")
@@ -269,11 +269,7 @@ $(document).ready(function (){
 
     $(window).scroll(function () {
         if ($("#result_search").data('scroll_bool_status') != '1'){
-console.log('document: '+$(document).height()+' - window: '+$(window).height() + ' = scrollTop: '+$(window).scrollTop())
-
-
             if ((($(window).scrollTop() >= $(document).height() - $(window).height()))&&($(document).height() - $(window).height()!=0)) {
-console.log('--------------------------')
 
                 if (($('#btn_group').data("btn_group_value")) == "btn_account"){
                     view_accounts();
