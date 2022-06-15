@@ -24,3 +24,19 @@ $(function() {
         }
     });
 });
+$(function() {
+    let header = $('header');
+    let section = $('section');
+
+    $(window).scroll(function() {
+        if($(this).scrollTop() > 150) {
+            header.addClass('header_fixed');
+            header.removeClass('m-4');
+            section.addClass('body_padding')
+        } else {
+            header.removeClass('header_fixed');
+            header.addClass('m-4');
+            section.removeClass('body_padding');
+        }
+    });
+});

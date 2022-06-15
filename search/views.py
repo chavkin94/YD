@@ -28,10 +28,16 @@ def search_view(request):
 
 def search_accounts(request):
     data = request.GET
-    accounts = CustomUser.objects.annotate(full_name=Concat(F('last_name'), Value(' '), F('first_name'), Value(' '), F('surname'))).filter(full_name__icontains=data.get('text_search'))
+    count_elem = int(data.get('count_elem'))
+    number_start = int(data.get('number_elem'))
+    number_end = number_start + count_elem
+    accounts = CustomUser.objects.annotate(
+            full_name=Concat(F('last_name'), Value(' '), F('first_name'), Value(' '), F('surname'))).filter(
+            full_name__icontains=data.get('text_search'))
     if data.get('btn_group_value') != 'btn_all':
         if data.get('filters_account_gender') != '':
             accounts = accounts.filter(gender=data.get('filters_account_gender'))
+    accounts = accounts[number_start: number_end]
     context = {
         'accounts': accounts,
     }
@@ -40,11 +46,15 @@ def search_accounts(request):
 
 def search_masters(request):
     data = request.GET
+    count_elem = int(data.get('count_elem'))
+    number_start = int(data.get('number_elem'))
+    number_end = number_start + count_elem
     masters = Master.objects.filter(name__icontains=data.get('text_search'))
     if data.get('btn_group_value') != 'btn_all':
         if data.get('filters_master_id_location') != '':
             location = Location.objects.get(name__icontains=data.get('filters_master_id_location'))
             masters = masters.filter(location__pk=location.pk)
+    masters = masters[number_start: number_end]
     context = {
         'masters': masters,
     }
@@ -53,9 +63,13 @@ def search_masters(request):
 
 def search_posts(request):
     data = request.GET
+    count_elem = int(data.get('count_elem'))
+    number_start = int(data.get('number_elem'))
+    number_end = number_start + count_elem
     posts_account = AccountPost.objects.filter(Q(title__icontains=data.get('text_search')) | Q(content__icontains=data.get('text_search')))
     posts_master = MasterPost.objects.filter(Q(title__icontains=data.get('text_search')) | Q(content__icontains=data.get('text_search')))
     posts = posts_account.union(posts_master).order_by('date_create')
+    posts = posts[number_start: number_end]
     context = {
         'posts': posts,
     }
@@ -64,11 +78,15 @@ def search_posts(request):
 
 def search_services(request):
     data = request.GET
+    count_elem = int(data.get('count_elem'))
+    number_start = int(data.get('number_elem'))
+    number_end = number_start + count_elem
     services = Service.objects.filter(Q(name__icontains=data.get('text_search')) | Q(description__icontains=data.get('text_search')) | Q(custom_category=data.get('text_search')))
     if data.get('btn_group_value') != 'btn_all':
         if data.get('filters_service_id_service_category') != '':
             service_category = ServiceCategory.objects.get(slug=data.get('filters_service_id_service_category'))
             services = services.filter(serviceCategory__pk=service_category.pk)
+    services = services[number_start: number_end]
     context = {
         'services': services,
     }
