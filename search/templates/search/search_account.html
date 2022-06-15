@@ -1,5 +1,7 @@
 {% load thumbnail %}
 {% load static %}
 {% for account in accounts %}
-    <p>{{ account.full_name }}</p>
+    <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6 col-12 text-start" data-account_id={{ account.pk }}>
+        <p>{{ account.full_name }}</p>
+    </div>
 {% endfor %}

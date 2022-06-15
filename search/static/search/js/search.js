@@ -1,11 +1,13 @@
 function view_accounts(text_search,filters_account_location,filters_account_gender){
     let data = {};
     let count_elem = 3;
+    first_account_id = $('#result_account').children().last().data('account');
     data.count_elem = count_elem;
     data.text_search = text_search.toLowerCase();
     data.filters_account_location = filters_account_location;
     data.filters_account_gender = filters_account_gender;
     data.btn_group_value = $('#btn_group').data("btn_group_value")
+    data.first_account_id = first_account_id;
     $.ajax({
         url: "/search/accounts/",
         type:'GET',
