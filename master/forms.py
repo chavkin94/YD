@@ -31,7 +31,7 @@ class MasterUpdateForm(forms.ModelForm):
             'location': forms.Select(attrs={'class': 'form-control mt-2'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control mt-2', 'id': 'phone', 'type': 'text'}),
             'email': forms.EmailInput(attrs={'class': 'form-control mt-2'}),
-            'start_year': forms.DateInput(attrs={'class': 'form-control mt-2', 'type': 'date'}),
+            'start_year': forms.TextInput(attrs={'class': 'form-control mt-2', 'type': 'number'}),
             'description': forms.Textarea(attrs={'cols': 60, 'row': 10, 'class': 'form-control mt-2'}),
             'image': forms.FileInput(attrs={'class': 'form-control mt-2 w-50', 'type': 'file', 'accept': '.jpg,.png'}),
         }

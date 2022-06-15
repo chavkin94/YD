@@ -1,5 +1,24 @@
 {% load thumbnail %}
 {% load static %}
 {% for account in accounts %}
-    <p>{{ account.full_name }}</p>
+    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
+        <div class="container p-2">
+            <a class="text-dark text-decoration-none" href="account/profile/{{ account.username }}" target="_blank">
+                <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                    <div class="m-2 align-items-center d-flex">
+                        {% if user.image %}
+                            <img src="{% thumbnail user.image 'default' %}" class="m-2 rounded-circle" width="70" height="70"/>
+                        {% else %}
+                            <img src="{% static 'images/master.png' %}" class="m-2 rounded-circle" width="70" height="70"/>
+                        {% endif %}
+                    </div>
+
+                    <div class="m-2 align-items-start flex-column">
+                        <p class="m-1 fs-6 text-start text-dark">{{ account.full_name }}</p>
+                        <p class="m-1 fs-7 text-start">ДОХУЯ подписчиков</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 {% endfor %}
