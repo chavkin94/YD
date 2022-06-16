@@ -485,3 +485,7 @@ body{
 .body_padding{
     padding-top: 100px !important;
 }
+
+.rounded-circle{
+    object-fit: cover;
+}
