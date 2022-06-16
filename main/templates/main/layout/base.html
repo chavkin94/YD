@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{% static 'css/blocks.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
         <title>{% block title %}Главная{% endblock %}</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
     </head>
     <body class="fw-light text-secondary bg-body d-flex flex-column justify-content-between">
         <header class="m-4">
@@ -25,7 +25,7 @@
                         {% if user.is_authenticated %}
                             <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:feed' %}">Лента</a>
                         {% endif %}
-                        <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:search' %}">Поиск</a>
+                        <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'search:search_view' %}">Поиск</a>
                         {% if user.is_authenticated %}
 <!--                            <a class="btn btn-primary m-2 ms-lg-3" href="#">Сообщения</a>-->
                             <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'account:account' %}">Профиль</a>
@@ -73,7 +73,6 @@
         <script src="{% static 'js/mask/imask.js' %}"></script>
         <script src="{% static 'js/modal/focus.js' %}"></script>
         <script src="{% static 'js/javascript.js' %}"></script>
-
 
     </body>
 </html>

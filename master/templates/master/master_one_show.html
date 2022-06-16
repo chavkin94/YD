@@ -8,7 +8,7 @@
         <div class="container">
             <p class="fs-5">Профиль мастера {{ master.name }}</p>
             <div class="col-12 col-lg-6 col-md-9 col-sm-10 col-xl-5 col-xxl-5 d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between">
-                <div class="container">
+                <div class="container box-image-user">
                     {% if master.image %}
                         <img src="{% thumbnail master.image 'default' %}" width="100" height="100" class="rounded-circle"/>
                     {% else %}
@@ -89,7 +89,7 @@
 
         <div class="container pb-5 pt-3">
 
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="myTab" role="tablist" style="flex-wrap: inherit; overflow-x: auto; overflow-y: clip;">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Публикации</button>
                 </li>

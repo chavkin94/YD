@@ -1,7 +1,7 @@
 function view_accounts(){
     let data = {};
     let text_search = $('#text_search').val();
-    let count_elem = 1;
+    let count_elem = 6;
     data.count_elem = count_elem;
     data.text_search = text_search.toLowerCase();
     data.filters_account_location = $('#filters_account_location').val();
@@ -31,7 +31,7 @@ function view_accounts(){
 function view_masters(){
     let data = {};
     let text_search = $('#text_search').val();
-    let count_elem = 1;
+    let count_elem = 6;
     data.count_elem = count_elem;
     data.text_search = text_search.toLowerCase();
     data.filters_master_id_location = $('#filters_master_id_location').val();
@@ -59,7 +59,7 @@ function view_masters(){
 function view_posts(){
     let data = {};
     let text_search = $('#text_search').val();
-    let count_elem = 4;
+    let count_elem = 12;
     data.count_elem = count_elem;
     data.text_search = text_search.toLowerCase();
     data.number_elem = $('#result_search').data("number_elem")
@@ -87,7 +87,7 @@ function view_posts(){
 function view_service(){
     let data = {};
     let text_search = $('#text_search').val();
-    let count_elem = 1;
+    let count_elem = 12;
     data.count_elem = count_elem;
     data.text_search = text_search.toLowerCase();
     data.btn_group_value = $('#btn_group').data("btn_group_value")
@@ -115,14 +115,14 @@ function view_service(){
 
 function view_all(){
     $('#btn_group').data("btn_group_value", "btn_all");
-    $("#result_search").html ('<p>---Пользователи---</p> <input class="border btn btn-primary m-2 active" id="btn_all_account" type="submit" value="Показать все" onclick="btn_all_account()">' +
-        '<div id="result_account"></div>' +
-        '<p>---Мастера---</p><input class="border btn btn-primary m-2 active" id="btn_all_master" type="submit" value="Показать все" onclick="btn_all_master()">' +
-        '<div id="result_master"></div>' +
-        '<p>---Посты---</p><input class="border btn btn-primary m-2 active" id="btn_all_post" type="submit" value="Показать все" onclick="btn_all_post()">' +
-        '<div id="result_post"></div>' +
-        '<p>---Услуги---</p><input class="border btn btn-primary m-2 active" id="btn_all_service" type="submit" value="Показать все" onclick="btn_all_service()">' +
-        '<div id="result_service"></div>');
+    $("#result_search").html ('<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Объявления</p><input class="btn btn-link" id="btn_all_service" type="submit" value="Показать все" onclick="btn_all_service()"></div>' +
+    '<div id="result_service" class=""></div>'+
+    '<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Мастера</p> <input class="btn btn-link" id="btn_all_master" type="submit" value="Показать все" onclick="btn_all_master()"></div>' +
+    '<div id="result_master" class=""></div>' +
+    '<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Публикации</p><input class="btn btn-link" id="btn_all_post" type="submit" value="Показать все" onclick="btn_all_post()"></div>' +
+    '<div id="result_post" class=""></div>' +
+    '<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Пользователи</p> <input class="btn btn-link" id="btn_all_account" type="submit" value="Показать все" onclick="btn_all_account()"></div>' +
+    '<div id="result_account" class=""></div>');
     $('#result_search').data("number_elem", '0')
     $('#result_search').data('scroll_bool_status', '0')
     view_accounts()
@@ -135,7 +135,7 @@ function btn_all_account(){
     $('#result_search').data('scroll_bool_status', '0')
     $('#btn_group').data("btn_group_value", "btn_account");
     $('#result_search').data("number_elem", '0')
-    $("#result_search").html ('<p>---Пользователи---</p><div id="result_account"></div>');
+    $("#result_search").html ('<div id="result_account"></div>');
     view_accounts()
 }
 
@@ -143,7 +143,7 @@ function btn_all_master(){
     $('#result_search').data('scroll_bool_status', '0')
     $('#btn_group').data("btn_group_value", "btn_master");
     $('#result_search').data("number_elem", '0')
-    $("#result_search").html ('<p>---Мастера---</p><div id="result_master"></div>');
+    $("#result_search").html ('<div id="result_master"></div>');
     view_masters()
 }
 
@@ -151,7 +151,7 @@ function btn_all_post(){
     $('#btn_group').data("btn_group_value", "btn_post");
     $('#result_search').data('scroll_bool_status', '0')
     $('#result_search').data("number_elem", '0')
-    $("#result_search").html ('<p>---Посты---</p><div id="result_post"></div>');
+    $("#result_search").html ('<div id="result_post"></div>');
     view_posts()
 }
 
@@ -159,7 +159,7 @@ function btn_all_service(){
     $('#btn_group').data("btn_group_value", "btn_service");
     $('#result_search').data('scroll_bool_status', '0')
     $('#result_search').data("number_elem", '0')
-    $("#result_search").html ('<p>---Услуги---</p><div id="result_service"></div>');
+    $("#result_search").html ('<div id="result_service"></div>');
     view_service()
 }
 
@@ -179,7 +179,7 @@ $(document).ready(function (){
         $('#result_search').data('scroll_bool_status', '0')
         $('#btn_group').data("btn_group_value", "btn_account");
         $('#result_search').data("number_elem", '0')
-        $("#result_search").html ('<p>---Пользователи---</p><div id="result_account"></div>');
+        $("#result_search").html ('<div id="result_account"></div>');
         view_accounts()
     });
 
@@ -187,7 +187,7 @@ $(document).ready(function (){
     filters_account_id_gender.change(function (){
         $('#result_search').data('scroll_bool_status', '0')
         $('#result_search').data("number_elem", '0')
-        $("#result_search").html ('<p>---Пользователи---</p><div id="result_account"></div>');
+        $("#result_search").html ('<div id="result_account"></div>');
         view_accounts()
     })
 
@@ -198,7 +198,7 @@ $(document).ready(function (){
         $('#result_search').data('scroll_bool_status', '0')
         $('#btn_group').data("btn_group_value", "btn_master");
         $('#result_search').data("number_elem", '0')
-        $("#result_search").html ('<p>---Мастера---</p><div id="result_master"></div>');
+        $("#result_search").html ('<div id="result_master"></div>');
         view_masters()
     });
 
@@ -206,7 +206,7 @@ $(document).ready(function (){
     filters_master_id_location.change(function (){
         $('#result_search').data('scroll_bool_status', '0')
         $('#result_search').data("number_elem", '0')
-        $("#result_search").html ('<p>---Мастера---</p><div id="result_master"></div>');
+        $("#result_search").html ('<div id="result_master"></div>');
         view_masters()
     })
 
@@ -217,7 +217,7 @@ $(document).ready(function (){
         $('#btn_group').data("btn_group_value", "btn_post");
         $('#result_search').data('scroll_bool_status', '0')
         $('#result_search').data("number_elem", '0')
-        $("#result_search").html ('<p>---Посты---</p><div id="result_post"></div>');
+        $("#result_search").html ('<div id="result_post"></div>');
         view_posts()
     });
 
@@ -228,7 +228,7 @@ $(document).ready(function (){
         $('#btn_group').data("btn_group_value", "btn_service");
         $('#result_search').data('scroll_bool_status', '0')
         $('#result_search').data("number_elem", '0')
-        $("#result_search").html ('<p>---Услуги---</p><div id="result_service"></div>');
+        $("#result_search").html ('<div id="result_service"></div>');
         view_service()
     });
 
@@ -237,7 +237,7 @@ $(document).ready(function (){
     filters_service_id_service_category.change( function() {
         $('#result_search').data('scroll_bool_status', '0')
         $('#result_search').data("number_elem", '0')
-        $("#result_search").html ('<p>---Услуги---</p><div id="result_service"></div>');
+        $("#result_search").html ('<div id="result_service"></div>');
         view_service()
     });
 
