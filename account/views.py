@@ -3,6 +3,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Subquery, OuterRef, Count
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -61,6 +62,13 @@ def account_show(request):
         organizations = Organization.objects.filter(user=request.user)
         subscription_to_me = Subscription.objects.filter(user=request.user)
         subscription_count = subscription_to_me.count()
+        subscription_to_me_1 = Subscription.objects.annotate(count_s=Count('subscriper')).filter(user=1)
+        # q = Book.objects.annotate(Count('authors', distinct=True), Count('store', distinct=True))
+            # =(Subquery(Subscription.aggregate(Count(id)).filter(user=subscription_to_me.value('subscriper') )))).filter(user=request.user)
+
+        # for subscription_to_me_11 in subscription_to_me_1:
+        #     subscription_to_me_11['subscription_count'] = Subscription.objects.filter(user=subscription_to_me_11['subscriper'])
+        # subscription_to_me = Subscription.objects.raw('select sub.master_id, sub.user_id, sub.subscriper_id, (select count(s.id) from subscription_subscription as s where s.user_id = sub.subscriper_id group by s.user_id ) as s_count from subscription_subscription as sub where user_id = %s', request.user)
         subscription_my_user = Subscription.objects.filter(subscriper=request.user, master=None)
         subscription_my_master = Subscription.objects.filter(subscriper=request.user, user=None)
         feed_account = AccountPost.objects.filter(user__subscriber__user=request.user)
@@ -71,6 +79,7 @@ def account_show(request):
         # posts = posts_paginator.page(1)
         # posts = post_page.object_list
         context = {
+            'subscription_to_me_1': subscription_to_me_1,
             'masters': masters,
             'subscription_to_me': subscription_to_me,
             'subscription_my_user': subscription_my_user,

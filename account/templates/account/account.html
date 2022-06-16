@@ -4,6 +4,13 @@
 {% load static %}
 {% block title %} Профиль пользователя {% endblock %}
 {% block content %}
+
+    {% for foo in subscription_to_me_1 %}
+        {{ foo.subscriper }}----------
+        {{ foo.count_s }}
+        <p></p>
+    {% endfor %}
+
     <section class="pb-5 text-center">
         <div class="container">
             <p class="fs-5">Профиль пользователя {{ user.username }}</p>
