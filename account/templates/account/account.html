@@ -6,7 +6,10 @@
 {% block content %}
 
     {% for foo in subscription_to_me_1 %}
-        {{ foo.subscriper }}----------
+        {{ foo }}
+        {{ foo.subscriper }}
+{#        {{ foo.title }}#}
+{#        {{ foo.subscriper }}----------#}
         {{ foo.count_s }}
         <p></p>
     {% endfor %}
@@ -48,7 +51,7 @@
 
                                                         <div class="m-2 align-items-start flex-column">
                                                             <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
-                                                            <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                                            <p class="m-1 fs-7 text-start">{{ subscription_to_me_one.count_s }} подписчиков</p>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -100,7 +103,7 @@
 
                                                                 <div class="m-2 align-items-start flex-column">
                                                                     <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_user_one.user }}</p>
-                                                                    <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                                                    <p class="m-1 fs-7 text-start">{{ subscription_my_user_one.count_s }} подписчиков</p>
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -116,7 +119,7 @@
 
                                                                 <div class="m-2 align-items-start flex-column">
                                                                     <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_master_one.master }}</p>
-                                                                    <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                                                    <p class="m-1 fs-7 text-start">{{ subscription_my_master_one.count_s }} подписчиков</p>
                                                                 </div>
                                                             </div>
                                                         </a>
