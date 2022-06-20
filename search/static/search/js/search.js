@@ -112,8 +112,16 @@ function view_service(){
     })
 }
 
+function removeClassUl(){
+    $('#all').removeClass('show active');
+    $('#masters').removeClass('show active');
+    $('#post').removeClass('show active');
+    $('#service').removeClass('show active');
+    $('#people').removeClass('show active');
+}
 
 function view_all(){
+    removeClassUl()
     $('#btn_group').data("btn_group_value", "btn_all");
     $("#result_search").html ('<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Объявления</p><input class="btn btn-link" id="btn_all_service" type="submit" value="Показать все" onclick="btn_all_service()"></div>' +
     '<div id="result_service" class=""></div>'+
@@ -132,34 +140,50 @@ function view_all(){
 }
 
 function btn_all_account(){
+    removeClassUl()
     $('#result_search').data('scroll_bool_status', '0')
     $('#btn_group').data("btn_group_value", "btn_account");
     $('#result_search').data("number_elem", '0')
     $("#result_search").html ('<div id="result_account"></div>');
+    $('#btn_account').addClass('active');
+    $('#people').addClass('show active');
+    $('#btn_all').removeClass('active');
     view_accounts()
 }
 
 function btn_all_master(){
+    removeClassUl()
     $('#result_search').data('scroll_bool_status', '0')
     $('#btn_group').data("btn_group_value", "btn_master");
     $('#result_search').data("number_elem", '0')
     $("#result_search").html ('<div id="result_master"></div>');
+    $('#btn_master').addClass('active');
+    $('#masters').addClass('show active');
+    $('#btn_all').removeClass('active');
     view_masters()
 }
 
 function btn_all_post(){
+    removeClassUl()
     $('#btn_group').data("btn_group_value", "btn_post");
     $('#result_search').data('scroll_bool_status', '0')
     $('#result_search').data("number_elem", '0')
     $("#result_search").html ('<div id="result_post"></div>');
+    $('#btn_post').addClass('active');
+    $('#post').addClass('show active');
+    $('#btn_all').removeClass('active');
     view_posts()
 }
 
 function btn_all_service(){
+    removeClassUl()
     $('#btn_group').data("btn_group_value", "btn_service");
     $('#result_search').data('scroll_bool_status', '0')
     $('#result_search').data("number_elem", '0')
     $("#result_search").html ('<div id="result_service"></div>');
+    $('#btn_service').addClass('active');
+    $('#service').addClass('show active');
+    $('#btn_all').removeClass('active');
     view_service()
 }
 
@@ -233,8 +257,8 @@ $(document).ready(function (){
     });
 
 
-    let filters_service_id_service_category = $('#filters_service_id_service_category');
-    filters_service_id_service_category.change( function() {
+//    let filters_service_id_service_category = $('#filters_service_id_service_category');
+    $('#filters_service_id_service_category').change( function() {
         $('#result_search').data('scroll_bool_status', '0')
         $('#result_search').data("number_elem", '0')
         $("#result_search").html ('<div id="result_service"></div>');

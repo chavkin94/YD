@@ -4,6 +4,16 @@
 {% load static %}
 {% block title %} Профиль пользователя {% endblock %}
 {% block content %}
+
+<!--    {{ subscription_to_me_1 }}-->
+<!--    <p>&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+<!--    {% for foo in subscription_to_me_1 %}-->
+<!--        {{ foo.subscriper }}&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--        {{ foo.user }}-->
+<!--        {{ foo.count_s }}-->
+<!--        <p></p>-->
+<!--    {% endfor %}-->
+
     <section class="pb-5 text-center">
         <div class="container">
             <p class="fs-5">Профиль пользователя {{ user.username }}</p>
@@ -41,7 +51,9 @@
 
                                                         <div class="m-2 align-items-start flex-column">
                                                             <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
-                                                            <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                                            <p class="m-1 fs-7 text-start">
+
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </a>
