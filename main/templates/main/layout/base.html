@@ -13,7 +13,8 @@
         <title>{% block title %}Главная{% endblock %}</title>
         <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
     </head>
-    <body class="fw-light text-secondary bg-body d-flex flex-column" style="overflow-y:auto;">
+    <body class="fw-light text-secondary bg-body d-flex flex-column justify-content-between" style="overflow-y:auto;">
+    <div>
         <header class="m-4">
             <nav class="bg-white navbar navbar-expand-lg navbar-light py-lg-1">
                 <div class="container">
@@ -30,7 +31,7 @@
 <!--                            <a class="btn btn-primary m-2 ms-lg-3" href="#">Сообщения</a>-->
                             <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'account:account' %}">Профиль</a>
                         {% else %}
-                            <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'account:login' %}">Войти</a>
+                            <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:index' %}">Авторизация</a>
                         {% endif %}
                     </div>
                 </div>
@@ -40,33 +41,35 @@
 
         {% block content %}
         {% endblock %}
+    </div>
 
 
-<!--        <div>-->
-<!--            <svg viewbox="0 0 100 100" preserveaspectratio="none" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" width="100%" class="d-block text-dark">-->
-<!--                <path d="M 100 100 V 0 L 0 100"/>-->
-<!--            </svg>-->
-<!--            <footer class="bg-dark pt-5 text-white">-->
-<!--                <div class="container">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-xl-4 py-3"> <a href="#" class="d-inline-block fw-bold h2 link-light mb-4 text-decoration-none" target>YouDeo</a>-->
-<!--                            <p class="mb-3">Объединение мастеров готовых творить !!!!!!!!!!!!!!!</p>-->
-<!--                            <div class="mb-4">-->
-<!--                                <a href="#" class="link-light text-decoration-none">hello@company.com</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="pb-3 pt-3 small">-->
-<!--                        <hr class="border-secondary mt-0"/>-->
-<!--                        <div class="align-items-center row">-->
-<!--                            <div class="col-md pb-2 pt-2">-->
-<!--                                <p class="mb-0">&copy; 2022 | All Rights Reserved - OOO "РИС СОВА"</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </footer>-->
-<!--        </div>-->
+
+        <div>
+            <svg viewbox="0 0 100 100" preserveaspectratio="none" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" width="100%" class="d-block text-dark">
+                <path d="M 100 100 V 0 L 0 100"/>
+            </svg>
+            <footer class="bg-dark pt-5 text-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 py-3"> <a href="#" class="d-inline-block fw-bold h2 link-light mb-4 text-decoration-none" target>YouDeo</a>
+                            <p class="mb-3">Объединение мастеров готовых творить !!!!!!!!!!!!!!!</p>
+                            <div class="mb-4">
+                                <a href="#" class="link-light text-decoration-none">hello@company.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pb-3 pt-3 small">
+                        <hr class="border-secondary mt-0"/>
+                        <div class="align-items-center row">
+                            <div class="col-md pb-2 pt-2">
+                                <p class="mb-0">&copy; 2022 | All Rights Reserved - OOO "РИС СОВА"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
 
         <script src="{% static 'js/popper.js' %}"></script>
         <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>

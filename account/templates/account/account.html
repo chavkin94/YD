@@ -5,15 +5,6 @@
 {% block title %} Профиль пользователя {% endblock %}
 {% block content %}
 
-    {% for foo in subscription_to_me_1 %}
-        {{ foo }}
-        {{ foo.subscriper }}
-{#        {{ foo.title }}#}
-{#        {{ foo.subscriper }}----------#}
-        {{ foo.count_s }}
-        <p></p>
-    {% endfor %}
-
     <section class="pb-5 text-center">
         <div class="container">
             <p class="fs-5">Профиль пользователя {{ user.username }}</p>
@@ -51,7 +42,14 @@
 
                                                         <div class="m-2 align-items-start flex-column">
                                                             <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
-                                                            <p class="m-1 fs-7 text-start">{{ subscription_to_me_one.count_s }} подписчиков</p>
+                                                            <p class="m-1 fs-7 text-start">
+                                                                {% if subscription_to_me_one.count_s %}
+                                                                    {{ subscription_to_me_one.count_s }}
+                                                                {% else %}
+                                                                    0
+                                                                {% endif %}
+                                                                подписчиков
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -103,7 +101,14 @@
 
                                                                 <div class="m-2 align-items-start flex-column">
                                                                     <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_user_one.user }}</p>
-                                                                    <p class="m-1 fs-7 text-start">{{ subscription_my_user_one.count_s }} подписчиков</p>
+                                                                    <p class="m-1 fs-7 text-start">
+                                                                        {% if subscription_my_user_one.count_s %}
+                                                                            {{ subscription_my_user_one.count_s }}
+                                                                        {% else %}
+                                                                            0
+                                                                        {% endif %}
+                                                                        подписчиков
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -119,7 +124,14 @@
 
                                                                 <div class="m-2 align-items-start flex-column">
                                                                     <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_master_one.master }}</p>
-                                                                    <p class="m-1 fs-7 text-start">{{ subscription_my_master_one.count_s }} подписчиков</p>
+                                                                    <p class="m-1 fs-7 text-start">
+                                                                        {% if subscription_my_master_one.count_s %}
+                                                                            {{ subscription_my_master_one.count_s }}
+                                                                        {% else %}
+                                                                            0
+                                                                        {% endif %}
+                                                                        подписчиков
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </a>

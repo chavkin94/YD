@@ -42,7 +42,14 @@
 
                                                         <div class="m-2 align-items-start flex-column">
                                                             <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
-                                                            <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                                            <p class="m-1 fs-7 text-start">
+                                                                {% if subscription_to_me_one.count_s %}
+                                                                    {{ subscription_to_me_one.count_s }}
+                                                                {% else %}
+                                                                    0
+                                                                {% endif %}
+                                                                подписчиков
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </a>

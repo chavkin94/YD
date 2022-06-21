@@ -288,10 +288,12 @@ $(document).ready(function (){
 
     //Прокрутка
 
-    $(window).scroll(function () {
-        if ($("#result_search").data('scroll_bool_status') != '1'){
-            if ((($(window).scrollTop() >= $(document).height() - $(window).height()))&&($(document).height() - $(window).height()!=0)) {
 
+    var element = document.querySelector('#target');
+    var visible_element = 0;
+    $(window).scroll(function () {
+        if (visible_element != 1 && target.getBoundingClientRect().top < window.pageYOffset){
+            visible_element = 1;
                 if (($('#btn_group').data("btn_group_value")) == "btn_account"){
                     view_accounts();
                 }
@@ -305,9 +307,30 @@ $(document).ready(function (){
                     view_service();
 
                 }
-                window_height = $(document).height() - $(window).height()
-            }
         }
+        if (target.getBoundingClientRect().top > window.pageYOffset)
+        {
+            visible_element = 0;
+        }
+//        if ($("#result_search").data('scroll_bool_status') != '1'){
+//            if ((($(window).scrollTop() >= $(document).height() - $(window).height()))&&($(document).height() - $(window).height()!=0)) {
+//
+//                if (($('#btn_group').data("btn_group_value")) == "btn_account"){
+//                    view_accounts();
+//                }
+//                else if (($('#btn_group').data("btn_group_value")) == "btn_master"){
+//                    view_masters();
+//                }
+//                else if (($('#btn_group').data("btn_group_value")) == "btn_post"){
+//                    view_posts();
+//                }
+//                else if (($('#btn_group').data("btn_group_value")) == "btn_service"){
+//                    view_service();
+//
+//                }
+//                window_height = $(document).height() - $(window).height()
+//            }
+//        }
     })
 
 

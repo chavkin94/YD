@@ -4,7 +4,7 @@ from .views import *
 app_name = 'main'
 
 urlpatterns = [
-    path('main', index, name='index'),
+    path('authorization', index, name='index'),
     path('feed', feed, name='feed'),
     path('search', search, name='search'),
 
