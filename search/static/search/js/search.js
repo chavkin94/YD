@@ -22,7 +22,6 @@ function view_accounts(){
             }
         },
         error: function (response){
-            // console.log('ERR')
         }
     })
 }
@@ -51,7 +50,6 @@ function view_masters(){
             }
         },
         error: function (response){
-            // console.log('ERR')
         }
     })
 }
@@ -78,7 +76,6 @@ function view_posts(){
             }
         },
         error: function (response){
-            // console.log('ERR')
         }
     })
 }
@@ -107,7 +104,6 @@ function view_service(){
             }
         },
         error: function (response){
-            // console.log('ERR')
         }
     })
 }
@@ -270,20 +266,21 @@ $(document).ready(function (){
     let text_search = $('#text_search');
     text_search.keydown(function (e){   //собфтие нажатия интер на строке ввода
         if(e.keyCode ===13){
+
             if (($('#btn_group').data("btn_group_value")) == "btn_all"){
                 view_all();
             }
             else if (($('#btn_group').data("btn_group_value")) == "btn_account"){
-                view_accounts();
+                btn_all_account();
             }
             else if (($('#btn_group').data("btn_group_value")) == "btn_master"){
-                view_masters();
+                btn_all_master();
             }
             else if (($('#btn_group').data("btn_group_value")) == "btn_post"){
-                view_posts();
+                btn_all_post();
             }
             else if (($('#btn_group').data("btn_group_value")) == "btn_service"){
-                view_service();
+                btn_all_service();
             }
         }
     })
