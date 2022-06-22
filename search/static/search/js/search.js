@@ -125,7 +125,7 @@ function view_all(){
     '<div id="result_master" class=""></div>' +
     '<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Публикации</p><input class="btn btn-link" id="btn_all_post" type="submit" value="Показать все" onclick="btn_all_post()"></div>' +
     '<div id="result_post" class=""></div>' +
-    '<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Пользователи</p> <input class="btn btn-link" id="btn_all_account" type="submit" value="Показать все" onclick="btn_all_account()"></div>' +
+    '<div class="d-flex fs-5 btn-primary border mt-3"> <p class="m-2">Люди</p> <input class="btn btn-link" id="btn_all_account" type="submit" value="Показать все" onclick="btn_all_account()"></div>' +
     '<div id="result_account" class=""></div>');
     $('#result_search').data("number_elem", '0')
     $('#result_search').data('scroll_bool_status', '0')
@@ -294,6 +294,7 @@ $(document).ready(function (){
     $(window).scroll(function () {
         if (visible_element != 1 && target.getBoundingClientRect().top < window.pageYOffset){
             visible_element = 1;
+            console.log('1');
                 if (($('#btn_group').data("btn_group_value")) == "btn_account"){
                     view_accounts();
                 }
@@ -305,7 +306,6 @@ $(document).ready(function (){
                 }
                 else if (($('#btn_group').data("btn_group_value")) == "btn_service"){
                     view_service();
-
                 }
         }
         if (target.getBoundingClientRect().top > window.pageYOffset)
