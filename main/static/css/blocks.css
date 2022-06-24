@@ -489,3 +489,9 @@ body{
 .rounded-circle{
     object-fit: cover;
 }
+
+.add__text {
+  overflow: hidden;
+  transition: height .2s linear;
+  resize: none;
+}

@@ -7,6 +7,7 @@ urlpatterns = [
     path('authorization', index, name='index'),
     path('feed', feed, name='feed'),
     path('search', search, name='search'),
+    path('contacts', contacts, name='contacts'),
 
     path('m/', main, name='main'),
     path('basket_adding/', basket_adding, name='basket_adding'),

@@ -1,0 +1,35 @@
+{% extends 'main/layout/base.html' %}
+
+{% block content %}
+
+    <section class="pb-10 text-center">
+        <div class="container">
+            <ul class="nav nav-tabs" role="tablist" style="flex-wrap: inherit; overflow-x: auto; overflow-y: clip;">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="feedback-tab" data-bs-toggle="tab" data-bs-target="#feedback" type="button" role="tab" aria-controls="" aria-selected="false">Обратная связь</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="usagePolicy-tab" data-bs-toggle="tab" data-bs-target="#usagePolicy" type="button" role="tab" aria-controls="posts" aria-selected="true">Политика использования</button>
+                </li>
+            </ul>
+
+            <div class="tab-content text-dark fs-6">
+
+                <div class="tab-pane fade show active" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                    <div class="m-4 text-start">
+                        <p> Номер телефона:</p>
+                        <p> E-mail:</p>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="usagePolicy" role="tabpanel" aria-labelledby="usagePolicy-tab">
+                    <div class="m-4">
+                        Политика использования
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

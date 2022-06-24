@@ -20,6 +20,8 @@ def search(request):
         return render(request, 'main/content/search.html')
 
 
+def contacts(request):
+        return render(request, 'main/content/contacts.html')
 
 
 def main(request):
