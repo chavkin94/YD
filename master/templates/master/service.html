@@ -9,30 +9,35 @@
                 <div class="col-12 col-md-12 col-sm-12 col-xl-12 pb-3 pt-3">
                     <div class="flex-lg-wrap row">
                         <h4 class="text-dark text-center">{{ service.name }}</h4>
-                        <div class="align-items-center col-12 container d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-flex flex-xl-row flex-xxl-row text-start">
+                        <div class="align-items-center col-12 container d-flex flex-column flex-lg-row flex-sm-flex flex-xl-row flex-xxl-row text-start">
                             <div class="box-service-user">
                                 <img src="/media/{{ service.image }}" class="w-100"/>
                             </div>
                             <div class="container text-start m-2 text-dark col-12 col-lg-6">
-                                {% if service.price %}
-                                    <p class="h5 d-flex d-inline-block mb-1">Стоимость: {{ service.price }}</p>
-                                {% else %}
-                                    <p class="h5 d-flex d-inline-block mb-1">Стоимость не указана</p>
-                                {% endif %}
-                                <p class="fs-5">Данные пользователя</p>
-                                <a class="fs-5 d-inline-block m-2 text-dark" href="{{ master.get_absolute_url }}">Мастер: {{ master.name }}</a>
-                                <p class="fs-5 d-flex d-inline-block m-2">Номер телефона: {{ master.phone_number }}</p>
-                                <p class="fs-5 d-flex d-inline-block m-2">E-mail: {{ master.email }}</p>
-                                <p class="fs-5 d-flex d-inline-block m-2">Город: {{ master.location }}</p>
+                                <div>
+                                    {% if service.price %}
+                                        <p class="h5 d-flex d-inline-block mb-1">Стоимость: {{ service.price }}</p>
+                                    {% else %}
+                                        <p class="h5 d-flex d-inline-block mb-1">Стоимость не указана</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <p class="fs-5">Данные пользователя</p>
+                                    <a class="fs-5 d-inline-block m-2 text-decoration-none link-primary" href="{{ master.get_absolute_url }}">Мастер: {{ master.name }}</a>
+                                    <p class="fs-5 d-flex d-inline-block m-2">Номер телефона: {{ master.phone_number }}</p>
+                                    <p class="fs-5 d-flex d-inline-block m-2">E-mail: {{ master.email }}</p>
+                                    <p class="fs-5 d-flex d-inline-block m-2">Город: {{ master.location }}</p>
+                                </div>
                             </div>
                         </div>
                         <div class="container p-2">
                             <p class="h4 m-2 text-dark ">Описание</p>
-                            <h5 class="d-flex d-inline-block mb-1 p-4 text-start fs-5">{{ service.description }}</h5>
+                            <pre class="pre-description-user text-start fs-6 m-4">{{ service.description }}</pre>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 {% endblock %}

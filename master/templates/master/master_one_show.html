@@ -7,81 +7,84 @@
     <section class="pb-5 text-center">
         <div class="container">
             <p class="fs-5">Профиль мастера {{ master.name }}</p>
-            <div class="col-12 col-lg-6 col-md-9 col-sm-10 col-xl-5 col-xxl-5 d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between">
-                <div class="container box-image-user">
+            <div class="col-12 col-lg-6 col-md-9 col-sm-10 col-xl-5 col-xxl-5 d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex flex-row flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row  ">
+                <div class="box-image-user col-auto">
                     {% if master.image %}
                         <img src="{% thumbnail master.image 'default' %}" width="100" height="100" class="rounded-circle"/>
                     {% else %}
                         <img src="{% static 'images/master.png' %}" width="100" height="100" class="rounded-circle"/>
                     {% endif %}
                 </div>
-                <div class="col-12 col-md-9">
+                <div class="col-auto col-md-9">
                     {% if user.first_name and user.last_name %}
                         <h5 class="d-flex ms-3">Мастер {{ master.name }}</h5>
-                        <h6 class="fs-6 d-flex ms-3">Подписчиков: {{ subscription_count }}</h6>
+                        <h6 class="fs-6 d-flex ms-3 link-primary">
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalSubscriptions">Подписчиков: {{ subscription_count }}</a>
+                        </h6>
                     {% endif %}
-                    <div class="d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row">
-                        <a href="#" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#modalSubscriptions">Подписчики</a>
+                    <div class="col-4 col-sm-12 d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row">
+                        <div class="d-flex flex-row">
+                            {% if user.is_authenticated %}
+                                <div class="d-flex col-auto ms-3 mt-2">
+                                    <form action="{% url 'master:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-primary btn-buy"
+                                                data-user_current_slug = "{{ user.username }}"
+                                                data-master_slug = "{{ master.slug }}"
+                                                data-url_type = "{{ url_type }}"
+                                            >
+                                            {% if subscripe %}
+                                                <p class="m-0 text-muted" id="submit_p">Отписаться</p>
+                                            {% else %}
+                                                <p class="m-0 text-primary" id="submit_p">Подписаться</p>
+                                            {% endif %}
+                                            </button>
+                                        </div>
 
-                        <div class="modal fade" id="modalSubscriptions" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Подписчики</h5>
-                                        <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="d-flex flex-column text-start m-3">
-                                        <div class="container p-2">
-                                            {% for subscription_to_me_one in subscription_to_me %}
-                                                <a class="text-dark text-decoration-none" href="/account/profile/{{ subscription_to_me_one.subscriper }}">
-                                                    <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
-                                                        <div class="m-2 align-items-center d-flex">
-                                                            <img src="/media/{{ subscription_to_me_one.subscriper.image }}" width="70" height="70" class="rounded-circle"/>
-                                                        </div>
+                                    </form>
+                                </div>
+                            {% endif %}
 
-                                                        <div class="m-2 align-items-start flex-column">
-                                                            <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
-                                                            <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                            <div class="modal fade" id="modalSubscriptions" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Подписчики</h5>
+                                            <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="d-flex flex-column text-start m-3">
+                                            <div class="container p-2">
+                                                {% for subscription_to_me_one in subscription_to_me %}
+                                                    <a class="text-dark text-decoration-none" href="/account/profile/{{ subscription_to_me_one.subscriper }}">
+                                                        <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                                                            <div class="m-2 align-items-center d-flex">
+                                                                <img src="/media/{{ subscription_to_me_one.subscriper.image }}" width="70" height="70" class="rounded-circle"/>
+                                                            </div>
+
+                                                            <div class="m-2 align-items-start flex-column">
+                                                                <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
+                                                                <p class="m-1 fs-7 text-start">1 267 подписчиков</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            {% endfor %}
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <a href="{% url 'master:master_update' master.slug %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="bi bi-gear m-2 mt-3" viewBox="0 0 16 16">
+                                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                                </svg>
+                            </a>
                         </div>
-
-                        <a href="{% url 'master:master_update' master.slug %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="bi bi-gear m-2 mt-3" viewBox="0 0 16 16">
-                                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                            </svg>
-                        </a>
                     </div>
                 </div>
             </div>
-            {% if user.is_authenticated %}
-                <div class="container d-flex mt-3">
-                    <form action="{% url 'master:subscription:subscripe_unsubscripe' %}" id="form_subscripe_unsubscripe">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <button id="submit_btn_subscripe_unsubscripe" type="submit" class="btn btn-primary btn-buy"
-                                data-user_current_slug = "{{ user.username }}"
-                                data-master_slug = "{{ master.slug }}"
-                                data-url_type = "{{ url_type }}"
-                            >
-                            {% if subscripe %}
-                                <p class="m-0 text-muted" id="submit_p">Отписаться</p>
-                            {% else %}
-                                <p class="m-0 text-primary" id="submit_p">Подписаться</p>
-                            {% endif %}
-                            </button>
-                        </div>
 
-                    </form>
-                </div>
-            {% endif %}
         </div>
 
         <div class="container pb-5 pt-3">
@@ -101,6 +104,7 @@
             <div class="tab-content" id="myTabContent">
 
                 <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+
                     <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
                         <div class="container text-end">
                             <div class="text-end">
@@ -161,8 +165,17 @@
                 </div>
 
                 <div class="tab-pane fade" id="info-master" role="tabpanel" aria-labelledby="info-master-tab">
-                    <div class="col-lg-12 col-sm-12 col-xl-12 pb-3 pt-3">
-                        <textarea class="add__text form-control" placeholder="Описание">{{ master.description }}</textarea>
+                    <div class="d-flex flex-row justify-content-between m-4">
+                        <div class="col-8 d-flex flex-column text-start">
+                            <p class="fs-4">Описание</p>
+                            <pre class="pre-description-user border-bottom pb-4">{{ master.description }}</pre>
+                            <p class="fs-5">Дополнительно</p>
+                            <a class="fs-6 text-decoration-none link-primary" href="/account/profile/{{ master.user }}">Профиль пользователя: {{ master.user }}</a>
+                        </div>
+                        <div class="col-3 text-start">
+                            <p class="fs-4">Статистика</p>
+                            <p>Год начала работы: {{ master.start_year }}</p>
+                        </div>
                     </div>
                 </div>
 
@@ -173,48 +186,5 @@
 
     <script src={% static 'master/js/pagination.js' %}></script>
     <script src={% static 'subscription/js/subscription.js' %}></script>
-    <script>
-        window.onload = function() {
-
-        };
-        let observe;
-        let text = document.querySelector('.add__text');
-
-        if (window.attachEvent) {
-            observe = function (element, event, handler) {
-                element.attachEvent('on'+event, handler);
-            };
-        } else {
-            observe = function (element, event, handler) {
-                element.addEventListener(event, handler, false);
-            };
-        }
-
-        function init() {
-            function resize () {
-                text.style.height = 'auto';
-                text.style.height = text.scrollHeight+'px';
-            }
-
-            function delayedResize() {
-                requestAnimationFrame(function() {
-                    resize();
-                });
-
-            }
-            observe(text, 'change',  resize);
-            observe(text, 'onload',  delayedResize);
-            observe(text, 'cut',     delayedResize);
-            observe(text, 'paste',   delayedResize);
-            observe(text, 'drop',    delayedResize);
-            observe(text, 'keydown', delayedResize);
-
-            text.focus();
-            text.select();
-            resize();
-        }
-
-        init();
-    </script>
 
 {% endblock %}

@@ -490,8 +490,10 @@ body{
     object-fit: cover;
 }
 
-.add__text {
-  overflow: hidden;
-  transition: height .2s linear;
-  resize: none;
+.pre-description-user {
+   white-space: pre-wrap;       /* css-3 */
+   white-space: -moz-pre-wrap;  /* Mozilla, с 1999 года*/
+   white-space: -pre-wrap;      /* Opera 4-6 */
+   white-space: -o-pre-wrap;    /* Opera 7 */
+   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
