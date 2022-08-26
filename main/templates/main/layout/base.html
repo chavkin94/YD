@@ -28,7 +28,7 @@
                         {% endif %}
                         <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'search:search_view' %}">Поиск</a>
                         {% if user.is_authenticated %}
-<!--                            <a class="btn btn-primary m-2 ms-lg-3" href="#">Сообщения</a>-->
+                            <a class="btn btn-primary m-2 ms-lg-3" href="#">Сообщения</a>
                             <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'account:account' %}">Профиль</a>
                         {% else %}
                             <a class="btn btn-primary m-2 ms-lg-3" href="{% url 'main:index' %}">Авторизация</a>

@@ -8,149 +8,149 @@
     <section class="pb-5 text-center">
         <div class="container">
             <p class="fs-5">Профиль пользователя {{ user.username }}</p>
-            <div class="col-12 col-lg-6 col-md-9 col-sm-10 col-xl-5 col-xxl-5 d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row justify-content-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-xl-between justify-content-xxl-between">
-                <div class="container">
+            <div class="col-12 col-lg-6 col-md-9 col-sm-10 col-xl-5 col-xxl-5 d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex flex-row flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row  ">
+                <div class="box-image-user col-auto">
                     {% if user.image %}
-                        <img src="{% thumbnail master.image 'default' %}" class="m-2 rounded-circle" width="100" height="100"/>
+                        <img src="{% thumbnail master.image 'default' %}" class="rounded-circle" width="100" height="100"/>
                     {% else %}
-                        <img src="{% static 'images/master.png' %}" class="m-2 rounded-circle" width="100" height="100"/>
+                        <img src="{% static 'images/master.png' %}" class="rounded-circle" width="100" height="100"/>
                     {% endif %}
                 </div>
-                <div class="col-12 col-md-9">
+                <div class="col-auto col-md-9">
                     {% if user.first_name and user.last_name %}
                         <h5 class="d-flex ms-3">{{ user.first_name }} {{ user.last_name }}</h5>
                         <h6 class="fs-6 d-flex ms-3">Подписчиков: {{ subscription_count }}</h6>
                     {% endif %}
-                    <div class="d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row">
-                        <a href="#" class="btn btn-primary m-2 " data-bs-toggle="modal" data-bs-target="#modalSubscribers">Подписчики</a>
+                    <div class="col-4 col-sm-12 d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-row flex-md-row flex-sm-row flex-xl-row flex-xxl-row">
+                        <div class="d-flex flex-row">
+                            <a href="#" class="btn btn-primary m-2 " data-bs-toggle="modal" data-bs-target="#modalSubscribers">Подписчики</a>
 
-                        <div class="modal fade" id="modalSubscribers" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Подписчики</h5>
-                                        <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="d-flex flex-column text-start m-3">
-                                        <div class="container p-2">
-                                            {% for subscription_to_me_one in subscription_to_me %}
-                                                <a class="text-dark text-decoration-none" href="profile/{{ subscription_to_me_one.subscriper }}">
-                                                    <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
-                                                        <div class="m-2 align-items-center d-flex">
-                                                            <img src="/media/{{ subscription_to_me_one.subscriper.image }}" width="70" height="70" class="rounded-circle"/>
-                                                        </div>
+                            <div class="modal fade" id="modalSubscribers" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Подписчики</h5>
+                                            <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="d-flex flex-column text-start m-3">
+                                            <div class="container p-2">
+                                                {% for subscription_to_me_one in subscription_to_me %}
+                                                    <a class="text-dark text-decoration-none" href="profile/{{ subscription_to_me_one.subscriper }}">
+                                                        <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                                                            <div class="m-2 align-items-center d-flex">
+                                                                <img src="/media/{{ subscription_to_me_one.subscriper.image }}" width="70" height="70" class="rounded-circle"/>
+                                                            </div>
 
-                                                        <div class="m-2 align-items-start flex-column">
-                                                            <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
-                                                            <p class="m-1 fs-7 text-start">
-                                                                {% if subscription_to_me_one.count_s %}
-                                                                    {{ subscription_to_me_one.count_s }}
-                                                                {% else %}
-                                                                    0
-                                                                {% endif %}
-                                                                подписчиков
-                                                            </p>
+                                                            <div class="m-2 align-items-start flex-column">
+                                                                <p class="m-1 fs-6 text-start text-dark">{{ subscription_to_me_one.subscriper.username }}</p>
+                                                                <p class="m-1 fs-7 text-start">
+                                                                    {% if subscription_to_me_one.count_s %}
+                                                                        {{ subscription_to_me_one.count_s }}
+                                                                    {% else %}
+                                                                        0
+                                                                    {% endif %}
+                                                                    подписчиков
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            {% endfor %}
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                            <a href="#" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#modalSubscriptions">Подписки</a>
 
-                        <a href="#" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#modalSubscriptions">Подписки</a>
+                            <div class="modal fade" id="modalSubscriptions" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Подписки</h5>
+                                            <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="d-flex flex-column text-start m-3">
+                                            <div class="container p-2">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active" id="subscription-account-tab"
+                                                                data-bs-toggle="tab"
+                                                                data-bs-target="#subscription-account"
+                                                                type="button" role="tab"
+                                                                aria-controls="subscription-account"
+                                                                aria-selected="true">Пользователи</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="subscription-master-tab"
+                                                                data-bs-toggle="tab"
+                                                                data-bs-target="#subscription-master"
+                                                                type="button" role="tab"
+                                                                aria-controls="subscription-master"
+                                                                aria-selected="false">Мастера</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade show active" id="subscription-account" role="tabpanel" aria-labelledby="subscription-account-tab">
+                                                        {% for subscription_my_user_one in subscription_my_user %}
+                                                            <a class="text-dark text-decoration-none" href="profile/{{ subscription_my_user_one.user.username }}">
+                                                                <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                                                                    <div class="m-2 align-items-center d-flex">
+                                                                        <img src="/media/{{ subscription_my_user_one.user.image }}" width="70" height="70" class="rounded-circle"/>
+                                                                    </div>
 
-                        <div class="modal fade" id="modalSubscriptions" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Подписки</h5>
-                                        <button type="button" class="btn-primary btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="d-flex flex-column text-start m-3">
-                                        <div class="container p-2">
-                                            <ul class="nav nav-tabs" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                    <button class="nav-link active" id="subscription-account-tab"
-                                                            data-bs-toggle="tab"
-                                                            data-bs-target="#subscription-account"
-                                                            type="button" role="tab"
-                                                            aria-controls="subscription-account"
-                                                            aria-selected="true">Пользователи</button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <button class="nav-link" id="subscription-master-tab"
-                                                            data-bs-toggle="tab"
-                                                            data-bs-target="#subscription-master"
-                                                            type="button" role="tab"
-                                                            aria-controls="subscription-master"
-                                                            aria-selected="false">Мастера</button>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade show active" id="subscription-account" role="tabpanel" aria-labelledby="subscription-account-tab">
-                                                    {% for subscription_my_user_one in subscription_my_user %}
-                                                        <a class="text-dark text-decoration-none" href="profile/{{ subscription_my_user_one.user.username }}">
-                                                            <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
-                                                                <div class="m-2 align-items-center d-flex">
-                                                                    <img src="/media/{{ subscription_my_user_one.user.image }}" width="70" height="70" class="rounded-circle"/>
+                                                                    <div class="m-2 align-items-start flex-column">
+                                                                        <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_user_one.user }}</p>
+                                                                        <p class="m-1 fs-7 text-start">
+                                                                            {% if subscription_my_user_one.count_s %}
+                                                                                {{ subscription_my_user_one.count_s }}
+                                                                            {% else %}
+                                                                                0
+                                                                            {% endif %}
+                                                                            подписчиков
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
+                                                            </a>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="tab-pane fade" id="subscription-master" role="tabpanel" aria-labelledby="subscription-master-tab">
+                                                        {% for subscription_my_master_one in subscription_my_master %}
+                                                            <a class="text-dark text-decoration-none" href="/master/{{ subscription_my_master_one.master.slug }}">
+                                                                <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
+                                                                    <div class="m-2 align-items-center d-flex">
+                                                                        <img src="/media/{{ subscription_my_master_one.master.image }}" width="70" height="70" class="rounded-circle"/>
+                                                                    </div>
 
-                                                                <div class="m-2 align-items-start flex-column">
-                                                                    <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_user_one.user }}</p>
-                                                                    <p class="m-1 fs-7 text-start">
-                                                                        {% if subscription_my_user_one.count_s %}
-                                                                            {{ subscription_my_user_one.count_s }}
-                                                                        {% else %}
-                                                                            0
-                                                                        {% endif %}
-                                                                        подписчиков
-                                                                    </p>
+                                                                    <div class="m-2 align-items-start flex-column">
+                                                                        <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_master_one.master }}</p>
+                                                                        <p class="m-1 fs-7 text-start">
+                                                                            {% if subscription_my_master_one.count_s %}
+                                                                                {{ subscription_my_master_one.count_s }}
+                                                                            {% else %}
+                                                                                0
+                                                                            {% endif %}
+                                                                            подписчиков
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
-                                                    {% endfor %}
-                                                </div>
-                                                <div class="tab-pane fade" id="subscription-master" role="tabpanel" aria-labelledby="subscription-master-tab">
-                                                    {% for subscription_my_master_one in subscription_my_master %}
-                                                        <a class="text-dark text-decoration-none" href="/master/{{ subscription_my_master_one.master.slug }}">
-                                                            <div class="account-master-user border-bottom col-lg-12 col-md-12 col-xl-12 col-xxl-12 d-flex flex-row">
-                                                                <div class="m-2 align-items-center d-flex">
-                                                                    <img src="/media/{{ subscription_my_master_one.master.image }}" width="70" height="70" class="rounded-circle"/>
-                                                                </div>
-
-                                                                <div class="m-2 align-items-start flex-column">
-                                                                    <p class="m-1 fs-6 text-start text-dark">{{ subscription_my_master_one.master }}</p>
-                                                                    <p class="m-1 fs-7 text-start">
-                                                                        {% if subscription_my_master_one.count_s %}
-                                                                            {{ subscription_my_master_one.count_s }}
-                                                                        {% else %}
-                                                                            0
-                                                                        {% endif %}
-                                                                        подписчиков
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    {% endfor %}
+                                                            </a>
+                                                        {% endfor %}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalSettings">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="bi bi-gear m-2 mt-3" viewBox="0 0 16 16">
+                                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                                </svg>
+                            </a>
+                            {% include "main/modal/modal.html" %}
                         </div>
-
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalSettings">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="bi bi-gear m-2 mt-3" viewBox="0 0 16 16">
-                                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                            </svg>
-                        </a>
-                        {% include "main/modal/modal.html" %}
                     </div>
                 </div>
             </div>
@@ -159,8 +159,8 @@
                     <a class="fs-6 text-decoration-none m-1 link-primary" href="{% url 'master:master_all_show' %}">Все мастера</a>
                 {% endif %}
             </div>
-
         </div>
+
         <div class="container pb-5 pt-3">
 
             <ul class="nav nav-tabs" role="tablist" style="flex-wrap: inherit; overflow-x: auto; overflow-y: clip;">
